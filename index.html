@@ -6,7 +6,7 @@
 <title>NutriCalc — Calculadora Nutricional</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:wght@600;700;800&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#f5f2ed;--bg-card:#fff;--bg-dark:#1a1a2e;--accent:#2d6a4f;--accent-light:#40916c;--accent-pale:#d8f3dc;--accent-hover:#1b4332;--text:#1a1a2e;--text-light:#555;--text-muted:#888;--border:#e0ddd7;--shadow:0 2px 16px rgba(0,0,0,.06);--shadow-lg:0 8px 32px rgba(0,0,0,.1);--radius:12px;--radius-sm:8px;--santa-casa:#b5432a;--hnss:#2656a3;--warning:#e76f51;--success:#2d6a4f}
+:root{--bg:#f5f2ed;--bg-card:#fff;--bg-dark:#1a1a2e;--accent:#2d6a4f;--accent-light:#40916c;--accent-pale:#d8f3dc;--accent-hover:#1b4332;--text:#1a1a2e;--text-light:#555;--text-muted:#888;--border:#e0ddd7;--shadow:0 2px 16px rgba(0,0,0,.06);--shadow-lg:0 8px 32px rgba(0,0,0,.1);--radius:12px;--radius-sm:8px;--santa-casa:#b5432a;--hnss:#2656a3;--warning:#e76f51}
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;line-height:1.5}
 .header{background:var(--bg-dark);color:#fff;padding:14px 20px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:100;box-shadow:0 4px 20px rgba(0,0,0,.2)}
@@ -15,24 +15,20 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 .header p{font-size:11px;opacity:.5}
 .header-right{margin-left:auto;display:flex;gap:6px}
 .hdr-btn{padding:7px 12px;border:1.5px solid rgba(255,255,255,.2);border-radius:8px;background:0 0;color:#fff;font-family:'DM Sans',sans-serif;font-size:11px;font-weight:600;cursor:pointer;transition:all .2s}
-.hdr-btn:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.4)}
+.hdr-btn:hover{background:rgba(255,255,255,.1)}
 .hdr-btn.primary{background:var(--accent);border-color:var(--accent)}
 .container{max-width:1100px;margin:0 auto;padding:18px 14px 60px}
 .section{background:var(--bg-card);border-radius:var(--radius);padding:22px;margin-bottom:14px;box-shadow:var(--shadow);border:1px solid var(--border)}
 .section-title{font-family:'Fraunces',serif;font-size:16px;font-weight:700;margin-bottom:14px;display:flex;align-items:center;gap:9px}
 .section-title .icon{width:28px;height:28px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
-.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
-.grid-4{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:12px}
-.grid-5{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
-.grid-6{display:grid;grid-template-columns:repeat(6,1fr);gap:10px}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:12px}.grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.grid-5{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}.grid-6{display:grid;grid-template-columns:repeat(6,1fr);gap:10px}
 @media(max-width:768px){.grid-2,.grid-3,.grid-4,.grid-5,.grid-6{grid-template-columns:1fr 1fr}}
 @media(max-width:500px){.grid-2,.grid-3,.grid-4,.grid-5,.grid-6{grid-template-columns:1fr}}
 .field{display:flex;flex-direction:column;gap:4px}
 .field label{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.5px;color:var(--text-light)}
-.field input,.field select,.field textarea{padding:8px 11px;border:1.5px solid var(--border);border-radius:var(--radius-sm);font-family:'DM Sans',sans-serif;font-size:13px;background:#fafaf8;transition:border-color .2s,box-shadow .2s;color:var(--text)}
+.field input,.field select,.field textarea{padding:8px 11px;border:1.5px solid var(--border);border-radius:var(--radius-sm);font-family:'DM Sans',sans-serif;font-size:13px;background:#fafaf8;transition:border-color .2s;color:var(--text)}
 .field input:focus,.field select:focus,.field textarea:focus{outline:0;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-pale)}
-.field input[readonly]{background:var(--accent-pale);font-weight:600;color:var(--accent-hover);border-color:var(--accent-light);cursor:default}
+.field input[readonly]{background:var(--accent-pale);font-weight:600;color:var(--accent-hover);border-color:var(--accent-light)}
 .field textarea{resize:vertical;min-height:100px}
 .institution-picker{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .inst-btn{padding:14px;border:2.5px solid var(--border);border-radius:var(--radius);background:#fff;cursor:pointer;text-align:center;transition:all .2s;font-family:'DM Sans',sans-serif}
@@ -41,17 +37,13 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 .inst-btn.hnss.active{border-color:var(--hnss);background:#edf2fa}
 .inst-btn .inst-name{font-weight:700;font-size:13px}
 .inst-btn .inst-detail{font-size:10px;color:var(--text-muted);margin-top:2px}
-.inst-btn.santa-casa .inst-name{color:var(--santa-casa)}
-.inst-btn.hnss .inst-name{color:var(--hnss)}
+.inst-btn.santa-casa .inst-name{color:var(--santa-casa)}.inst-btn.hnss .inst-name{color:var(--hnss)}
 .type-toggle{display:flex;gap:8px;flex-wrap:wrap}
 .type-btn{padding:9px 18px;border:2px solid var(--border);border-radius:50px;background:#fff;cursor:pointer;font-family:'DM Sans',sans-serif;font-weight:600;font-size:12px;transition:all .2s}
-.type-btn:hover{border-color:var(--accent-light)}
-.type-btn.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.type-btn:hover{border-color:var(--accent-light)}.type-btn.active{background:var(--accent);color:#fff;border-color:var(--accent)}
 .diet-card{border:2px solid var(--border);border-radius:var(--radius);padding:12px;cursor:pointer;transition:all .2s;background:#fff}
-.diet-card:hover{border-color:var(--accent-light)}
-.diet-card.active{border-color:var(--accent);background:var(--accent-pale)}
-.diet-card .diet-name{font-weight:700;font-size:12px;margin-bottom:2px}
-.diet-card .diet-info{font-size:10px;color:var(--text-muted);line-height:1.4}
+.diet-card:hover{border-color:var(--accent-light)}.diet-card.active{border-color:var(--accent);background:var(--accent-pale)}
+.diet-card .diet-name{font-weight:700;font-size:12px;margin-bottom:2px}.diet-card .diet-info{font-size:10px;color:var(--text-muted);line-height:1.4}
 .results-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px;margin-top:12px}
 .result-box{background:linear-gradient(135deg,#f8faf8,#eef5ee);border:1px solid #d0e8d0;border-radius:var(--radius-sm);padding:12px;text-align:center}
 .result-box .result-label{font-size:9px;text-transform:uppercase;letter-spacing:.5px;color:var(--text-muted);font-weight:600;margin-bottom:2px}
@@ -75,7 +67,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 .screen-btn:hover{border-color:var(--accent);background:var(--accent-pale)}
 .screen-btn .badge{padding:2px 7px;border-radius:12px;font-size:10px;font-weight:700}
 .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:200;display:flex;align-items:center;justify-content:center;padding:16px;backdrop-filter:blur(4px)}
-.modal{background:#fff;border-radius:var(--radius);max-width:720px;width:100%;max-height:90vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,.3)}
+.modal{background:#fff;border-radius:var(--radius);max-width:750px;width:100%;max-height:90vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,.3)}
 .modal-header{padding:16px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;background:#fff;z-index:10;border-radius:var(--radius) var(--radius) 0 0}
 .modal-header h2{font-family:'Fraunces',serif;font-size:16px}
 .modal-close{width:30px;height:30px;border:0;background:#f0f0f0;border-radius:8px;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center}
@@ -84,32 +76,33 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 .btn{padding:9px 18px;border:0;border-radius:8px;font-family:'DM Sans',sans-serif;font-weight:600;font-size:12px;cursor:pointer;transition:all .2s}
 .btn-primary{background:var(--accent);color:#fff}.btn-primary:hover{background:var(--accent-hover)}
 .btn-secondary{background:#f0f0f0;color:var(--text)}
-.screening-question{padding:12px 0;border-bottom:1px solid #f0f0f0}
-.screening-question:last-child{border-bottom:0}
+.btn-danger{background:var(--warning);color:#fff}
+.screening-question{padding:12px 0;border-bottom:1px solid #f0f0f0}.screening-question:last-child{border-bottom:0}
 .screening-question label{display:flex;align-items:flex-start;gap:9px;cursor:pointer;font-size:13px;line-height:1.5}
 .screening-question input[type=checkbox],.screening-question input[type=radio]{margin-top:3px;width:17px;height:17px;accent-color:var(--accent);flex-shrink:0}
 .screening-group{margin-bottom:14px}
 .screening-group-title{font-weight:700;font-size:13px;margin-bottom:6px;padding:7px 10px;border-radius:6px}
 .nrs-score{font-family:'Fraunces',serif;font-size:34px;font-weight:800;text-align:center;padding:14px}
 .nrs-result{text-align:center;padding:10px;border-radius:8px;font-weight:600;font-size:13px;margin-top:8px}
-.nrs-positive{background:#fde8de;color:#c44d18}
-.nrs-negative{background:#d8f3dc;color:#1b4332}
+.nrs-positive{background:#fde8de;color:#c44d18}.nrs-negative{background:#d8f3dc;color:#1b4332}
 .tag{display:inline-block;padding:2px 7px;border-radius:4px;font-size:9px;font-weight:600}
 .tag.central{background:#fde8de;color:#c44d18}.tag.periferico{background:#deeafd;color:#1848c4}
+.tag.alta{background:#f0e6ff;color:#6b4fa0}.tag.ativo{background:var(--accent-pale);color:var(--accent-hover)}
 .parenteral-card{border:2px solid var(--border);border-radius:var(--radius);padding:12px;cursor:pointer;transition:all .2s;background:#fff}
-.parenteral-card:hover{border-color:var(--accent-light)}
-.parenteral-card.active{border-color:var(--accent);background:var(--accent-pale)}
-.parenteral-card .pn-name{font-weight:700;font-size:12px}
-.parenteral-card .pn-details{font-size:10px;color:var(--text-muted);margin-top:2px;line-height:1.4}
+.parenteral-card:hover{border-color:var(--accent-light)}.parenteral-card.active{border-color:var(--accent);background:var(--accent-pale)}
+.parenteral-card .pn-name{font-weight:700;font-size:12px}.parenteral-card .pn-details{font-size:10px;color:var(--text-muted);margin-top:2px;line-height:1.4}
+/* Patient list */
 .patient-item{padding:12px;border:1.5px solid var(--border);border-radius:var(--radius-sm);margin-bottom:6px;transition:all .2s;display:flex;justify-content:space-between;align-items:center}
 .patient-item:hover{border-color:var(--accent);background:#fafff8}
 .patient-item.tracking{border-left:4px solid var(--accent);background:#f6fdf8}
-.patient-item .pi-name{font-weight:700;font-size:13px;display:flex;align-items:center;gap:6px}
+.patient-item.discharged{opacity:.7;border-left:4px solid #b8b8b8;background:#fafafa}
+.patient-item .pi-name{font-weight:700;font-size:13px;display:flex;align-items:center;gap:6px;cursor:pointer}
+.patient-item .pi-name:hover{color:var(--accent)}
 .patient-item .pi-info{font-size:11px;color:var(--text-muted)}
 .pi-btn{padding:5px 9px;border:1.5px solid var(--border);border-radius:6px;background:#fff;cursor:pointer;font-size:10px;font-weight:600;font-family:'DM Sans',sans-serif;transition:all .2s}
-.pi-btn:hover{border-color:var(--accent)}
-.pi-btn.danger{color:var(--warning)}.pi-btn.danger:hover{border-color:var(--warning);background:#fef5f0}
+.pi-btn:hover{border-color:var(--accent)}.pi-btn.danger{color:var(--warning)}.pi-btn.danger:hover{border-color:var(--warning);background:#fef5f0}
 .pi-btn.track-active{background:var(--accent-pale);border-color:var(--accent);color:var(--accent-hover)}
+.pi-btn.alta-btn{color:#6b4fa0;border-color:#d4c4f0}.pi-btn.alta-btn:hover{background:#f0e6ff}
 .day-counter{display:flex;align-items:center;gap:10px;padding:12px;background:linear-gradient(135deg,#edf2fa,#e8edf5);border-radius:var(--radius-sm);border:1px solid #c8d6ea}
 .day-counter .dc-number{font-family:'Fraunces',serif;font-size:30px;font-weight:800;color:var(--hnss)}
 .day-counter .dc-label{font-size:11px;color:var(--text-light);font-weight:600;text-transform:uppercase;letter-spacing:.5px}
@@ -117,35 +110,38 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 .btn-reset{padding:9px 16px;background:0 0;border:2px solid var(--border);border-radius:50px;font-family:'DM Sans',sans-serif;font-weight:600;font-size:11px;cursor:pointer;color:var(--text-muted);transition:all .2s}
 .btn-reset:hover{border-color:var(--warning);color:var(--warning)}
 .btn-action{padding:9px 16px;background:var(--accent);border:0;border-radius:50px;font-family:'DM Sans',sans-serif;font-weight:600;font-size:11px;cursor:pointer;color:#fff;transition:all .2s}
-.btn-action:hover{background:var(--accent-hover)}
-.btn-action.secondary{background:var(--hnss)}.btn-action.secondary:hover{background:#1d4580}
+.btn-action:hover{background:var(--accent-hover)}.btn-action.secondary{background:var(--hnss)}
 .generated-text{background:#fafaf8;border:1.5px solid var(--border);border-radius:var(--radius-sm);padding:14px;font-size:12px;line-height:1.7;white-space:pre-wrap;max-height:500px;overflow-y:auto}
 .pn-calc-info{background:linear-gradient(135deg,#f0f7ff,#e8f0fd);border:1px solid #b8d4f0;border-radius:var(--radius-sm);padding:14px;margin-top:12px}
-.pn-calc-row{display:flex;justify-content:space-between;padding:4px 0;font-size:12px}
-.pn-calc-row .pn-calc-label{color:var(--text-light);font-weight:500}
-.pn-calc-row .pn-calc-val{font-weight:700;color:var(--text)}
+.pn-calc-row{display:flex;justify-content:space-between;padding:4px 0;font-size:12px}.pn-calc-row .pn-calc-label{color:var(--text-light)}.pn-calc-row .pn-calc-val{font-weight:700}
+/* Tabs */
+.tabs{display:flex;gap:0;margin-bottom:14px;border-bottom:2px solid var(--border)}
+.tab{padding:10px 20px;font-weight:600;font-size:13px;cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px;transition:all .2s;color:var(--text-muted)}
+.tab:hover{color:var(--text)}.tab.active{color:var(--accent);border-bottom-color:var(--accent)}
+.tab .tab-count{font-size:11px;background:#f0f0f0;padding:1px 7px;border-radius:10px;margin-left:4px}
+.tab.active .tab-count{background:var(--accent-pale);color:var(--accent-hover)}
 /* Tracking banner */
-.tracking-banner{background:linear-gradient(135deg,var(--accent-pale),#c7eed4);border:1.5px solid var(--accent-light);border-radius:var(--radius);padding:16px 20px;margin-bottom:14px;display:flex;align-items:center;gap:12px}
-.tracking-banner .tb-icon{font-size:22px}
-.tracking-banner .tb-title{font-family:'Fraunces',serif;font-size:15px;font-weight:700;color:var(--accent-hover)}
-.tracking-banner .tb-count{font-size:12px;color:var(--accent)}
-.tracking-patients{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
-.tracking-chip{padding:6px 14px;background:#fff;border:1.5px solid var(--accent);border-radius:50px;font-size:12px;font-weight:600;color:var(--accent-hover);cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:6px}
+.tracking-banner{background:linear-gradient(135deg,var(--accent-pale),#c7eed4);border:1.5px solid var(--accent-light);border-radius:var(--radius);padding:14px 18px;margin-bottom:14px}
+.tracking-banner .tb-title{font-family:'Fraunces',serif;font-size:14px;font-weight:700;color:var(--accent-hover);margin-bottom:6px}
+.tracking-chips{display:flex;gap:6px;flex-wrap:wrap}
+.tracking-chip{padding:5px 12px;background:#fff;border:1.5px solid var(--accent);border-radius:50px;font-size:11px;font-weight:600;color:var(--accent-hover);cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:5px}
 .tracking-chip:hover{background:var(--accent);color:#fff}
-.tracking-chip .chip-dot{width:8px;height:8px;border-radius:50%;background:var(--accent);flex-shrink:0}
-@media print{.header{position:static}.actions,.hdr-btn,.header-right,.tracking-banner{display:none}body{background:#fff}.section,.summary-section{box-shadow:none;break-inside:avoid}.modal-overlay{display:none!important}}
-/* Loading */
+.tracking-chip .chip-dot{width:7px;height:7px;border-radius:50%;background:var(--accent)}
+/* History timeline */
+.history-item{padding:14px;border-left:3px solid var(--accent-light);margin-left:8px;margin-bottom:12px;background:#fafff8;border-radius:0 var(--radius-sm) var(--radius-sm) 0}
+.history-item.discharge-note{border-left-color:#6b4fa0;background:#f8f4ff}
+.history-date{font-weight:700;font-size:13px;color:var(--accent-hover);margin-bottom:4px}
+.history-item.discharge-note .history-date{color:#6b4fa0}
+.history-content{font-size:12px;color:var(--text-light);line-height:1.6;white-space:pre-wrap}
 .loading-overlay{position:fixed;inset:0;background:var(--bg);z-index:300;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px}
 .loading-spinner{width:40px;height:40px;border:4px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin .8s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
+@media print{.header{position:static}.actions,.hdr-btn,.header-right,.tracking-banner{display:none}body{background:#fff}.section,.summary-section{box-shadow:none;break-inside:avoid}.modal-overlay{display:none!important}}
 </style>
 </head>
 <body>
 
-<div class="loading-overlay" id="loadingOverlay">
-  <div class="loading-spinner"></div>
-  <div style="font-size:13px;color:var(--text-muted)">Carregando dados...</div>
-</div>
+<div class="loading-overlay" id="loadingOverlay"><div class="loading-spinner"></div><div style="font-size:13px;color:var(--text-muted)">Carregando...</div></div>
 
 <div class="header">
   <div class="header-icon">🥗</div>
@@ -157,14 +153,9 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 </div>
 
 <div class="container">
-  <!-- TRACKING BANNER -->
   <div class="tracking-banner hidden" id="trackingBanner">
-    <div class="tb-icon">📌</div>
-    <div style="flex:1">
-      <div class="tb-title">Acompanhamento Diário</div>
-      <div class="tb-count" id="trackingCount"></div>
-      <div class="tracking-patients" id="trackingChips"></div>
-    </div>
+    <div class="tb-title">📌 Acompanhamento Diário</div>
+    <div class="tracking-chips" id="trackingChips"></div>
   </div>
 
   <!-- PATIENT -->
@@ -209,18 +200,17 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
   <div class="section">
     <div class="section-title"><div class="icon" style="background:#f0edf5;color:#6b4fa0">🏥</div>Instituição</div>
     <div class="institution-picker">
-      <div class="inst-btn santa-casa" onclick="selectInstitution('santa-casa')"><div class="inst-name">Santa Casa de Diamantina</div><div class="inst-detail">Vazão enteral: 20h/dia</div></div>
-      <div class="inst-btn hnss" onclick="selectInstitution('hnss')"><div class="inst-name">HNSS</div><div class="inst-detail">Vazão enteral: 22h/dia</div></div>
+      <div class="inst-btn santa-casa" onclick="selInst('santa-casa')"><div class="inst-name">Santa Casa de Diamantina</div><div class="inst-detail">Enteral: 20h/dia</div></div>
+      <div class="inst-btn hnss" onclick="selInst('hnss')"><div class="inst-name">HNSS</div><div class="inst-detail">Enteral: 22h/dia</div></div>
     </div>
   </div>
 
-  <!-- TYPE -->
   <div class="section hidden" id="sectionType">
     <div class="section-title"><div class="icon" style="background:var(--accent-pale);color:var(--accent)">💉</div>Tipo de Terapia</div>
     <div class="type-toggle">
-      <div class="type-btn" data-type="enteral" onclick="selectType('enteral')">🍽 Enteral</div>
-      <div class="type-btn" data-type="parenteral" onclick="selectType('parenteral')">💉 Parenteral</div>
-      <div class="type-btn" data-type="both" onclick="selectType('both')">🔄 Enteral + Parenteral</div>
+      <div class="type-btn" data-type="enteral" onclick="selType('enteral')">🍽 Enteral</div>
+      <div class="type-btn" data-type="parenteral" onclick="selType('parenteral')">💉 Parenteral</div>
+      <div class="type-btn" data-type="both" onclick="selType('both')">🔄 Enteral + Parenteral</div>
     </div>
   </div>
 
@@ -228,588 +218,501 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
   <div class="section hidden" id="sectionDates">
     <div class="section-title"><div class="icon" style="background:#e8f5e9;color:#2e7d32">📅</div>Datas</div>
     <div class="grid-3">
-      <div class="field" id="fieldEnteralDate"><label>Início Dieta Enteral</label><input type="date" id="enteralStartDate" oninput="updateDayCounters()"></div>
-      <div class="field" id="fieldParenteralDate"><label>Início NP</label><input type="date" id="parenteralStartDate" oninput="updateDayCounters()"></div>
-      <div class="field"><label>Data da Evolução</label><input type="date" id="evolutionDate" oninput="updateDayCounters()"></div>
+      <div class="field" id="fieldED"><label>Início Enteral</label><input type="date" id="enteralStartDate" oninput="updateDC()"></div>
+      <div class="field" id="fieldPD"><label>Início NP</label><input type="date" id="parenteralStartDate" oninput="updateDC()"></div>
+      <div class="field"><label>Data Evolução</label><input type="date" id="evolutionDate" oninput="updateDC()"></div>
     </div>
     <div class="grid-2" style="margin-top:12px">
-      <div class="day-counter hidden" id="dcEnteral"><div><div class="dc-number" id="dcEnteralDays">0</div><div class="dc-label">Dias de Dieta Enteral</div></div></div>
-      <div class="day-counter hidden" id="dcParenteral"><div><div class="dc-number" id="dcParenteralDays" style="color:var(--santa-casa)">0</div><div class="dc-label">Dias de NP</div></div></div>
+      <div class="day-counter hidden" id="dcE"><div><div class="dc-number" id="dcED">0</div><div class="dc-label">Dias Enteral</div></div></div>
+      <div class="day-counter hidden" id="dcP"><div><div class="dc-number" id="dcPD" style="color:var(--santa-casa)">0</div><div class="dc-label">Dias NP</div></div></div>
     </div>
   </div>
 
   <!-- ENTERAL -->
   <div class="section hidden" id="sectionEnteral">
-    <div class="section-title"><div class="icon" style="background:#e8f5e9;color:#2e7d32">🍽</div>Dieta Enteral <span id="enteralInstitutionLabel" style="font-size:11px;font-weight:500;color:var(--text-muted);font-family:'DM Sans'"></span></div>
-    <div id="enteralDietsContainer" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:8px"></div>
+    <div class="section-title"><div class="icon" style="background:#e8f5e9;color:#2e7d32">🍽</div>Dieta Enteral <span id="entLabel" style="font-size:11px;font-weight:500;color:var(--text-muted)"></span></div>
+    <div id="entDietsC" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:8px"></div>
     <div class="divider"></div>
     <div class="grid-3">
-      <div class="field"><label>Vazão (ml/h)</label><input type="number" id="enteralRate" placeholder="0" step="1" min="0" oninput="calculateEnteral()"></div>
-      <div class="field"><label>Horas de Infusão</label><input type="text" id="enteralHours" readonly placeholder="—"></div>
-      <div class="field"><label>Volume Total (ml/dia)</label><input type="text" id="enteralVolume" readonly placeholder="—"></div>
+      <div class="field"><label>Vazão (ml/h)</label><input type="number" id="entRate" placeholder="0" step="1" min="0" oninput="calcEnt()"></div>
+      <div class="field"><label>Horas</label><input type="text" id="entHours" readonly placeholder="—"></div>
+      <div class="field"><label>Volume (ml/dia)</label><input type="text" id="entVol" readonly placeholder="—"></div>
     </div>
     <div class="results-grid">
-      <div class="result-box"><div class="result-label">Calorias</div><div class="result-value" id="enteralKcal">—</div><div class="result-unit">kcal</div></div>
-      <div class="result-box"><div class="result-label">Proteína</div><div class="result-value" id="enteralProt">—</div><div class="result-unit">g</div></div>
-      <div class="result-box"><div class="result-label">CHO</div><div class="result-value" id="enteralCarb">—</div><div class="result-unit">g</div></div>
-      <div class="result-box"><div class="result-label">Lipídio</div><div class="result-value" id="enteralLip">—</div><div class="result-unit">g</div></div>
+      <div class="result-box"><div class="result-label">Calorias</div><div class="result-value" id="entKcal">—</div><div class="result-unit">kcal</div></div>
+      <div class="result-box"><div class="result-label">Proteína</div><div class="result-value" id="entProt">—</div><div class="result-unit">g</div></div>
+      <div class="result-box"><div class="result-label">CHO</div><div class="result-value" id="entCarb">—</div><div class="result-unit">g</div></div>
+      <div class="result-box"><div class="result-label">Lipídio</div><div class="result-value" id="entLip">—</div><div class="result-unit">g</div></div>
     </div>
     <div class="divider"></div>
-    <div style="font-weight:700;font-size:13px;margin-bottom:8px">💪 Suplementação Proteica</div>
+    <div style="font-weight:700;font-size:13px;margin-bottom:8px">💪 Supl. Proteica</div>
     <div class="grid-3">
-      <div class="field"><label>Módulo Proteico (g/dia)</label><input type="number" id="protSupplement" placeholder="0" step="1" min="0" oninput="calculateEnteral()"></div>
-      <div class="field"><label>Proteína Total</label><input type="text" id="totalProtEnteral" readonly placeholder="—"></div>
-      <div class="field"><label>g Ptn/kg/dia</label><input type="text" id="realProtPerKg" readonly placeholder="—"></div>
+      <div class="field"><label>Módulo (g/dia)</label><input type="number" id="protSupp" placeholder="0" step="1" min="0" oninput="calcEnt()"></div>
+      <div class="field"><label>Ptn Total</label><input type="text" id="totProtEnt" readonly placeholder="—"></div>
+      <div class="field"><label>g/kg/dia</label><input type="text" id="realPKg" readonly placeholder="—"></div>
     </div>
   </div>
 
   <!-- PARENTERAL -->
-  <div class="section hidden" id="sectionParenteral">
+  <div class="section hidden" id="sectionPN">
     <div class="section-title"><div class="icon" style="background:#fce4ec;color:#c62828">💉</div>Nutrição Parenteral</div>
-    <div style="font-weight:600;font-size:12px;margin-bottom:8px;color:var(--text-light)">Selecione a bolsa:</div>
-    <div id="parenteralBagsContainer" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:8px"></div>
+    <div style="font-weight:600;font-size:12px;margin-bottom:8px;color:var(--text-light)">Bolsa:</div>
+    <div id="pnBagsC" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:8px"></div>
     <div class="divider"></div>
-    <div id="pnCalcSection" class="hidden">
-      <div style="font-weight:700;font-size:14px;margin-bottom:8px;color:var(--accent)">⚙️ Prescrição — <span id="pnSelectedName"></span></div>
+    <div id="pnCalc" class="hidden">
+      <div style="font-weight:700;font-size:14px;margin-bottom:8px;color:var(--accent)">⚙️ <span id="pnSelName"></span></div>
       <div class="note" style="margin-top:0;margin-bottom:12px"><span id="pnBagInfo"></span></div>
       <div class="grid-4">
-        <div class="field"><label>Calorias Desejadas (kcal)</label><input type="number" id="pnDesiredKcal" placeholder="0" step="10" min="0" oninput="calculateParenteral()"></div>
-        <div class="field"><label>Horas de Infusão</label><input type="number" id="pnHours" placeholder="24" value="24" step="1" min="1" max="24" oninput="calculateParenteral()"></div>
-        <div class="field"><label>Vazão (ml/h)</label><input type="text" id="pnRate" readonly placeholder="—"></div>
-        <div class="field"><label>Volume (ml)</label><input type="text" id="pnVolume" readonly placeholder="—"></div>
+        <div class="field"><label>Kcal Desejadas</label><input type="number" id="pnDK" placeholder="0" step="10" min="0" oninput="calcPN()"></div>
+        <div class="field"><label>Horas</label><input type="number" id="pnH" value="24" step="1" min="1" max="24" oninput="calcPN()"></div>
+        <div class="field"><label>Vazão (ml/h)</label><input type="text" id="pnR" readonly placeholder="—"></div>
+        <div class="field"><label>Volume (ml)</label><input type="text" id="pnV" readonly placeholder="—"></div>
       </div>
       <div class="pn-calc-info">
         <div style="font-weight:700;font-size:12px;margin-bottom:8px;color:var(--hnss)">📊 Composição:</div>
         <div class="grid-6">
-          <div class="result-box" style="padding:10px"><div class="result-label">Cal Total</div><div class="result-value" id="pnKcal" style="font-size:20px">—</div><div class="result-unit">kcal</div></div>
-          <div class="result-box" style="padding:10px"><div class="result-label">Cal NP</div><div class="result-value" id="pnKcalNP" style="font-size:20px">—</div><div class="result-unit">kcal</div></div>
-          <div class="result-box" style="padding:10px"><div class="result-label">AA</div><div class="result-value" id="pnAmino" style="font-size:20px">—</div><div class="result-unit">g</div></div>
-          <div class="result-box" style="padding:10px"><div class="result-label">Glicose</div><div class="result-value" id="pnGlucose" style="font-size:20px">—</div><div class="result-unit">g</div></div>
-          <div class="result-box" style="padding:10px"><div class="result-label">Lipídio</div><div class="result-value" id="pnLipid" style="font-size:20px">—</div><div class="result-unit">g</div></div>
-          <div class="result-box" style="padding:10px"><div class="result-label">N₂</div><div class="result-value" id="pnNitrogen" style="font-size:20px">—</div><div class="result-unit">g</div></div>
+          <div class="result-box" style="padding:10px"><div class="result-label">Cal</div><div class="result-value" id="pnK" style="font-size:20px">—</div><div class="result-unit">kcal</div></div>
+          <div class="result-box" style="padding:10px"><div class="result-label">Cal NP</div><div class="result-value" id="pnKNP" style="font-size:20px">—</div><div class="result-unit">kcal</div></div>
+          <div class="result-box" style="padding:10px"><div class="result-label">AA</div><div class="result-value" id="pnAA" style="font-size:20px">—</div><div class="result-unit">g</div></div>
+          <div class="result-box" style="padding:10px"><div class="result-label">Glic</div><div class="result-value" id="pnG" style="font-size:20px">—</div><div class="result-unit">g</div></div>
+          <div class="result-box" style="padding:10px"><div class="result-label">Lip</div><div class="result-value" id="pnL" style="font-size:20px">—</div><div class="result-unit">g</div></div>
+          <div class="result-box" style="padding:10px"><div class="result-label">N₂</div><div class="result-value" id="pnN" style="font-size:20px">—</div><div class="result-unit">g</div></div>
         </div>
         <div style="margin-top:10px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px">
-          <div class="pn-calc-row"><span class="pn-calc-label">kcalNP/gN:</span><span class="pn-calc-val" id="pnRelNPgN">—</span></div>
+          <div class="pn-calc-row"><span class="pn-calc-label">kcalNP/gN:</span><span class="pn-calc-val" id="pnRel">—</span></div>
           <div class="pn-calc-row"><span class="pn-calc-label">Osm:</span><span class="pn-calc-val" id="pnOsm">—</span></div>
-          <div class="pn-calc-row"><span class="pn-calc-label">Acesso:</span><span class="pn-calc-val" id="pnAccess">—</span></div>
+          <div class="pn-calc-row"><span class="pn-calc-label">Acesso:</span><span class="pn-calc-val" id="pnAcc">—</span></div>
         </div>
-        <div id="pnPercentNote" class="note hidden" style="margin-top:10px;border-left-color:var(--warning)"></div>
+        <div id="pnNote" class="note hidden" style="margin-top:10px;border-left-color:var(--warning)"></div>
       </div>
     </div>
   </div>
 
   <!-- SUMMARY -->
-  <div class="summary-section hidden" id="sectionSummary">
-    <div class="section-title"><div class="icon" style="background:rgba(255,255,255,.1);color:#95d5b2">📊</div>Resumo Final</div>
+  <div class="summary-section hidden" id="sectionSum">
+    <div class="section-title"><div class="icon" style="background:rgba(255,255,255,.1);color:#95d5b2">📊</div>Resumo</div>
     <div class="summary-grid">
-      <div class="summary-box"><div class="result-label">Calorias Totais</div><div class="result-value" id="sumKcal">—</div><div class="result-unit">kcal/dia</div><div class="pct-bar"><div class="pct-bar-fill green" id="barKcal" style="width:0%"></div></div><div class="result-unit" id="sumKcalPct" style="margin-top:4px"></div></div>
-      <div class="summary-box"><div class="result-label">Proteína Total</div><div class="result-value" id="sumProt">—</div><div class="result-unit">g/dia</div><div class="pct-bar"><div class="pct-bar-fill green" id="barProt" style="width:0%"></div></div><div class="result-unit" id="sumProtPct" style="margin-top:4px"></div></div>
-      <div class="summary-box"><div class="result-label">Kcal/kg</div><div class="result-value" id="sumKcalKg">—</div><div class="result-unit">kcal/kg</div></div>
-      <div class="summary-box"><div class="result-label">g Ptn/kg</div><div class="result-value" id="sumProtKg">—</div><div class="result-unit">g/kg</div></div>
+      <div class="summary-box"><div class="result-label">Calorias</div><div class="result-value" id="sK">—</div><div class="result-unit">kcal</div><div class="pct-bar"><div class="pct-bar-fill green" id="bK" style="width:0%"></div></div><div class="result-unit" id="sKP" style="margin-top:4px"></div></div>
+      <div class="summary-box"><div class="result-label">Proteína</div><div class="result-value" id="sP">—</div><div class="result-unit">g</div><div class="pct-bar"><div class="pct-bar-fill green" id="bP" style="width:0%"></div></div><div class="result-unit" id="sPP" style="margin-top:4px"></div></div>
+      <div class="summary-box"><div class="result-label">Kcal/kg</div><div class="result-value" id="sKK">—</div><div class="result-unit">kcal/kg</div></div>
+      <div class="summary-box"><div class="result-label">Ptn/kg</div><div class="result-value" id="sPK">—</div><div class="result-unit">g/kg</div></div>
     </div>
   </div>
 
   <!-- EVOLUTION -->
-  <div class="section">
-    <div class="section-title"><div class="icon" style="background:#f3e8fd;color:#7b2cbf">📝</div>Evolução</div>
-    <div class="field"><textarea id="evolutionNotes" placeholder="Evolução do paciente, observações clínicas, condutas..."></textarea></div>
-  </div>
+  <div class="section"><div class="section-title"><div class="icon" style="background:#f3e8fd;color:#7b2cbf">📝</div>Evolução</div><div class="field"><textarea id="evoNotes" placeholder="Evolução, observações, condutas..."></textarea></div></div>
 
   <div class="actions">
     <button class="btn-reset" onclick="resetAll()">🗑 Limpar</button>
-    <button class="btn-action secondary" onclick="generateText()">📄 Gerar Texto</button>
+    <button class="btn-action secondary" onclick="genText()">📄 Gerar Texto</button>
     <button class="btn-action" onclick="savePatient()">💾 Salvar</button>
-    <button class="btn-action" style="background:#555" onclick="window.print()">🖨 Imprimir</button>
+    <button class="btn-action" style="background:#555" onclick="window.print()">🖨</button>
   </div>
 
-  <div class="section hidden" id="sectionGenerated">
-    <div class="section-title"><div class="icon" style="background:#e8f5e9;color:#2e7d32">📄</div>Texto<button class="btn" style="margin-left:auto;font-size:10px;padding:5px 10px;background:#f0f0f0" onclick="copyText()">📋 Copiar</button></div>
-    <div class="generated-text" id="generatedText"></div>
+  <div class="section hidden" id="sectionGen">
+    <div class="section-title"><div class="icon" style="background:#e8f5e9;color:#2e7d32">📄</div>Texto<button class="btn" style="margin-left:auto;font-size:10px;padding:5px 10px;background:#f0f0f0" onclick="copyTxt()">📋 Copiar</button></div>
+    <div class="generated-text" id="genTxt"></div>
   </div>
 </div>
 
 <!-- NRS MODAL -->
-<div class="modal-overlay hidden" id="nrsModal" onclick="if(event.target===this)closeModal('nrsModal')">
-<div class="modal">
-  <div class="modal-header"><h2>📝 NRS-2002</h2><button class="modal-close" onclick="closeModal('nrsModal')">✕</button></div>
+<div class="modal-overlay hidden" id="nrsM" onclick="if(event.target===this)closeM('nrsM')"><div class="modal">
+  <div class="modal-header"><h2>📝 NRS-2002</h2><button class="modal-close" onclick="closeM('nrsM')">✕</button></div>
   <div class="modal-body">
-    <div class="screening-group">
-      <div class="screening-group-title" style="background:#edf2fa;color:var(--hnss)">Etapa 1 — Triagem Inicial</div>
-      <div class="screening-question"><label><input type="checkbox" id="nrs1_1" onchange="calcNRS()"> IMC &lt; 20,5?</label></div>
-      <div class="screening-question"><label><input type="checkbox" id="nrs1_2" onchange="calcNRS()"> Perdeu peso nos últimos 3 meses?</label></div>
-      <div class="screening-question"><label><input type="checkbox" id="nrs1_3" onchange="calcNRS()"> Ingestão reduzida na última semana?</label></div>
-      <div class="screening-question"><label><input type="checkbox" id="nrs1_4" onchange="calcNRS()"> Gravemente doente?</label></div>
-      <div class="note" style="margin-top:8px">"Sim" em alguma → Etapa 2. Todas "não" → reavaliar 7 dias.</div>
+    <div class="screening-group"><div class="screening-group-title" style="background:#edf2fa;color:var(--hnss)">Etapa 1</div>
+      <div class="screening-question"><label><input type="checkbox" id="n1" onchange="cNRS()"> IMC &lt;20,5?</label></div>
+      <div class="screening-question"><label><input type="checkbox" id="n2" onchange="cNRS()"> Perdeu peso 3m?</label></div>
+      <div class="screening-question"><label><input type="checkbox" id="n3" onchange="cNRS()"> Ingestão ↓ última sem?</label></div>
+      <div class="screening-question"><label><input type="checkbox" id="n4" onchange="cNRS()"> Gravemente doente?</label></div>
     </div>
-    <div id="nrsEtapa2" class="hidden">
-      <div class="screening-group">
-        <div class="screening-group-title" style="background:#e8f5e9;color:#2e7d32">Estado Nutricional</div>
-        <div class="screening-question"><label><input type="radio" name="nrsNutri" value="0" onchange="calcNRS()" checked> <b>0</b> — Normal</label></div>
-        <div class="screening-question"><label><input type="radio" name="nrsNutri" value="1" onchange="calcNRS()"> <b>1</b> — Perda >5% em 3m OU ingestão 50-75%</label></div>
-        <div class="screening-question"><label><input type="radio" name="nrsNutri" value="2" onchange="calcNRS()"> <b>2</b> — Perda >5% em 2m OU IMC 18,5-20,5 OU ingestão 25-60%</label></div>
-        <div class="screening-question"><label><input type="radio" name="nrsNutri" value="3" onchange="calcNRS()"> <b>3</b> — Perda >5%/1m (>15%/3m) OU IMC &lt;18,5 OU ingestão 0-25%</label></div>
+    <div id="nE2" class="hidden">
+      <div class="screening-group"><div class="screening-group-title" style="background:#e8f5e9;color:#2e7d32">Estado Nutricional</div>
+        <div class="screening-question"><label><input type="radio" name="nN" value="0" onchange="cNRS()" checked> <b>0</b> Normal</label></div>
+        <div class="screening-question"><label><input type="radio" name="nN" value="1" onchange="cNRS()"> <b>1</b> Perda >5%/3m OU ingestão 50-75%</label></div>
+        <div class="screening-question"><label><input type="radio" name="nN" value="2" onchange="cNRS()"> <b>2</b> Perda >5%/2m OU IMC 18,5-20,5 OU ingest 25-60%</label></div>
+        <div class="screening-question"><label><input type="radio" name="nN" value="3" onchange="cNRS()"> <b>3</b> Perda >5%/1m OU IMC &lt;18,5 OU ingest 0-25%</label></div>
       </div>
-      <div class="screening-group">
-        <div class="screening-group-title" style="background:#fef5f0;color:#c44d18">Gravidade da Doença</div>
-        <div class="screening-question"><label><input type="radio" name="nrsDisease" value="0" onchange="calcNRS()" checked> <b>0</b> — Necessidades normais</label></div>
-        <div class="screening-question"><label><input type="radio" name="nrsDisease" value="1" onchange="calcNRS()"> <b>1</b> — Fx quadril, crônicos agudizados</label></div>
-        <div class="screening-question"><label><input type="radio" name="nrsDisease" value="2" onchange="calcNRS()"> <b>2</b> — Cx grande, AVC, pneumonia grave</label></div>
-        <div class="screening-question"><label><input type="radio" name="nrsDisease" value="3" onchange="calcNRS()"> <b>3</b> — Trauma, TMO, UTI (APACHE>10)</label></div>
+      <div class="screening-group"><div class="screening-group-title" style="background:#fef5f0;color:#c44d18">Gravidade Doença</div>
+        <div class="screening-question"><label><input type="radio" name="nD" value="0" onchange="cNRS()" checked> <b>0</b> Normal</label></div>
+        <div class="screening-question"><label><input type="radio" name="nD" value="1" onchange="cNRS()"> <b>1</b> Fx quadril, crônicos agudizados</label></div>
+        <div class="screening-question"><label><input type="radio" name="nD" value="2" onchange="cNRS()"> <b>2</b> Cx grande, AVC, pneumonia grave</label></div>
+        <div class="screening-question"><label><input type="radio" name="nD" value="3" onchange="cNRS()"> <b>3</b> Trauma, TMO, UTI APACHE>10</label></div>
       </div>
-      <div class="screening-group">
-        <div class="screening-group-title" style="background:#f5f0ff;color:#6b4fa0">Idade</div>
-        <div class="screening-question"><label><input type="checkbox" id="nrsAge" onchange="calcNRS()"> ≥ 70 anos (+1)</label></div>
+      <div class="screening-group"><div class="screening-group-title" style="background:#f5f0ff;color:#6b4fa0">Idade</div>
+        <div class="screening-question"><label><input type="checkbox" id="nA" onchange="cNRS()"> ≥70a (+1)</label></div>
       </div>
     </div>
-    <div style="border-top:2px solid var(--border);padding-top:14px;margin-top:14px">
-      <div class="nrs-score" id="nrsScoreDisplay">—</div>
-      <div class="nrs-result" id="nrsResultDisplay" style="background:#f0f0f0;color:var(--text-muted)">Preencha a triagem</div>
-    </div>
+    <div style="border-top:2px solid var(--border);padding-top:14px;margin-top:14px"><div class="nrs-score" id="nSD">—</div><div class="nrs-result" id="nRD" style="background:#f0f0f0;color:var(--text-muted)">Preencha</div></div>
   </div>
-  <div class="modal-footer"><button class="btn btn-secondary" onclick="closeModal('nrsModal')">Fechar</button><button class="btn btn-primary" onclick="saveNRS()">Salvar</button></div>
+  <div class="modal-footer"><button class="btn btn-secondary" onclick="closeM('nrsM')">Fechar</button><button class="btn btn-primary" onclick="sNRS()">Salvar</button></div>
 </div></div>
 
 <!-- GLIM MODAL -->
-<div class="modal-overlay hidden" id="glimModal" onclick="if(event.target===this)closeModal('glimModal')">
-<div class="modal">
-  <div class="modal-header"><h2>🔬 GLIM</h2><button class="modal-close" onclick="closeModal('glimModal')">✕</button></div>
+<div class="modal-overlay hidden" id="glimM" onclick="if(event.target===this)closeM('glimM')"><div class="modal">
+  <div class="modal-header"><h2>🔬 GLIM</h2><button class="modal-close" onclick="closeM('glimM')">✕</button></div>
   <div class="modal-body">
-    <div class="note" style="margin-bottom:14px">≥1 fenotípico + ≥1 etiológico = desnutrição.</div>
-    <div class="screening-group">
-      <div class="screening-group-title" style="background:#e8f5e9;color:#2e7d32">Fenotípicos</div>
-      <div class="screening-question"><label><input type="checkbox" id="glim_f1" onchange="calcGLIM()"> Perda peso >5%/6m OU >10% além 6m</label></div>
-      <div class="screening-question"><label><input type="checkbox" id="glim_f2" onchange="calcGLIM()"> Baixo IMC: &lt;20 (&lt;70a) OU &lt;22 (≥70a)</label></div>
-      <div class="screening-question"><label><input type="checkbox" id="glim_f3" onchange="calcGLIM()"> ↓ Massa muscular (BIA/TC/CP/FPP)</label></div>
+    <div class="note" style="margin-bottom:14px">≥1 fenot + ≥1 etiol = desnutrição</div>
+    <div class="screening-group"><div class="screening-group-title" style="background:#e8f5e9;color:#2e7d32">Fenotípicos</div>
+      <div class="screening-question"><label><input type="checkbox" id="gf1" onchange="cGLIM()"> Perda peso</label></div>
+      <div class="screening-question"><label><input type="checkbox" id="gf2" onchange="cGLIM()"> Baixo IMC</label></div>
+      <div class="screening-question"><label><input type="checkbox" id="gf3" onchange="cGLIM()"> ↓ Massa muscular</label></div>
     </div>
-    <div class="screening-group">
-      <div class="screening-group-title" style="background:#f3e8fd;color:#7b2cbf">Etiológicos</div>
-      <div class="screening-question"><label><input type="checkbox" id="glim_e1" onchange="calcGLIM()"> ↓ Ingestão/absorção</label></div>
-      <div class="screening-question"><label><input type="checkbox" id="glim_e2" onchange="calcGLIM()"> Inflamação (doença aguda/crônica)</label></div>
+    <div class="screening-group"><div class="screening-group-title" style="background:#f3e8fd;color:#7b2cbf">Etiológicos</div>
+      <div class="screening-question"><label><input type="checkbox" id="ge1" onchange="cGLIM()"> ↓ Ingestão/absorção</label></div>
+      <div class="screening-question"><label><input type="checkbox" id="ge2" onchange="cGLIM()"> Inflamação</label></div>
     </div>
-    <div class="screening-group">
-      <div class="screening-group-title" style="background:#fef5f0;color:#c44d18">Gravidade</div>
-      <div class="screening-question"><label><input type="radio" name="glimSev" value="" onchange="calcGLIM()" checked> Não classificada</label></div>
-      <div class="screening-question"><label><input type="radio" name="glimSev" value="moderada" onchange="calcGLIM()"> <b>Moderada</b></label></div>
-      <div class="screening-question"><label><input type="radio" name="glimSev" value="grave" onchange="calcGLIM()"> <b>Grave</b></label></div>
+    <div class="screening-group"><div class="screening-group-title" style="background:#fef5f0;color:#c44d18">Gravidade</div>
+      <div class="screening-question"><label><input type="radio" name="gS" value="" onchange="cGLIM()" checked> Não class.</label></div>
+      <div class="screening-question"><label><input type="radio" name="gS" value="moderada" onchange="cGLIM()"> Moderada</label></div>
+      <div class="screening-question"><label><input type="radio" name="gS" value="grave" onchange="cGLIM()"> Grave</label></div>
     </div>
-    <div style="border-top:2px solid var(--border);padding-top:14px;margin-top:14px">
-      <div class="nrs-result" id="glimResultDisplay" style="background:#f0f0f0;color:var(--text-muted)">Preencha</div>
-    </div>
+    <div style="border-top:2px solid var(--border);padding-top:14px;margin-top:14px"><div class="nrs-result" id="gRD" style="background:#f0f0f0;color:var(--text-muted)">Preencha</div></div>
   </div>
-  <div class="modal-footer"><button class="btn btn-secondary" onclick="closeModal('glimModal')">Fechar</button><button class="btn btn-primary" onclick="saveGLIM()">Salvar</button></div>
+  <div class="modal-footer"><button class="btn btn-secondary" onclick="closeM('glimM')">Fechar</button><button class="btn btn-primary" onclick="sGLIM()">Salvar</button></div>
 </div></div>
 
 <!-- PATIENTS MODAL -->
-<div class="modal-overlay hidden" id="patientsModal" onclick="if(event.target===this)closeModal('patientsModal')">
-<div class="modal" style="max-width:800px">
-  <div class="modal-header"><h2>📋 Pacientes Salvos</h2><button class="modal-close" onclick="closeModal('patientsModal')">✕</button></div>
+<div class="modal-overlay hidden" id="ptsM" onclick="if(event.target===this)closeM('ptsM')"><div class="modal" style="max-width:850px">
+  <div class="modal-header"><h2>📋 Pacientes</h2><button class="modal-close" onclick="closeM('ptsM')">✕</button></div>
   <div class="modal-body">
-    <div style="margin-bottom:12px;font-size:12px;color:var(--text-muted)">📌 = Em acompanhamento diário</div>
-    <div id="patientList"></div>
-    <div id="noPatients" style="text-align:center;padding:24px;color:var(--text-muted)">Nenhum paciente salvo.</div>
+    <div class="tabs">
+      <div class="tab active" id="tabAtivos" onclick="switchTab('ativos')">Ativos <span class="tab-count" id="countAtivos">0</span></div>
+      <div class="tab" id="tabAltas" onclick="switchTab('altas')">Altas <span class="tab-count" id="countAltas">0</span></div>
+    </div>
+    <div id="ptsList"></div>
+    <div id="noPts" style="text-align:center;padding:24px;color:var(--text-muted)">Nenhum paciente.</div>
   </div>
-  <div class="modal-footer"><button class="btn btn-secondary" onclick="closeModal('patientsModal')">Fechar</button><button class="btn btn-primary" onclick="exportAllToExcel()">📊 Exportar</button></div>
+  <div class="modal-footer"><button class="btn btn-secondary" onclick="closeM('ptsM')">Fechar</button><button class="btn btn-primary" onclick="exportAllToExcel()">📊 Exportar</button></div>
+</div></div>
+
+<!-- DISCHARGE MODAL -->
+<div class="modal-overlay hidden" id="dischargeM" onclick="if(event.target===this)closeM('dischargeM')"><div class="modal" style="max-width:500px">
+  <div class="modal-header"><h2>🏥 Alta Nutricional</h2><button class="modal-close" onclick="closeM('dischargeM')">✕</button></div>
+  <div class="modal-body">
+    <div style="font-weight:700;font-size:14px;margin-bottom:12px" id="dischargeName"></div>
+    <div class="field"><label>Data da Alta</label><input type="date" id="dischargeDate"></div>
+    <div class="field" style="margin-top:12px"><label>Nota de Alta</label><textarea id="dischargeNote" placeholder="Motivo da alta, condição nutricional na alta, orientações..." style="min-height:120px"></textarea></div>
+  </div>
+  <div class="modal-footer"><button class="btn btn-secondary" onclick="closeM('dischargeM')">Cancelar</button><button class="btn btn-primary" onclick="confirmDischarge()">Confirmar Alta</button></div>
+</div></div>
+
+<!-- HISTORY MODAL -->
+<div class="modal-overlay hidden" id="histM" onclick="if(event.target===this)closeM('histM')"><div class="modal" style="max-width:700px">
+  <div class="modal-header"><h2 id="histTitle">📋 Histórico</h2><button class="modal-close" onclick="closeM('histM')">✕</button></div>
+  <div class="modal-body" id="histBody"></div>
+  <div class="modal-footer"><button class="btn btn-secondary" onclick="closeM('histM')">Fechar</button></div>
 </div></div>
 
 <script>
 // ===== DATA =====
-const enteralDiets={
+const ED={
   'santa-casa':[
-    {name:'Fresubin Original',desc:'Normocalórica',kcalPerMl:1.0,protPer100ml:3.8,carbPer100ml:14,lipPer100ml:3.4,osmolarity:220,fiber:false},
-    {name:'Fresubin HP Energy',desc:'Hipercal/Hiperprot',kcalPerMl:1.5,protPer100ml:7.5,carbPer100ml:17,lipPer100ml:5.8,osmolarity:300,fiber:false},
-    {name:'Fresubin 2.0 HP',desc:'Hipercal/Hiperprot',kcalPerMl:2.0,protPer100ml:10,carbPer100ml:18,lipPer100ml:10,osmolarity:410,fiber:false}
+    {n:'Fresubin Original',d:'Normocalórica',k:1.0,p:3.8,c:14,l:3.4,o:220},
+    {n:'Fresubin HP Energy',d:'Hipercal/Hiperprot',k:1.5,p:7.5,c:17,l:5.8,o:300},
+    {n:'Fresubin 2.0 HP',d:'Hipercal/Hiperprot',k:2.0,p:10,c:18,l:10,o:410}
   ],
   'hnss':[
-    {name:'Normocalórica',desc:'Sem fibras',kcalPerMl:1.2,protPer100ml:4.4,carbPer100ml:null,lipPer100ml:null,fiber:false},
-    {name:'Normocalórica c/ Fibras',desc:'Com fibras',kcalPerMl:1.2,protPer100ml:4.4,carbPer100ml:null,lipPer100ml:null,fiber:true},
-    {name:'Hipercalórica',desc:'1.5 kcal/ml',kcalPerMl:1.5,protPer100ml:6.3,carbPer100ml:null,lipPer100ml:null,fiber:false}
+    {n:'Normocalórica',d:'Sem fibras',k:1.2,p:4.4,c:null,l:null},
+    {n:'Normocal c/ Fibras',d:'Com fibras',k:1.2,p:4.4,c:null,l:null},
+    {n:'Hipercalórica',d:'1.5kcal/ml',k:1.5,p:6.3,c:null,l:null}
   ]
 };
-const infusionHours={'santa-casa':20,'hnss':22};
-const pnBags=[
-  {name:'Kabiven 1026',type:'Kabiven',access:'Central',vol:1026,kcal:900,kcalNP:800,aa:34,glu:100,lip:40,n2:5.4,osm:1060,rel:148},
-  {name:'Kabiven 2053',type:'Kabiven',access:'Central',vol:2053,kcal:1900,kcalNP:1600,aa:68,glu:200,lip:80,n2:10.8,osm:1060,rel:148},
-  {name:'SmofKabiven 986',type:'SmofKabiven',access:'Central',vol:986,kcal:1100,kcalNP:900,aa:50,glu:125,lip:37,n2:8,osm:1500,rel:112},
-  {name:'SmofKabiven 1477',type:'SmofKabiven',access:'Central',vol:1477,kcal:1600,kcalNP:1300,aa:75,glu:188,lip:56,n2:12,osm:1500,rel:112},
-  {name:'SmofKabiven 1970',type:'SmofKabiven',access:'Central',vol:1970,kcal:2200,kcalNP:1800,aa:100,glu:250,lip:75,n2:16,osm:1500,rel:112},
-  {name:'SmofKab ExtraN 1012',type:'SmofKab Extra N',access:'Central',vol:1012,kcal:900,kcalNP:635,aa:66,glu:86,lip:29,n2:11,osm:1300,rel:58},
-  {name:'SmofKab ExtraN 1518',type:'SmofKab Extra N',access:'Central',vol:1518,kcal:1350,kcalNP:952,aa:99,glu:129,lip:44,n2:16,osm:1300,rel:58},
-  {name:'Kabiven Periph 1440',type:'Kabiven Periph',access:'Periférico',vol:1440,kcal:1000,kcalNP:900,aa:34,glu:97,lip:51,n2:5.4,osm:750,rel:167},
-  {name:'Kabiven Periph 1920',type:'Kabiven Periph',access:'Periférico',vol:1920,kcal:1400,kcalNP:1200,aa:45,glu:130,lip:68,n2:7.2,osm:750,rel:167},
-  {name:'SmofKab Periph 1206',type:'SmofKab Periph',access:'Periférico',vol:1206,kcal:800,kcalNP:700,aa:39,glu:86,lip:34,n2:6.2,osm:850,rel:113},
-  {name:'SmofKab Periph 1904',type:'SmofKab Periph',access:'Periférico',vol:1904,kcal:1300,kcalNP:1100,aa:61,glu:135,lip:53,n2:9.7,osm:850,rel:113},
+const IH={'santa-casa':20,'hnss':22};
+const PB=[
+  {n:'Kabiven 1026',t:'Kabiven',a:'Central',v:1026,k:900,kn:800,aa:34,g:100,l:40,n2:5.4,o:1060,r:148},
+  {n:'Kabiven 2053',t:'Kabiven',a:'Central',v:2053,k:1900,kn:1600,aa:68,g:200,l:80,n2:10.8,o:1060,r:148},
+  {n:'SmofKab 986',t:'SmofKabiven',a:'Central',v:986,k:1100,kn:900,aa:50,g:125,l:37,n2:8,o:1500,r:112},
+  {n:'SmofKab 1477',t:'SmofKabiven',a:'Central',v:1477,k:1600,kn:1300,aa:75,g:188,l:56,n2:12,o:1500,r:112},
+  {n:'SmofKab 1970',t:'SmofKabiven',a:'Central',v:1970,k:2200,kn:1800,aa:100,g:250,l:75,n2:16,o:1500,r:112},
+  {n:'SmofKab ExN 1012',t:'SmofKab Extra N',a:'Central',v:1012,k:900,kn:635,aa:66,g:86,l:29,n2:11,o:1300,r:58},
+  {n:'SmofKab ExN 1518',t:'SmofKab Extra N',a:'Central',v:1518,k:1350,kn:952,aa:99,g:129,l:44,n2:16,o:1300,r:58},
+  {n:'Kab Periph 1440',t:'Kab Periph',a:'Periférico',v:1440,k:1000,kn:900,aa:34,g:97,l:51,n2:5.4,o:750,r:167},
+  {n:'Kab Periph 1920',t:'Kab Periph',a:'Periférico',v:1920,k:1400,kn:1200,aa:45,g:130,l:68,n2:7.2,o:750,r:167},
+  {n:'SmofKab P 1206',t:'SmofKab Periph',a:'Periférico',v:1206,k:800,kn:700,aa:39,g:86,l:34,n2:6.2,o:850,r:113},
+  {n:'SmofKab P 1904',t:'SmofKab Periph',a:'Periférico',v:1904,k:1300,kn:1100,aa:61,g:135,l:53,n2:9.7,o:850,r:113},
 ];
 
-// ===== STATE =====
-let S={institution:null,nutritionType:null,selEnteral:null,selPN:null,nrs:null,glim:null};
-let patients=[];
-let startDates={enteral:'',parenteral:''};
+let S={inst:null,type:null,sE:null,sP:null,nrs:null,glim:null};
+let pts=[];// {id,patientName,age,sex,...,tracking,discharged,dischargeDate,dischargeNote,evolutions:[{date,text,data}]}
+let currentTab='ativos';
+let dischargeTargetId=null;
 
-// ===== STORAGE HELPERS =====
-async function storageGet(key){try{const r=await window.storage.get(key);return r?JSON.parse(r.value):null}catch(e){return null}}
-async function storageSet(key,val){try{await window.storage.set(key,JSON.stringify(val));return true}catch(e){console.error('Storage set error:',e);return false}}
-
+// ===== STORAGE =====
+async function sGet(k){try{const r=await window.storage.get(k);return r?JSON.parse(r.value):null}catch{return null}}
+async function sSet(k,v){try{await window.storage.set(k,JSON.stringify(v));return true}catch(e){console.error(e);return false}}
 async function loadAll(){
-  patients=await storageGet('patients')||[];
-  startDates=await storageGet('startDates')||{enteral:'',parenteral:''};
-  if(startDates.enteral)sv('enteralStartDate',startDates.enteral);
-  if(startDates.parenteral)sv('parenteralStartDate',startDates.parenteral);
-  renderTrackingBanner();
-  document.getElementById('loadingOverlay').classList.add('hidden');
+  pts=await sGet('pts')||[];
+  const sd=await sGet('sd')||{};
+  if(sd.e)$('enteralStartDate').value=sd.e;
+  if(sd.p)$('parenteralStartDate').value=sd.p;
+  renderBanner();
+  $('loadingOverlay').classList.add('hidden');
 }
-
-async function saveAll(){
-  await storageSet('patients',patients);
-}
-async function saveStartDates(){
-  startDates.enteral=gv('enteralStartDate')||startDates.enteral;
-  startDates.parenteral=gv('parenteralStartDate')||startDates.parenteral;
-  await storageSet('startDates',startDates);
+async function saveAll(){await sSet('pts',pts)}
+async function saveSD(){
+  await sSet('sd',{e:$('enteralStartDate').value,p:$('parenteralStartDate').value});
 }
 
 // ===== HELPERS =====
-function pf(id){return parseFloat(document.getElementById(id).value)||0}
-function gv(id){return document.getElementById(id).value}
-function sv(id,v){document.getElementById(id).value=v||''}
-function si(id,v){document.getElementById(id).value=v}
-function gt(id){return document.getElementById(id).textContent}
-function st(id,v){document.getElementById(id).textContent=v}
-function tog(id,show){const el=document.getElementById(id);if(el)el.classList.toggle('hidden',!show)}
-function fmtD(d){if(!d)return'';const[y,m,dd]=d.split('-');return`${dd}/${m}/${y}`}
-function closeModal(id){document.getElementById(id).classList.add('hidden')}
-function today(){return new Date().toISOString().slice(0,10)}
+const $=id=>document.getElementById(id);
+const pf=id=>parseFloat($(id).value)||0;
+const gv=id=>$(id).value;
+const sv=(id,v)=>{$(id).value=v||''};
+const gt=id=>$(id).textContent;
+const st=(id,v)=>{$(id).textContent=v};
+const tog=(id,s)=>{const e=$(id);if(e)e.classList.toggle('hidden',!s)};
+const fD=d=>{if(!d)return'';const[y,m,dd]=d.split('-');return`${dd}/${m}/${y}`};
+const closeM=id=>$(id).classList.add('hidden');
+const td=()=>new Date().toISOString().slice(0,10);
 
-// ===== CALCULATIONS =====
+// ===== CALC =====
 function calculate(){
   const w=pf('weight'),h=pf('height'),kk=pf('kcalPerKg'),pk=pf('protPerKg');
-  if(w>0&&h>0){const i=w/(h*h);si('imc',i.toFixed(1));si('imcClass',classIMC(i));si('idealWeight',(22*h*h).toFixed(1)+' kg')}
-  else{si('imc','');si('imcClass','');si('idealWeight','')}
-  si('vetPleno',w>0&&kk>0?Math.round(kk*w)+' kcal':'');
-  si('protTarget',w>0&&pk>0?(pk*w).toFixed(1)+' g':'');
-  calculateEnteral();calculateParenteral();updateSummary();
+  if(w>0&&h>0){const i=w/(h*h);sv('imc',i.toFixed(1));sv('imcClass',cIMC(i));sv('idealWeight',(22*h*h).toFixed(1)+' kg')}
+  else{sv('imc','');sv('imcClass','');sv('idealWeight','')}
+  sv('vetPleno',w>0&&kk>0?Math.round(kk*w)+' kcal':'');
+  sv('protTarget',w>0&&pk>0?(pk*w).toFixed(1)+' g':'');
+  calcEnt();calcPN();updateSum();
 }
-function classIMC(i){if(i<16)return'Magreza III';if(i<17)return'Magreza II';if(i<18.5)return'Magreza I';if(i<25)return'Eutrófico';if(i<30)return'Sobrepeso';if(i<35)return'Obesidade I';if(i<40)return'Obesidade II';return'Obesidade III'}
+function cIMC(i){if(i<16)return'Magreza III';if(i<17)return'Magreza II';if(i<18.5)return'Magreza I';if(i<25)return'Eutrófico';if(i<30)return'Sobrepeso';if(i<35)return'Obesidade I';if(i<40)return'Obesidade II';return'Obesidade III'}
 
-function selectInstitution(inst){
-  S.institution=inst;S.selEnteral=null;
-  document.querySelectorAll('.inst-btn').forEach(b=>b.classList.remove('active'));
-  document.querySelector(`.inst-btn.${inst}`).classList.add('active');
-  tog('sectionType',true);
-  si('enteralHours',infusionHours[inst]+'h');
-  selectType(null);renderEnteralDiets();
-}
-
-function selectType(type){
-  S.nutritionType=type;
-  document.querySelectorAll('.type-btn').forEach(b=>b.classList.remove('active'));
-  if(type)document.querySelectorAll('.type-btn').forEach(b=>{if(b.dataset.type===type)b.classList.add('active')});
-  const sE=type==='enteral'||type==='both',sP=type==='parenteral'||type==='both';
-  tog('sectionEnteral',sE);tog('sectionParenteral',sP);tog('sectionSummary',!!type);tog('sectionDates',!!type);
-  tog('fieldEnteralDate',sE);tog('fieldParenteralDate',sP);tog('dcEnteral',sE);tog('dcParenteral',sP);
-  if(sE){renderEnteralDiets();document.getElementById('enteralInstitutionLabel').textContent=S.institution==='santa-casa'?'— Santa Casa':'— HNSS'}
-  if(sP)renderParenteralBags();
-  if(startDates.enteral)sv('enteralStartDate',startDates.enteral);
-  if(startDates.parenteral)sv('parenteralStartDate',startDates.parenteral);
-  updateSummary();updateDayCounters();
+function selInst(i){S.inst=i;S.sE=null;document.querySelectorAll('.inst-btn').forEach(b=>b.classList.remove('active'));document.querySelector(`.inst-btn.${i}`).classList.add('active');tog('sectionType',true);sv('entHours',IH[i]+'h');selType(null);renderED()}
+function selType(t){
+  S.type=t;document.querySelectorAll('.type-btn').forEach(b=>b.classList.remove('active'));
+  if(t)document.querySelectorAll('.type-btn').forEach(b=>{if(b.dataset.type===t)b.classList.add('active')});
+  const sE=t==='enteral'||t==='both',sP=t==='parenteral'||t==='both';
+  tog('sectionEnteral',sE);tog('sectionPN',sP);tog('sectionSum',!!t);tog('sectionDates',!!t);
+  tog('fieldED',sE);tog('fieldPD',sP);tog('dcE',sE);tog('dcP',sP);
+  if(sE){renderED();$('entLabel').textContent=S.inst==='santa-casa'?'— Santa Casa':'— HNSS'}
+  if(sP)renderPB();updateSum();updateDC();
 }
 
-function renderEnteralDiets(){
-  if(!S.institution)return;
-  const c=document.getElementById('enteralDietsContainer'),ds=enteralDiets[S.institution];
-  c.innerHTML=ds.map((d,i)=>`<div class="diet-card ${S.selEnteral===i?'active':''}" onclick="selectEnteralDiet(${i})"><div class="diet-name">${d.name}</div><div class="diet-info">${d.kcalPerMl} kcal/ml · ${d.protPer100ml}g ptn/100ml<br>${d.desc}</div></div>`).join('');
-}
-function selectEnteralDiet(i){S.selEnteral=i;renderEnteralDiets();calculateEnteral()}
-
-function calculateEnteral(){
-  if(!S.institution||S.selEnteral===null)return;
-  const d=enteralDiets[S.institution][S.selEnteral],rate=pf('enteralRate'),hrs=infusionHours[S.institution],vol=rate*hrs,w=pf('weight');
-  si('enteralVolume',vol+' ml');
-  const kcal=vol*d.kcalPerMl,prot=vol*d.protPer100ml/100;
-  st('enteralKcal',Math.round(kcal));st('enteralProt',prot.toFixed(1));
-  st('enteralCarb',d.carbPer100ml!==null?(vol*d.carbPer100ml/100).toFixed(1):'—');
-  st('enteralLip',d.lipPer100ml!==null?(vol*d.lipPer100ml/100).toFixed(1):'—');
-  const supp=pf('protSupplement'),tp=prot+supp;
-  si('totalProtEnteral',tp.toFixed(1)+' g');
-  if(w>0)si('realProtPerKg',(tp/w).toFixed(2)+' g/kg');
-  updateSummary();
+function renderED(){if(!S.inst)return;const c=$('entDietsC'),ds=ED[S.inst];c.innerHTML=ds.map((d,i)=>`<div class="diet-card ${S.sE===i?'active':''}" onclick="selED(${i})"><div class="diet-name">${d.n}</div><div class="diet-info">${d.k}kcal/ml · ${d.p}g ptn/100ml<br>${d.d}</div></div>`).join('')}
+function selED(i){S.sE=i;renderED();calcEnt()}
+function calcEnt(){
+  if(!S.inst||S.sE===null)return;
+  const d=ED[S.inst][S.sE],r=pf('entRate'),h=IH[S.inst],v=r*h,w=pf('weight');
+  sv('entVol',v+' ml');const kc=v*d.k,pr=v*d.p/100;
+  st('entKcal',Math.round(kc));st('entProt',pr.toFixed(1));
+  st('entCarb',d.c!==null?(v*d.c/100).toFixed(1):'—');st('entLip',d.l!==null?(v*d.l/100).toFixed(1):'—');
+  const sp=pf('protSupp'),tp=pr+sp;sv('totProtEnt',tp.toFixed(1)+' g');if(w>0)sv('realPKg',(tp/w).toFixed(2)+' g/kg');
+  updateSum();
 }
 
-// ===== PARENTERAL =====
-function renderParenteralBags(){
-  const c=document.getElementById('parenteralBagsContainer'),groups={};
-  pnBags.forEach((b,i)=>{if(!groups[b.type])groups[b.type]=[];groups[b.type].push({...b,idx:i})});
-  let h='';
-  for(const[type,bags] of Object.entries(groups)){
-    h+=`<div style="grid-column:1/-1;font-weight:700;font-size:12px;margin-top:4px;color:var(--text-light)">${type}</div>`;
-    bags.forEach(b=>{h+=`<div class="parenteral-card ${S.selPN===b.idx?'active':''}" onclick="selectPNBag(${b.idx})"><div class="pn-name">${b.name}</div><div class="pn-details"><span class="tag ${b.access==='Central'?'central':'periferico'}">${b.access}</span> · ${b.kcal}kcal · ${b.aa}g AA</div></div>`});
-  }
-  c.innerHTML=h;
+function renderPB(){const c=$('pnBagsC'),gr={};PB.forEach((b,i)=>{if(!gr[b.t])gr[b.t]=[];gr[b.t].push({...b,idx:i})});let h='';for(const[t,bs]of Object.entries(gr)){h+=`<div style="grid-column:1/-1;font-weight:700;font-size:12px;margin-top:4px;color:var(--text-light)">${t}</div>`;bs.forEach(b=>{h+=`<div class="parenteral-card ${S.sP===b.idx?'active':''}" onclick="selPB(${b.idx})"><div class="pn-name">${b.n}</div><div class="pn-details"><span class="tag ${b.a==='Central'?'central':'periferico'}">${b.a}</span> · ${b.k}kcal · ${b.aa}g AA</div></div>`})}c.innerHTML=h}
+function selPB(i){S.sP=i;renderPB();const b=PB[i];tog('pnCalc',true);st('pnSelName',b.n);$('pnBagInfo').innerHTML=`<b>${b.n}</b> — ${b.a} | ${b.v}ml | ${b.k}kcal (NP:${b.kn}) | AA:${b.aa}g | Glic:${b.g}g | Lip:${b.l}g`;sv('pnDK',b.k);calcPN()}
+function calcPN(){
+  if(S.sP===null)return;const b=PB[S.sP],dk=pf('pnDK'),hr=pf('pnH')||24;
+  if(dk<=0){['pnK','pnKNP','pnAA','pnG','pnL','pnN'].forEach(i=>st(i,'—'));sv('pnR','—');sv('pnV','—');tog('pnNote',false);updateSum();return}
+  const f=dk/b.k,v=Math.round(b.v*f),r=(v/hr).toFixed(1);
+  sv('pnR',r+' ml/h');sv('pnV',v+' ml');
+  st('pnK',Math.round(b.k*f));st('pnKNP',Math.round(b.kn*f));st('pnAA',(b.aa*f).toFixed(1));st('pnG',(b.g*f).toFixed(1));st('pnL',(b.l*f).toFixed(1));st('pnN',(b.n2*f).toFixed(1));
+  st('pnRel',b.r);st('pnOsm',b.o+' mOsm/L');st('pnAcc',b.a);
+  const nt=$('pnNote'),pct=Math.round(f*100);
+  f>1?nt.textContent=`⚠️ ${pct}% — ${f.toFixed(1)} bolsas necessárias`:nt.textContent=`${pct}% da bolsa (${v}/${b.v}ml)`;nt.classList.remove('hidden');
+  updateSum();
 }
 
-function selectPNBag(i){
-  S.selPN=i;renderParenteralBags();
-  const b=pnBags[i];
-  tog('pnCalcSection',true);
-  st('pnSelectedName',b.name);
-  document.getElementById('pnBagInfo').innerHTML=`<b>${b.name}</b> — ${b.access} | Vol: ${b.vol}ml | ${b.kcal}kcal (NP: ${b.kcalNP}) | AA: ${b.aa}g | Glic: ${b.glu}g | Lip: ${b.lip}g | N₂: ${b.n2}g | Osm: ${b.osm}`;
-  sv('pnDesiredKcal',b.kcal);
-  calculateParenteral();
-}
-
-function calculateParenteral(){
-  if(S.selPN===null)return;
-  const b=pnBags[S.selPN],dk=pf('pnDesiredKcal'),hrs=pf('pnHours')||24;
-  if(dk<=0){['pnKcal','pnKcalNP','pnAmino','pnGlucose','pnLipid','pnNitrogen'].forEach(id=>st(id,'—'));si('pnRate','—');si('pnVolume','—');st('pnRelNPgN','—');st('pnOsm','—');st('pnAccess','—');tog('pnPercentNote',false);updateSummary();return}
-  const f=dk/b.kcal,vol=Math.round(b.vol*f),rate=(vol/hrs).toFixed(1);
-  si('pnRate',rate+' ml/h');si('pnVolume',vol+' ml');
-  st('pnKcal',Math.round(b.kcal*f));st('pnKcalNP',Math.round(b.kcalNP*f));
-  st('pnAmino',(b.aa*f).toFixed(1));st('pnGlucose',(b.glu*f).toFixed(1));
-  st('pnLipid',(b.lip*f).toFixed(1));st('pnNitrogen',(b.n2*f).toFixed(1));
-  st('pnRelNPgN',b.rel);st('pnOsm',b.osm+' mOsm/L');st('pnAccess',b.access);
-  const n=document.getElementById('pnPercentNote');
-  const pct=Math.round(f*100);
-  if(f>1)n.textContent=`⚠️ ${pct}% da bolsa — necessárias ${f.toFixed(1)} bolsas (${vol}ml de ${b.vol}ml).`;
-  else n.textContent=`Utilizando ${pct}% da bolsa (${vol}ml de ${b.vol}ml).`;
-  n.classList.remove('hidden');
-  updateSummary();
-}
-
-function updateSummary(){
-  const type=S.nutritionType;if(!type)return;
-  const w=pf('weight');let tk=0,tp=0;
-  if((type==='enteral'||type==='both')&&S.selEnteral!==null){tk+=parseFloat(gt('enteralKcal'))||0;tp+=(parseFloat(gt('enteralProt'))||0)+pf('protSupplement')}
-  if((type==='parenteral'||type==='both')&&S.selPN!==null){tk+=parseFloat(gt('pnKcal'))||0;tp+=parseFloat(gt('pnAmino'))||0}
-  st('sumKcal',Math.round(tk));st('sumProt',tp.toFixed(1));
-  if(w>0){st('sumKcalKg',(tk/w).toFixed(1));st('sumProtKg',(tp/w).toFixed(2))}
+function updateSum(){
+  const t=S.type;if(!t)return;const w=pf('weight');let tk=0,tp=0;
+  if((t==='enteral'||t==='both')&&S.sE!==null){tk+=parseFloat(gt('entKcal'))||0;tp+=(parseFloat(gt('entProt'))||0)+pf('protSupp')}
+  if((t==='parenteral'||t==='both')&&S.sP!==null){tk+=parseFloat(gt('pnK'))||0;tp+=parseFloat(gt('pnAA'))||0}
+  st('sK',Math.round(tk));st('sP',tp.toFixed(1));
+  if(w>0){st('sKK',(tk/w).toFixed(1));st('sPK',(tp/w).toFixed(2))}
   const vt=parseFloat(gv('vetPleno'))||0,pt=parseFloat(gv('protTarget'))||0;
-  if(vt>0){const p=Math.min(tk/vt*100,150);document.getElementById('barKcal').style.width=Math.min(p,100)+'%';document.getElementById('barKcal').className='pct-bar-fill '+(p<80?'yellow':p<=110?'green':'red');st('sumKcalPct',Math.round(p)+'% da meta')}
-  if(pt>0){const p=Math.min(tp/pt*100,150);document.getElementById('barProt').style.width=Math.min(p,100)+'%';document.getElementById('barProt').className='pct-bar-fill '+(p<80?'yellow':p<=110?'green':'red');st('sumProtPct',Math.round(p)+'% da meta')}
+  if(vt>0){const p=Math.min(tk/vt*100,150);$('bK').style.width=Math.min(p,100)+'%';$('bK').className='pct-bar-fill '+(p<80?'yellow':p<=110?'green':'red');st('sKP',Math.round(p)+'%')}
+  if(pt>0){const p=Math.min(tp/pt*100,150);$('bP').style.width=Math.min(p,100)+'%';$('bP').className='pct-bar-fill '+(p<80?'yellow':p<=110?'green':'red');st('sPP',Math.round(p)+'%')}
 }
-
-function updateDayCounters(){
+function updateDC(){
   const ref=gv('evolutionDate')?new Date(gv('evolutionDate')+'T12:00:00'):new Date();
   const ed=gv('enteralStartDate'),pd=gv('parenteralStartDate');
-  if(ed){const d=Math.floor((ref-new Date(ed+'T12:00:00'))/864e5)+1;st('dcEnteralDays',Math.max(d,1))}
-  if(pd){const d=Math.floor((ref-new Date(pd+'T12:00:00'))/864e5)+1;st('dcParenteralDays',Math.max(d,1))}
-  saveStartDates();
+  if(ed){const d=Math.floor((ref-new Date(ed+'T12:00:00'))/864e5)+1;st('dcED',Math.max(d,1))}
+  if(pd){const d=Math.floor((ref-new Date(pd+'T12:00:00'))/864e5)+1;st('dcPD',Math.max(d,1))}
+  saveSD();
 }
 
 // ===== NRS =====
-function openNRS(){document.getElementById('nrsModal').classList.remove('hidden')}
-function calcNRS(){
-  const e1=['nrs1_1','nrs1_2','nrs1_3','nrs1_4'].some(id=>document.getElementById(id).checked);
-  tog('nrsEtapa2',e1);
-  if(!e1){st('nrsScoreDisplay','Sem risco');const el=document.getElementById('nrsResultDisplay');el.className='nrs-result nrs-negative';el.textContent='Negativa — reavaliar 7d';return}
-  const n=parseInt(document.querySelector('input[name="nrsNutri"]:checked')?.value||0),d=parseInt(document.querySelector('input[name="nrsDisease"]:checked')?.value||0),a=document.getElementById('nrsAge').checked?1:0,t=n+d+a;
-  st('nrsScoreDisplay',t+' pt'+(t!==1?'s':''));
-  const el=document.getElementById('nrsResultDisplay');
-  t>=3?(el.className='nrs-result nrs-positive',el.textContent='Em risco nutricional (≥3)'):(el.className='nrs-result nrs-negative',el.textContent='Sem risco (<3) — reavaliar');
-}
-function saveNRS(){
-  const e1=['nrs1_1','nrs1_2','nrs1_3','nrs1_4'].some(id=>document.getElementById(id).checked);
-  if(!e1)S.nrs={score:0,risk:false,text:'Triagem negativa'};
-  else{const n=parseInt(document.querySelector('input[name="nrsNutri"]:checked')?.value||0),d=parseInt(document.querySelector('input[name="nrsDisease"]:checked')?.value||0),a=document.getElementById('nrsAge').checked?1:0,t=n+d+a;
-  S.nrs={score:t,nutri:n,disease:d,age:a,risk:t>=3,text:t>=3?'Em risco':'Sem risco'}}
-  document.getElementById('nrsBadge').textContent=S.nrs.score+' pts';
-  document.getElementById('nrsBadge').style.background=S.nrs.risk?'#fde8de':'var(--accent-pale)';
-  document.getElementById('nrsBadge').style.color=S.nrs.risk?'#c44d18':'var(--accent)';
-  updateScreenSummary();closeModal('nrsModal');
-}
+function openNRS(){$('nrsM').classList.remove('hidden')}
+function cNRS(){const e1=['n1','n2','n3','n4'].some(i=>$(i).checked);tog('nE2',e1);if(!e1){st('nSD','0');const e=$('nRD');e.className='nrs-result nrs-negative';e.textContent='Negativa';return}const n=parseInt(document.querySelector('input[name="nN"]:checked')?.value||0),d=parseInt(document.querySelector('input[name="nD"]:checked')?.value||0),a=$('nA').checked?1:0,t=n+d+a;st('nSD',t);const e=$('nRD');t>=3?(e.className='nrs-result nrs-positive',e.textContent='Em risco (≥3)'):(e.className='nrs-result nrs-negative',e.textContent='Sem risco (<3)')}
+function sNRS(){const e1=['n1','n2','n3','n4'].some(i=>$(i).checked);if(!e1)S.nrs={s:0,r:false,t:'Negativa'};else{const n=parseInt(document.querySelector('input[name="nN"]:checked')?.value||0),d=parseInt(document.querySelector('input[name="nD"]:checked')?.value||0),a=$('nA').checked?1:0,t=n+d+a;S.nrs={s:t,n,d,a,r:t>=3,t:t>=3?'Em risco':'Sem risco'}}$('nrsBadge').textContent=S.nrs.s+' pts';$('nrsBadge').style.background=S.nrs.r?'#fde8de':'var(--accent-pale)';$('nrsBadge').style.color=S.nrs.r?'#c44d18':'var(--accent)';uSS();closeM('nrsM')}
 
-// ===== GLIM =====
-function openGLIM(){document.getElementById('glimModal').classList.remove('hidden')}
-function calcGLIM(){
-  const f=['glim_f1','glim_f2','glim_f3'].filter(id=>document.getElementById(id).checked).length;
-  const e=['glim_e1','glim_e2'].filter(id=>document.getElementById(id).checked).length;
-  const sev=document.querySelector('input[name="glimSev"]:checked')?.value||'';
-  const el=document.getElementById('glimResultDisplay');
-  f>=1&&e>=1?(el.className='nrs-result nrs-positive',el.textContent=sev?`Desnutrição ${sev}`:'Desnutrição confirmada'):(el.className='nrs-result nrs-negative',el.textContent=`Insuficiente (${f} fenot., ${e} etiol.)`);
-}
-function saveGLIM(){
-  const feno=[document.getElementById('glim_f1').checked&&'Perda peso',document.getElementById('glim_f2').checked&&'Baixo IMC',document.getElementById('glim_f3').checked&&'↓Massa musc'].filter(Boolean);
-  const etio=[document.getElementById('glim_e1').checked&&'↓Ingestão',document.getElementById('glim_e2').checked&&'Inflamação'].filter(Boolean);
-  const sev=document.querySelector('input[name="glimSev"]:checked')?.value||'';
-  const diag=feno.length>=1&&etio.length>=1;
-  S.glim={diagnosed:diag,severity:sev,phenotypic:feno,etiologic:etio,text:diag?(sev?`Desnutrição ${sev}`:'Desnutrição'):'Sem desnutrição'};
-  document.getElementById('glimBadge').textContent=diag?(sev||'Sim'):'Não';
-  document.getElementById('glimBadge').style.background=diag?'#fde8de':'var(--accent-pale)';
-  document.getElementById('glimBadge').style.color=diag?'#c44d18':'var(--accent)';
-  updateScreenSummary();closeModal('glimModal');
-}
-function updateScreenSummary(){
-  const el=document.getElementById('screeningSummary');let p=[];
-  if(S.nrs)p.push(`NRS-2002: ${S.nrs.text} (${S.nrs.score}pts)`);
-  if(S.glim)p.push(`GLIM: ${S.glim.text}`);
-  p.length?(el.textContent=p.join(' | '),el.classList.remove('hidden')):el.classList.add('hidden');
-}
+function openGLIM(){$('glimM').classList.remove('hidden')}
+function cGLIM(){const f=['gf1','gf2','gf3'].filter(i=>$(i).checked).length,e=['ge1','ge2'].filter(i=>$(i).checked).length,sv=document.querySelector('input[name="gS"]:checked')?.value||'';const el=$('gRD');f>=1&&e>=1?(el.className='nrs-result nrs-positive',el.textContent=sv?`Desnutrição ${sv}`:'Desnutrição confirmada'):(el.className='nrs-result nrs-negative',el.textContent=`Insuficiente (${f}f, ${e}e)`)}
+function sGLIM(){const fn=[$('gf1').checked&&'Perda peso',$('gf2').checked&&'↓IMC',$('gf3').checked&&'↓Massa'].filter(Boolean),et=[$('ge1').checked&&'↓Ingestão',$('ge2').checked&&'Inflamação'].filter(Boolean),sv=document.querySelector('input[name="gS"]:checked')?.value||'',dg=fn.length>=1&&et.length>=1;S.glim={dg,sv,fn,et,t:dg?(sv?`Desnutrição ${sv}`:'Desnutrição'):'Sem desnutrição'};$('glimBadge').textContent=dg?(sv||'Sim'):'Não';$('glimBadge').style.background=dg?'#fde8de':'var(--accent-pale)';$('glimBadge').style.color=dg?'#c44d18':'var(--accent)';uSS();closeM('glimM')}
+function uSS(){const el=$('screeningSummary');let p=[];if(S.nrs)p.push(`NRS: ${S.nrs.t} (${S.nrs.s}pts)`);if(S.glim)p.push(`GLIM: ${S.glim.t}`);p.length?(el.textContent=p.join(' | '),el.classList.remove('hidden')):el.classList.add('hidden')}
 
 // ===== TRACKING BANNER =====
-function renderTrackingBanner(){
-  const tracked=patients.filter(p=>p.tracking);
-  const banner=document.getElementById('trackingBanner');
-  if(!tracked.length){banner.classList.add('hidden');return}
-  banner.classList.remove('hidden');
-  document.getElementById('trackingCount').textContent=`${tracked.length} paciente${tracked.length>1?'s':''} em acompanhamento`;
-  document.getElementById('trackingChips').innerHTML=tracked.map(p=>`<div class="tracking-chip" onclick="loadPatientById(${p.id})"><div class="chip-dot"></div>${p.patientName}${p.institution==='santa-casa'?' · SC':p.institution==='hnss'?' · HNSS':''}</div>`).join('');
+function renderBanner(){const tr=pts.filter(p=>p.tracking&&!p.discharged),b=$('trackingBanner');if(!tr.length){b.classList.add('hidden');return}b.classList.remove('hidden');$('trackingChips').innerHTML=tr.map(p=>`<div class="tracking-chip" onclick="loadPt(${p.id})"><div class="chip-dot"></div>${p.patientName}</div>`).join('')}
+
+// ===== BUILD EVOLUTION TEXT =====
+function buildEvoText(){
+  const nm=gv('patientName'),w=gv('weight'),h=gv('height'),notes=$('evoNotes').value;
+  let t=`Data: ${fD(gv('evolutionDate'))}\n`;
+  t+=`${nm||'—'}, ${gv('age')||'—'}a, ${gv('sex')==='M'?'M':'F'} | ${w}kg | ${h}m | IMC:${gv('imc')} (${gv('imcClass')}) | PI:${gv('idealWeight')}\n`;
+  if(S.nrs)t+=`NRS: ${S.nrs.t} (${S.nrs.s}pts) | `;if(S.glim)t+=`GLIM: ${S.glim.t}`;if(S.nrs||S.glim)t+='\n';
+  t+=`Meta: ${gv('kcalPerKg')}kcal/kg → ${gv('vetPleno')} | ${gv('protPerKg')}g/kg → ${gv('protTarget')}\n`;
+  const ty=S.type;
+  if((ty==='enteral'||ty==='both')&&S.sE!==null){const d=ED[S.inst][S.sE];t+=`Ent: ${d.n} ${gv('entRate')}ml/h×${IH[S.inst]}h=${gv('entVol')} → ${gt('entKcal')}kcal, ${gt('entProt')}g ptn\n`;const sp=pf('protSupp');if(sp>0)t+=`Supl: +${sp}g → ${gv('totProtEnt')}\n`}
+  if((ty==='parenteral'||ty==='both')&&S.sP!==null){const b=PB[S.sP];t+=`NP: ${b.n} ${gv('pnDK')}kcal/${gv('pnH')}h → ${gv('pnR')} (${gv('pnV')}) | AA:${gt('pnAA')}g\n`}
+  if(ty)t+=`TOTAL: ${gt('sK')}kcal (${gt('sKK')}kcal/kg) | Ptn:${gt('sP')}g (${gt('sPK')}g/kg)\n`;
+  if(notes)t+=`\n${notes}`;
+  return t;
 }
 
-// ===== SAVE / LOAD =====
+// ===== SAVE =====
 async function savePatient(){
   const name=gv('patientName');if(!name){alert('Preencha o nome.');return}
-  const data={
-    id:Date.now(),savedAt:new Date().toISOString(),tracking:false,
-    patientName:name,age:gv('age'),sex:gv('sex'),weight:gv('weight'),height:gv('height'),
-    kcalPerKg:gv('kcalPerKg'),protPerKg:gv('protPerKg'),
-    institution:S.institution,nutritionType:S.nutritionType,
-    selEnteral:S.selEnteral,selPN:S.selPN,
-    enteralRate:gv('enteralRate'),protSupplement:gv('protSupplement'),
-    pnDesiredKcal:gv('pnDesiredKcal'),pnHours:gv('pnHours'),
-    enteralStartDate:gv('enteralStartDate'),parenteralStartDate:gv('parenteralStartDate'),
-    evolutionDate:gv('evolutionDate'),
-    nrs:S.nrs,glim:S.glim,
-    notes:document.getElementById('evolutionNotes').value,
-    imc:gv('imc'),imcClass:gv('imcClass'),vetPleno:gv('vetPleno'),protTarget:gv('protTarget'),
-    enteralKcal:gt('enteralKcal'),enteralProt:gt('enteralProt'),
-    pnKcal:gt('pnKcal'),pnAmino:gt('pnAmino'),
-    sumKcal:gt('sumKcal'),sumProt:gt('sumProt'),sumKcalKg:gt('sumKcalKg'),sumProtKg:gt('sumProtKg')
-  };
-  patients.unshift(data);
-  const ok=await saveAll();
-  if(ok)alert(`"${name}" salvo!`);
-  else alert(`"${name}" salvo na sessão! (Storage pode estar indisponível)`);
-  renderTrackingBanner();
+  // Find existing patient or create new
+  let existing=pts.find(p=>p.patientName===name&&!p.discharged);
+  const evoText=buildEvoText();
+  const evoEntry={date:gv('evolutionDate')||td(),text:evoText,savedAt:new Date().toISOString(),
+    data:{weight:gv('weight'),imc:gv('imc'),sumKcal:gt('sK'),sumProt:gt('sP'),sumKcalKg:gt('sKK'),sumProtKg:gt('sPK')}};
+
+  if(existing){
+    // Update patient data, add evolution
+    existing.age=gv('age');existing.sex=gv('sex');existing.weight=gv('weight');existing.height=gv('height');
+    existing.kcalPerKg=gv('kcalPerKg');existing.protPerKg=gv('protPerKg');
+    existing.inst=S.inst;existing.type=S.type;existing.sE=S.sE;existing.sP=S.sP;
+    existing.entRate=gv('entRate');existing.protSupp=gv('protSupp');
+    existing.pnDK=gv('pnDK');existing.pnH=gv('pnH');
+    existing.enteralStart=gv('enteralStartDate');existing.pnStart=gv('parenteralStartDate');
+    existing.nrs=S.nrs;existing.glim=S.glim;existing.lastEvo=gv('evolutionDate')||td();
+    existing.evolutions.push(evoEntry);
+    alert(`Evolução de "${name}" salva! (${existing.evolutions.length} evoluções)`);
+  } else {
+    const p={id:Date.now(),patientName:name,age:gv('age'),sex:gv('sex'),weight:gv('weight'),height:gv('height'),
+      kcalPerKg:gv('kcalPerKg'),protPerKg:gv('protPerKg'),
+      inst:S.inst,type:S.type,sE:S.sE,sP:S.sP,
+      entRate:gv('entRate'),protSupp:gv('protSupp'),pnDK:gv('pnDK'),pnH:gv('pnH'),
+      enteralStart:gv('enteralStartDate'),pnStart:gv('parenteralStartDate'),
+      nrs:S.nrs,glim:S.glim,lastEvo:gv('evolutionDate')||td(),
+      tracking:false,discharged:false,dischargeDate:null,dischargeNote:null,
+      evolutions:[evoEntry]};
+    pts.unshift(p);
+    alert(`"${name}" salvo!`);
+  }
+  await saveAll();renderBanner();
 }
 
-async function toggleTracking(id){
-  const p=patients.find(x=>x.id===id);
-  if(p){p.tracking=!p.tracking;await saveAll();renderPatientList();renderTrackingBanner()}
-}
-
-function loadPatientById(id){
-  const p=patients.find(x=>x.id===id);if(!p)return;
-  sv('patientName',p.patientName);sv('age',p.age);document.getElementById('sex').value=p.sex||'';
+// ===== LOAD =====
+function loadPt(id){
+  const p=pts.find(x=>x.id===id);if(!p)return;
+  sv('patientName',p.patientName);sv('age',p.age);$('sex').value=p.sex||'';
   sv('weight',p.weight);sv('height',p.height);sv('kcalPerKg',p.kcalPerKg);sv('protPerKg',p.protPerKg);
-  sv('enteralRate',p.enteralRate);sv('protSupplement',p.protSupplement);
-  sv('pnDesiredKcal',p.pnDesiredKcal);sv('pnHours',p.pnHours||24);
-  // Start dates: always use the saved ones (persistent)
-  sv('enteralStartDate',p.enteralStartDate||startDates.enteral||'');
-  sv('parenteralStartDate',p.parenteralStartDate||startDates.parenteral||'');
-  sv('evolutionDate',today()); // New evolution = today
-  document.getElementById('evolutionNotes').value=''; // Fresh notes for new evolution
+  sv('entRate',p.entRate);sv('protSupp',p.protSupp);sv('pnDK',p.pnDK);sv('pnH',p.pnH||24);
+  sv('enteralStartDate',p.enteralStart||'');sv('parenteralStartDate',p.pnStart||'');
+  sv('evolutionDate',td());$('evoNotes').value='';
   S.nrs=p.nrs;S.glim=p.glim;
-  if(S.nrs){document.getElementById('nrsBadge').textContent=S.nrs.score+' pts'}
-  if(S.glim){document.getElementById('glimBadge').textContent=S.glim.diagnosed?(S.glim.severity||'Sim'):'Não'}
-  updateScreenSummary();
-  if(p.institution)selectInstitution(p.institution);
-  if(p.nutritionType)selectType(p.nutritionType);
-  if(p.selEnteral!==null&&p.selEnteral!==undefined)selectEnteralDiet(p.selEnteral);
-  if(p.selPN!==null&&p.selPN!==undefined)selectPNBag(p.selPN);
-  if(p.pnDesiredKcal)sv('pnDesiredKcal',p.pnDesiredKcal);
-  if(p.pnHours)sv('pnHours',p.pnHours);
-  calculate();
-  closeModal('patientsModal');
-  window.scrollTo({top:0,behavior:'smooth'});
+  if(S.nrs)$('nrsBadge').textContent=S.nrs.s+' pts';
+  if(S.glim)$('glimBadge').textContent=S.glim.dg?(S.glim.sv||'Sim'):'Não';
+  uSS();if(p.inst)selInst(p.inst);if(p.type)selType(p.type);
+  if(p.sE!==null&&p.sE!==undefined)selED(p.sE);
+  if(p.sP!==null&&p.sP!==undefined)selPB(p.sP);
+  if(p.pnDK)sv('pnDK',p.pnDK);if(p.pnH)sv('pnH',p.pnH);
+  calculate();closeM('ptsM');window.scrollTo({top:0,behavior:'smooth'});
 }
 
-async function deletePatient(id){
-  if(!confirm('Excluir?'))return;
-  patients=patients.filter(x=>x.id!==id);
-  await saveAll();renderPatientList();renderTrackingBanner();
+// ===== TRACKING =====
+async function togTrack(id){const p=pts.find(x=>x.id===id);if(p){p.tracking=!p.tracking;await saveAll();renderPtsList();renderBanner()}}
+
+// ===== DISCHARGE =====
+function openDischarge(id){dischargeTargetId=id;const p=pts.find(x=>x.id===id);if(!p)return;$('dischargeName').textContent=`Alta de: ${p.patientName}`;sv('dischargeDate',td());$('dischargeNote').value='';$('dischargeM').classList.remove('hidden')}
+async function confirmDischarge(){
+  const p=pts.find(x=>x.id===dischargeTargetId);if(!p)return;
+  p.discharged=true;p.tracking=false;p.dischargeDate=gv('dischargeDate')||td();p.dischargeNote=$('dischargeNote').value;
+  p.evolutions.push({date:p.dischargeDate,text:`ALTA NUTRICIONAL — ${fD(p.dischargeDate)}\n${p.dischargeNote||'Sem observações'}`,savedAt:new Date().toISOString(),isDischarge:true,data:{}});
+  await saveAll();closeM('dischargeM');renderPtsList();renderBanner();
+  alert(`Alta de "${p.patientName}" registrada.`);
 }
 
-function openPatientsModal(){renderPatientList();document.getElementById('patientsModal').classList.remove('hidden')}
+// ===== READMIT =====
+async function readmitPt(id){
+  const p=pts.find(x=>x.id===id);if(!p||!confirm(`Readmitir "${p.patientName}"?`))return;
+  p.discharged=false;p.dischargeDate=null;p.dischargeNote=null;
+  p.evolutions.push({date:td(),text:`READMISSÃO — ${fD(td())}`,savedAt:new Date().toISOString(),isReadmission:true,data:{}});
+  await saveAll();renderPtsList();renderBanner();
+}
 
-function renderPatientList(){
-  const c=document.getElementById('patientList'),np=document.getElementById('noPatients');
-  if(!patients.length){c.innerHTML='';np.classList.remove('hidden');return}
+// ===== HISTORY =====
+function showHistory(id){
+  const p=pts.find(x=>x.id===id);if(!p)return;
+  $('histTitle').textContent=`📋 ${p.patientName}`;
+  let h=`<div style="margin-bottom:16px"><b>${p.patientName}</b>, ${p.age||'—'}a | ${p.weight||'—'}kg | ${p.height||'—'}m`;
+  h+=`<br><span style="font-size:12px;color:var(--text-muted)">Instituição: ${p.inst==='santa-casa'?'Santa Casa':'HNSS'}</span>`;
+  if(p.discharged)h+=` <span class="tag alta">Alta em ${fD(p.dischargeDate)}</span>`;
+  else h+=` <span class="tag ativo">Ativo</span>`;
+  h+=`<br><span style="font-size:12px;color:var(--text-muted)">${p.evolutions.length} evolução(ões)</span></div>`;
+
+  // Timeline (reverse chronological)
+  const evos=[...p.evolutions].reverse();
+  evos.forEach(e=>{
+    const cls=e.isDischarge?'history-item discharge-note':e.isReadmission?'history-item discharge-note':'history-item';
+    h+=`<div class="${cls}"><div class="history-date">${e.isDischarge?'🏥 ALTA':e.isReadmission?'🔄 READMISSÃO':'📝'} ${fD(e.date)}</div><div class="history-content">${escH(e.text)}</div></div>`;
+  });
+
+  $('histBody').innerHTML=h;$('histM').classList.remove('hidden');
+}
+function escH(s){return(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+
+// ===== DELETE =====
+async function delPt(id){if(!confirm('Excluir permanentemente?'))return;pts=pts.filter(x=>x.id!==id);await saveAll();renderPtsList();renderBanner()}
+
+// ===== PATIENTS MODAL =====
+function openPatientsModal(){renderPtsList();$('ptsM').classList.remove('hidden')}
+function switchTab(t){currentTab=t;document.querySelectorAll('.tab').forEach(e=>e.classList.remove('active'));$(t==='ativos'?'tabAtivos':'tabAltas').classList.add('active');renderPtsList()}
+
+function renderPtsList(){
+  const active=pts.filter(p=>!p.discharged),discharged=pts.filter(p=>p.discharged);
+  $('countAtivos').textContent=active.length;$('countAltas').textContent=discharged.length;
+  const list=currentTab==='ativos'?active:discharged;
+  const c=$('ptsList'),np=$('noPts');
+  if(!list.length){c.innerHTML='';np.textContent=currentTab==='ativos'?'Nenhum paciente ativo.':'Nenhuma alta registrada.';np.classList.remove('hidden');return}
   np.classList.add('hidden');
-  // Show tracked first
-  const sorted=[...patients.filter(p=>p.tracking),...patients.filter(p=>!p.tracking)];
-  c.innerHTML=sorted.map(p=>`<div class="patient-item ${p.tracking?'tracking':''}">
-    <div>
-      <div class="pi-name">${p.tracking?'📌 ':''}${p.patientName}</div>
-      <div class="pi-info">${p.age?p.age+'a':''} ${p.weight?'· '+p.weight+'kg':''} ${p.institution==='santa-casa'?'· SC':p.institution==='hnss'?'· HNSS':''} · ${new Date(p.savedAt).toLocaleDateString('pt-BR')}</div>
+  // Tracked first for active
+  const sorted=currentTab==='ativos'?[...list.filter(p=>p.tracking),...list.filter(p=>!p.tracking)]:list;
+  c.innerHTML=sorted.map(p=>{
+    const isA=currentTab==='ativos';
+    return`<div class="patient-item ${p.tracking?'tracking':''} ${p.discharged?'discharged':''}">
+    <div style="flex:1;min-width:0">
+      <div class="pi-name" onclick="showHistory(${p.id})">${p.tracking?'📌 ':''}${p.patientName} ${p.discharged?'<span class=\"tag alta\">Alta '+fD(p.dischargeDate)+'</span>':''}</div>
+      <div class="pi-info">${p.age?p.age+'a':''} ${p.weight?'· '+p.weight+'kg':''} ${p.inst==='santa-casa'?'· SC':'· HNSS'} · ${p.evolutions.length} evol. · Últ: ${fD(p.lastEvo)}</div>
     </div>
-    <div style="display:flex;gap:4px">
-      <button class="pi-btn ${p.tracking?'track-active':''}" onclick="toggleTracking(${p.id})" title="${p.tracking?'Remover do acompanhamento':'Marcar acompanhamento diário'}">📌</button>
-      <button class="pi-btn" onclick="loadPatientById(${p.id})">📂</button>
-      <button class="pi-btn danger" onclick="deletePatient(${p.id})">🗑</button>
+    <div style="display:flex;gap:4px;flex-shrink:0">
+      ${isA?`<button class="pi-btn ${p.tracking?'track-active':''}" onclick="togTrack(${p.id})" title="Acompanhamento">📌</button>`:''}
+      ${isA?`<button class="pi-btn" onclick="loadPt(${p.id})" title="Evoluir">📂</button>`:''}
+      ${isA?`<button class="pi-btn alta-btn" onclick="openDischarge(${p.id})" title="Alta">🏥</button>`:`<button class="pi-btn" onclick="readmitPt(${p.id})" title="Readmitir">🔄</button>`}
+      <button class="pi-btn" onclick="showHistory(${p.id})" title="Histórico">📋</button>
+      <button class="pi-btn danger" onclick="delPt(${p.id})">🗑</button>
     </div>
-  </div>`).join('');
+  </div>`}).join('');
 }
 
-// ===== TEXT =====
-function generateText(){
-  const name=gv('patientName'),age=gv('age'),sex=gv('sex'),w=gv('weight'),h=gv('height');
-  const evDate=gv('evolutionDate'),notes=document.getElementById('evolutionNotes').value;
-  let t=`EVOLUÇÃO NUTRICIONAL\n`;
-  if(evDate)t+=`Data: ${fmtD(evDate)}\n`;
-  t+=`\nPaciente: ${name||'—'}, ${age||'—'}a, ${sex==='M'?'Masc':sex==='F'?'Fem':'—'}\n`;
-  t+=`Peso: ${w||'—'}kg | Alt: ${h||'—'}m | IMC: ${gv('imc')||'—'} (${gv('imcClass')||'—'}) | PI: ${gv('idealWeight')||'—'}\n`;
-  if(S.nrs)t+=`\nNRS-2002: ${S.nrs.text} (${S.nrs.score}pts)\n`;
-  if(S.glim){t+=`GLIM: ${S.glim.text}\n`;if(S.glim.diagnosed)t+=`  Fenot: ${S.glim.phenotypic.join(', ')} | Etiol: ${S.glim.etiologic.join(', ')}\n`}
-  t+=`\nMeta: ${gv('kcalPerKg')||'—'}kcal/kg → VET: ${gv('vetPleno')||'—'} | Ptn: ${gv('protPerKg')||'—'}g/kg → ${gv('protTarget')||'—'}\n`;
-  const inst=S.institution==='santa-casa'?'Santa Casa':'HNSS';
-  if(S.institution)t+=`Instituição: ${inst}\n`;
-  const type=S.nutritionType;
-  if((type==='enteral'||type==='both')&&S.selEnteral!==null){
-    const d=enteralDiets[S.institution][S.selEnteral],esd=gv('enteralStartDate');
-    t+=`\n— ENTERAL —\n`;if(esd)t+=`Início: ${fmtD(esd)} (${gt('dcEnteralDays')}ºdia)\n`;
-    t+=`${d.name} (${d.kcalPerMl}kcal/ml) | ${gv('enteralRate')}ml/h × ${infusionHours[S.institution]}h = ${gv('enteralVolume')}\n`;
-    t+=`Cal: ${gt('enteralKcal')}kcal | Ptn: ${gt('enteralProt')}g`;
-    if(d.carbPer100ml!==null)t+=` | CHO: ${gt('enteralCarb')}g | Lip: ${gt('enteralLip')}g`;
-    t+='\n';const supp=pf('protSupplement');if(supp>0)t+=`Supl: +${supp}g → Total: ${gv('totalProtEnteral')}\n`;
-  }
-  if((type==='parenteral'||type==='both')&&S.selPN!==null){
-    const b=pnBags[S.selPN],psd=gv('parenteralStartDate'),f=pf('pnDesiredKcal')/b.kcal;
-    t+=`\n— NP —\n`;if(psd)t+=`Início: ${fmtD(psd)} (${gt('dcParenteralDays')}ºdia)\n`;
-    t+=`${b.name} (${b.access}) | ${Math.round(f*100)}% da bolsa\n`;
-    t+=`${gv('pnDesiredKcal')}kcal em ${gv('pnHours')}h → ${gv('pnRate')} (${gv('pnVolume')})\n`;
-    t+=`Cal: ${gt('pnKcal')}kcal (NP:${gt('pnKcalNP')}) | AA:${gt('pnAmino')}g | Glic:${gt('pnGlucose')}g | Lip:${gt('pnLipid')}g | N₂:${gt('pnNitrogen')}g\n`;
-  }
-  if(type){t+=`\n— RESUMO —\nKcal: ${gt('sumKcal')} (${gt('sumKcalKg')}kcal/kg) ${gt('sumKcalPct')?'— '+gt('sumKcalPct'):''}\nPtn: ${gt('sumProt')}g (${gt('sumProtKg')}g/kg) ${gt('sumProtPct')?'— '+gt('sumProtPct'):''}\n`}
-  if(notes)t+=`\nEVOLUÇÃO:\n${notes}\n`;
-  document.getElementById('generatedText').textContent=t;tog('sectionGenerated',true);
-  document.getElementById('sectionGenerated').scrollIntoView({behavior:'smooth'});
-}
-function copyText(){navigator.clipboard.writeText(document.getElementById('generatedText').textContent).then(()=>alert('Copiado!'))}
+// ===== TEXT GEN =====
+function genText(){$('genTxt').textContent=buildEvoText();tog('sectionGen',true);$('sectionGen').scrollIntoView({behavior:'smooth'})}
+function copyTxt(){navigator.clipboard.writeText($('genTxt').textContent).then(()=>alert('Copiado!'))}
 
 // ===== EXPORT =====
 function exportAllToExcel(){
-  if(!patients.length){alert('Nenhum paciente.');return}
-  let csv='\uFEFF';
-  csv+=['Nome','Acompanhamento','Idade','Sexo','Peso','Altura','IMC','VET','Meta Ptn','Instituição','Tipo','NRS','GLIM','Dieta','Vazão','Kcal Ent','Ptn Ent','Supl','Bolsa NP','Kcal NP','AA','Kcal Total','Ptn Total','Kcal/kg','Ptn/kg','Início Ent','Início NP','Data Evol','Notas','Salvo'].join(';')+'\n';
-  patients.forEach(p=>{
-    const inst=p.institution==='santa-casa'?'Santa Casa':'HNSS';
-    const dN=(p.selEnteral!==null&&p.institution)?enteralDiets[p.institution]?.[p.selEnteral]?.name||'':'';
-    const bN=(p.selPN!==null)?pnBags[p.selPN]?.name||'':'';
-    const row=[p.patientName,p.tracking?'Sim':'Não',p.age,p.sex,p.weight,p.height,p.imc,p.vetPleno,p.protTarget,inst,p.nutritionType||'',
-      p.nrs?.score??'',p.glim?.text||'',dN,p.enteralRate,p.enteralKcal,p.enteralProt,p.protSupplement,bN,p.pnKcal,p.pnAmino,
-      p.sumKcal,p.sumProt,p.sumKcalKg,p.sumProtKg,p.enteralStartDate,p.parenteralStartDate,p.evolutionDate,
-      (p.notes||'').replace(/[\n\r;]/g,' '),new Date(p.savedAt).toLocaleDateString('pt-BR')];
-    csv+=row.map(v=>`"${(v??'').toString().replace(/"/g,'""')}"`).join(';')+'\n';
-  });
-  const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8;'}));
-  a.download=`NutriCalc_${today()}.csv`;a.click();
+  if(!pts.length){alert('Nenhum paciente.');return}
+  let csv='\uFEFF'+['Nome','Status','Acomp.','Idade','Sexo','Peso','Altura','IMC','Instituição','NRS','GLIM','Nº Evoluções','Última Evol.','Alta','Data Alta','Nota Alta'].join(';')+'\n';
+  pts.forEach(p=>{csv+=[p.patientName,p.discharged?'Alta':'Ativo',p.tracking?'Sim':'',p.age,p.sex,p.weight,p.height,p.imc||'',p.inst==='santa-casa'?'Santa Casa':'HNSS',p.nrs?.s??'',p.glim?.t||'',p.evolutions.length,fD(p.lastEvo),p.discharged?'Sim':'',fD(p.dischargeDate||''),
+    (p.dischargeNote||'').replace(/[\n\r;]/g,' ')].map(v=>`"${(v??'').toString().replace(/"/g,'""')}"`).join(';')+'\n'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8;'}));a.download=`NutriCalc_${td()}.csv`;a.click();
 }
 
 // ===== RESET =====
 function resetAll(){
   document.querySelectorAll('input[type=number],input[type=text]').forEach(i=>i.value='');
-  document.getElementById('sex').value='';document.getElementById('evolutionNotes').value='';
+  $('sex').value='';$('evoNotes').value='';
   document.querySelectorAll('.inst-btn,.type-btn,.diet-card,.parenteral-card').forEach(b=>b.classList.remove('active'));
-  ['sectionType','sectionEnteral','sectionParenteral','sectionSummary','sectionDates','sectionGenerated','screeningSummary','pnCalcSection'].forEach(id=>tog(id,false));
-  ['enteralKcal','enteralProt','enteralCarb','enteralLip','pnKcal','pnKcalNP','pnAmino','pnGlucose','pnLipid','pnNitrogen','sumKcal','sumProt','sumKcalKg','sumProtKg','dcEnteralDays','dcParenteralDays'].forEach(id=>st(id,'—'));
-  document.getElementById('nrsBadge').textContent='—';document.getElementById('glimBadge').textContent='—';
-  S={institution:null,nutritionType:null,selEnteral:null,selPN:null,nrs:null,glim:null};
-  sv('evolutionDate',today());
-  if(startDates.enteral)sv('enteralStartDate',startDates.enteral);
-  if(startDates.parenteral)sv('parenteralStartDate',startDates.parenteral);
+  ['sectionType','sectionEnteral','sectionPN','sectionSum','sectionDates','sectionGen','screeningSummary','pnCalc'].forEach(i=>tog(i,false));
+  ['entKcal','entProt','entCarb','entLip','pnK','pnKNP','pnAA','pnG','pnL','pnN','sK','sP','sKK','sPK','dcED','dcPD'].forEach(i=>st(i,'—'));
+  $('nrsBadge').textContent='—';$('glimBadge').textContent='—';
+  S={inst:null,type:null,sE:null,sP:null,nrs:null,glim:null};sv('evolutionDate',td());
 }
 
-// ===== INIT =====
-sv('evolutionDate',today());
-loadAll();
+// Init
+sv('evolutionDate',td());loadAll();
 </script>
 </body>
 </html>
