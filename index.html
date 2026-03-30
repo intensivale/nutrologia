@@ -3,455 +3,364 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NutriCalc — Calculadora Nutricional</title>
+<title>NutriCalc</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:wght@600;700;800&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#f5f2ed;--bg-card:#fff;--bg-dark:#1a1a2e;--accent:#2d6a4f;--accent-light:#40916c;--accent-pale:#d8f3dc;--accent-hover:#1b4332;--text:#1a1a2e;--text-light:#555;--text-muted:#888;--border:#e0ddd7;--shadow:0 2px 16px rgba(0,0,0,.06);--shadow-lg:0 8px 32px rgba(0,0,0,.1);--radius:12px;--radius-sm:8px;--santa-casa:#b5432a;--hnss:#2656a3;--warning:#e76f51}
+:root{--bg:#f5f2ed;--bg-card:#fff;--bg-dark:#1a1a2e;--accent:#2d6a4f;--accent-light:#40916c;--accent-pale:#d8f3dc;--accent-hover:#1b4332;--text:#1a1a2e;--text-light:#555;--text-muted:#888;--border:#e0ddd7;--shadow:0 2px 16px rgba(0,0,0,.06);--shadow-lg:0 8px 32px rgba(0,0,0,.1);--R:12px;--r:8px;--sc:#b5432a;--hn:#2656a3;--warn:#e76f51}
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;line-height:1.5}
-.header{background:var(--bg-dark);color:#fff;padding:14px 20px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:100;box-shadow:0 4px 20px rgba(0,0,0,.2)}
-.header-icon{width:38px;height:38px;background:var(--accent);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px}
-.header h1{font-family:'Fraunces',serif;font-size:19px;font-weight:700}
-.header p{font-size:11px;opacity:.5}
-.header-right{margin-left:auto;display:flex;gap:6px}
-.hdr-btn{padding:7px 12px;border:1.5px solid rgba(255,255,255,.2);border-radius:8px;background:0 0;color:#fff;font-family:'DM Sans',sans-serif;font-size:11px;font-weight:600;cursor:pointer;transition:all .2s}
-.hdr-btn:hover{background:rgba(255,255,255,.1)}
-.hdr-btn.primary{background:var(--accent);border-color:var(--accent)}
-.container{max-width:1100px;margin:0 auto;padding:18px 14px 60px}
-.section{background:var(--bg-card);border-radius:var(--radius);padding:22px;margin-bottom:14px;box-shadow:var(--shadow);border:1px solid var(--border)}
-.section-title{font-family:'Fraunces',serif;font-size:16px;font-weight:700;margin-bottom:14px;display:flex;align-items:center;gap:9px}
-.section-title .icon{width:28px;height:28px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
-.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:12px}.grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.grid-5{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}.grid-6{display:grid;grid-template-columns:repeat(6,1fr);gap:10px}
+
+/* LOGIN */
+.login-screen{min-height:100vh;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#1a1a2e 0%,#16213e 50%,#0f3460 100%);padding:20px}
+.login-box{background:#fff;border-radius:var(--R);padding:40px;max-width:400px;width:100%;box-shadow:0 20px 60px rgba(0,0,0,.3)}
+.login-box h1{font-family:'Fraunces',serif;font-size:28px;text-align:center;margin-bottom:4px}
+.login-box .sub{text-align:center;color:var(--text-muted);font-size:13px;margin-bottom:24px}
+.login-box .field{margin-bottom:14px}
+.login-box .field label{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.5px;color:var(--text-light);display:block;margin-bottom:4px}
+.login-box .field input{width:100%;padding:10px 14px;border:1.5px solid var(--border);border-radius:var(--r);font-family:'DM Sans',sans-serif;font-size:14px;background:#fafaf8}
+.login-box .field input:focus{outline:0;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-pale)}
+.login-btn{width:100%;padding:12px;background:var(--accent);color:#fff;border:0;border-radius:var(--r);font-family:'DM Sans',sans-serif;font-weight:700;font-size:14px;cursor:pointer;transition:all .2s;margin-top:8px}
+.login-btn:hover{background:var(--accent-hover)}
+.login-toggle{text-align:center;margin-top:16px;font-size:13px;color:var(--text-muted)}
+.login-toggle a{color:var(--accent);cursor:pointer;font-weight:600;text-decoration:none}
+.login-error{background:#fde8de;color:#c44d18;padding:8px 12px;border-radius:6px;font-size:12px;margin-bottom:12px;display:none}
+
+/* HEADER */
+.header{background:var(--bg-dark);color:#fff;padding:12px 20px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:100;box-shadow:0 4px 20px rgba(0,0,0,.2)}
+.header-icon{width:36px;height:36px;background:var(--accent);border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:17px}
+.header h1{font-family:'Fraunces',serif;font-size:18px;font-weight:700}
+.header p{font-size:10px;opacity:.5}
+.header-right{margin-left:auto;display:flex;gap:6px;align-items:center}
+.user-info{font-size:11px;color:rgba(255,255,255,.6);margin-right:8px}
+.hdr-btn{padding:6px 11px;border:1.5px solid rgba(255,255,255,.2);border-radius:7px;background:0 0;color:#fff;font-family:'DM Sans',sans-serif;font-size:10px;font-weight:600;cursor:pointer;transition:all .2s}
+.hdr-btn:hover{background:rgba(255,255,255,.1)}.hdr-btn.primary{background:var(--accent);border-color:var(--accent)}
+
+/* LAYOUT */
+.container{max-width:1100px;margin:0 auto;padding:16px 14px 60px}
+.section{background:var(--bg-card);border-radius:var(--R);padding:20px;margin-bottom:12px;box-shadow:var(--shadow);border:1px solid var(--border)}
+.section-title{font-family:'Fraunces',serif;font-size:15px;font-weight:700;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.section-title .icon{width:26px;height:26px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:10px}.grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.grid-5{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}.grid-6{display:grid;grid-template-columns:repeat(6,1fr);gap:8px}
 @media(max-width:768px){.grid-2,.grid-3,.grid-4,.grid-5,.grid-6{grid-template-columns:1fr 1fr}}
 @media(max-width:500px){.grid-2,.grid-3,.grid-4,.grid-5,.grid-6{grid-template-columns:1fr}}
-.field{display:flex;flex-direction:column;gap:4px}
+.field{display:flex;flex-direction:column;gap:3px}
 .field label{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.5px;color:var(--text-light)}
-.field input,.field select,.field textarea{padding:8px 11px;border:1.5px solid var(--border);border-radius:var(--radius-sm);font-family:'DM Sans',sans-serif;font-size:13px;background:#fafaf8;transition:border-color .2s;color:var(--text)}
+.field input,.field select,.field textarea{padding:7px 10px;border:1.5px solid var(--border);border-radius:var(--r);font-family:'DM Sans',sans-serif;font-size:13px;background:#fafaf8;color:var(--text)}
 .field input:focus,.field select:focus,.field textarea:focus{outline:0;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-pale)}
 .field input[readonly]{background:var(--accent-pale);font-weight:600;color:var(--accent-hover);border-color:var(--accent-light)}
-.field textarea{resize:vertical;min-height:100px}
-.institution-picker{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.inst-btn{padding:14px;border:2.5px solid var(--border);border-radius:var(--radius);background:#fff;cursor:pointer;text-align:center;transition:all .2s;font-family:'DM Sans',sans-serif}
+.field textarea{resize:vertical;min-height:90px}
+.inst-picker{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.inst-btn{padding:12px;border:2.5px solid var(--border);border-radius:var(--R);background:#fff;cursor:pointer;text-align:center;transition:all .2s;font-family:'DM Sans'}
 .inst-btn:hover{transform:translateY(-1px);box-shadow:var(--shadow-lg)}
-.inst-btn.santa-casa.active{border-color:var(--santa-casa);background:#fdf0ed}
-.inst-btn.hnss.active{border-color:var(--hnss);background:#edf2fa}
-.inst-btn .inst-name{font-weight:700;font-size:13px}
-.inst-btn .inst-detail{font-size:10px;color:var(--text-muted);margin-top:2px}
-.inst-btn.santa-casa .inst-name{color:var(--santa-casa)}.inst-btn.hnss .inst-name{color:var(--hnss)}
-.type-toggle{display:flex;gap:8px;flex-wrap:wrap}
-.type-btn{padding:9px 18px;border:2px solid var(--border);border-radius:50px;background:#fff;cursor:pointer;font-family:'DM Sans',sans-serif;font-weight:600;font-size:12px;transition:all .2s}
+.inst-btn.sc.active{border-color:var(--sc);background:#fdf0ed}.inst-btn.hn.active{border-color:var(--hn);background:#edf2fa}
+.inst-btn .in{font-weight:700;font-size:13px}.inst-btn .id{font-size:10px;color:var(--text-muted);margin-top:1px}
+.inst-btn.sc .in{color:var(--sc)}.inst-btn.hn .in{color:var(--hn)}
+.type-toggle{display:flex;gap:7px;flex-wrap:wrap}
+.type-btn{padding:8px 16px;border:2px solid var(--border);border-radius:50px;background:#fff;cursor:pointer;font-family:'DM Sans';font-weight:600;font-size:11px;transition:all .2s}
 .type-btn:hover{border-color:var(--accent-light)}.type-btn.active{background:var(--accent);color:#fff;border-color:var(--accent)}
-.diet-card{border:2px solid var(--border);border-radius:var(--radius);padding:12px;cursor:pointer;transition:all .2s;background:#fff}
-.diet-card:hover{border-color:var(--accent-light)}.diet-card.active{border-color:var(--accent);background:var(--accent-pale)}
-.diet-card .diet-name{font-weight:700;font-size:12px;margin-bottom:2px}.diet-card .diet-info{font-size:10px;color:var(--text-muted);line-height:1.4}
-.results-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px;margin-top:12px}
-.result-box{background:linear-gradient(135deg,#f8faf8,#eef5ee);border:1px solid #d0e8d0;border-radius:var(--radius-sm);padding:12px;text-align:center}
-.result-box .result-label{font-size:9px;text-transform:uppercase;letter-spacing:.5px;color:var(--text-muted);font-weight:600;margin-bottom:2px}
-.result-box .result-value{font-family:'Fraunces',serif;font-size:22px;font-weight:800;color:var(--accent-hover)}
-.result-box .result-unit{font-size:10px;color:var(--text-light)}
-.summary-section{background:var(--bg-dark);color:#fff;border-radius:var(--radius);padding:22px;margin-bottom:14px;box-shadow:var(--shadow-lg)}
-.summary-section .section-title{color:#fff}
-.summary-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px}
-.summary-box{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:var(--radius-sm);padding:14px;text-align:center}
-.summary-box .result-label{font-size:9px;text-transform:uppercase;letter-spacing:.5px;color:rgba(255,255,255,.5);font-weight:600;margin-bottom:4px}
-.summary-box .result-value{font-family:'Fraunces',serif;font-size:26px;font-weight:800;color:#95d5b2}
-.summary-box .result-unit{font-size:10px;color:rgba(255,255,255,.5)}
-.pct-bar{margin-top:6px;height:4px;background:rgba(255,255,255,.1);border-radius:3px;overflow:hidden}
-.pct-bar-fill{height:100%;border-radius:3px;transition:width .5s}
-.pct-bar-fill.green{background:#52b788}.pct-bar-fill.yellow{background:#f4a261}.pct-bar-fill.red{background:#e76f51}
+.dc{border:2px solid var(--border);border-radius:var(--R);padding:10px;cursor:pointer;transition:all .2s;background:#fff}
+.dc:hover{border-color:var(--accent-light)}.dc.active{border-color:var(--accent);background:var(--accent-pale)}
+.dc .dn{font-weight:700;font-size:11px;margin-bottom:1px}.dc .di{font-size:10px;color:var(--text-muted);line-height:1.3}
+.rg{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:7px;margin-top:10px}
+.rb{background:linear-gradient(135deg,#f8faf8,#eef5ee);border:1px solid #d0e8d0;border-radius:var(--r);padding:10px;text-align:center}
+.rb .rl{font-size:8px;text-transform:uppercase;letter-spacing:.5px;color:var(--text-muted);font-weight:600;margin-bottom:1px}
+.rb .rv{font-family:'Fraunces',serif;font-size:20px;font-weight:800;color:var(--accent-hover)}.rb .ru{font-size:9px;color:var(--text-light)}
+.ss{background:var(--bg-dark);color:#fff;border-radius:var(--R);padding:20px;margin-bottom:12px}
+.ss .section-title{color:#fff}
+.sg{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.sb{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:var(--r);padding:12px;text-align:center}
+.sb .rl{font-size:8px;text-transform:uppercase;letter-spacing:.5px;color:rgba(255,255,255,.5);font-weight:600;margin-bottom:3px}
+.sb .rv{font-family:'Fraunces',serif;font-size:24px;font-weight:800;color:#95d5b2}.sb .ru{font-size:9px;color:rgba(255,255,255,.5)}
+.pb{margin-top:5px;height:4px;background:rgba(255,255,255,.1);border-radius:3px;overflow:hidden}
+.pf{height:100%;border-radius:3px;transition:width .5s}.pf.g{background:#52b788}.pf.y{background:#f4a261}.pf.r{background:#e76f51}
 .hidden{display:none!important}
-.divider{height:1px;background:var(--border);margin:16px 0}
-.note{font-size:11px;color:var(--text-muted);background:#fafaf8;padding:9px 12px;border-radius:var(--radius-sm);border-left:3px solid var(--accent);margin-top:10px}
-.screening-btns{display:flex;gap:8px;flex-wrap:wrap}
-.screen-btn{padding:10px 16px;border:2px solid var(--border);border-radius:var(--radius);background:#fff;cursor:pointer;font-family:'DM Sans',sans-serif;font-weight:600;font-size:12px;transition:all .2s;display:flex;align-items:center;gap:6px}
-.screen-btn:hover{border-color:var(--accent);background:var(--accent-pale)}
-.screen-btn .badge{padding:2px 7px;border-radius:12px;font-size:10px;font-weight:700}
-.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:200;display:flex;align-items:center;justify-content:center;padding:16px;backdrop-filter:blur(4px)}
-.modal{background:#fff;border-radius:var(--radius);max-width:750px;width:100%;max-height:90vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,.3)}
-.modal-header{padding:16px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;background:#fff;z-index:10;border-radius:var(--radius) var(--radius) 0 0}
-.modal-header h2{font-family:'Fraunces',serif;font-size:16px}
-.modal-close{width:30px;height:30px;border:0;background:#f0f0f0;border-radius:8px;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center}
-.modal-body{padding:20px}
-.modal-footer{padding:14px 20px;border-top:1px solid var(--border);display:flex;justify-content:flex-end;gap:8px}
-.btn{padding:9px 18px;border:0;border-radius:8px;font-family:'DM Sans',sans-serif;font-weight:600;font-size:12px;cursor:pointer;transition:all .2s}
-.btn-primary{background:var(--accent);color:#fff}.btn-primary:hover{background:var(--accent-hover)}
-.btn-secondary{background:#f0f0f0;color:var(--text)}
-.btn-danger{background:var(--warning);color:#fff}
-.screening-question{padding:12px 0;border-bottom:1px solid #f0f0f0}.screening-question:last-child{border-bottom:0}
-.screening-question label{display:flex;align-items:flex-start;gap:9px;cursor:pointer;font-size:13px;line-height:1.5}
-.screening-question input[type=checkbox],.screening-question input[type=radio]{margin-top:3px;width:17px;height:17px;accent-color:var(--accent);flex-shrink:0}
-.screening-group{margin-bottom:14px}
-.screening-group-title{font-weight:700;font-size:13px;margin-bottom:6px;padding:7px 10px;border-radius:6px}
-.nrs-score{font-family:'Fraunces',serif;font-size:34px;font-weight:800;text-align:center;padding:14px}
-.nrs-result{text-align:center;padding:10px;border-radius:8px;font-weight:600;font-size:13px;margin-top:8px}
-.nrs-positive{background:#fde8de;color:#c44d18}.nrs-negative{background:#d8f3dc;color:#1b4332}
-.tag{display:inline-block;padding:2px 7px;border-radius:4px;font-size:9px;font-weight:600}
-.tag.central{background:#fde8de;color:#c44d18}.tag.periferico{background:#deeafd;color:#1848c4}
-.tag.alta{background:#f0e6ff;color:#6b4fa0}.tag.ativo{background:var(--accent-pale);color:var(--accent-hover)}
-.parenteral-card{border:2px solid var(--border);border-radius:var(--radius);padding:12px;cursor:pointer;transition:all .2s;background:#fff}
-.parenteral-card:hover{border-color:var(--accent-light)}.parenteral-card.active{border-color:var(--accent);background:var(--accent-pale)}
-.parenteral-card .pn-name{font-weight:700;font-size:12px}.parenteral-card .pn-details{font-size:10px;color:var(--text-muted);margin-top:2px;line-height:1.4}
-/* Patient list */
-.patient-item{padding:12px;border:1.5px solid var(--border);border-radius:var(--radius-sm);margin-bottom:6px;transition:all .2s;display:flex;justify-content:space-between;align-items:center}
-.patient-item:hover{border-color:var(--accent);background:#fafff8}
-.patient-item.tracking{border-left:4px solid var(--accent);background:#f6fdf8}
-.patient-item.discharged{opacity:.7;border-left:4px solid #b8b8b8;background:#fafafa}
-.patient-item .pi-name{font-weight:700;font-size:13px;display:flex;align-items:center;gap:6px;cursor:pointer}
-.patient-item .pi-name:hover{color:var(--accent)}
-.patient-item .pi-info{font-size:11px;color:var(--text-muted)}
-.pi-btn{padding:5px 9px;border:1.5px solid var(--border);border-radius:6px;background:#fff;cursor:pointer;font-size:10px;font-weight:600;font-family:'DM Sans',sans-serif;transition:all .2s}
-.pi-btn:hover{border-color:var(--accent)}.pi-btn.danger{color:var(--warning)}.pi-btn.danger:hover{border-color:var(--warning);background:#fef5f0}
-.pi-btn.track-active{background:var(--accent-pale);border-color:var(--accent);color:var(--accent-hover)}
-.pi-btn.alta-btn{color:#6b4fa0;border-color:#d4c4f0}.pi-btn.alta-btn:hover{background:#f0e6ff}
-.day-counter{display:flex;align-items:center;gap:10px;padding:12px;background:linear-gradient(135deg,#edf2fa,#e8edf5);border-radius:var(--radius-sm);border:1px solid #c8d6ea}
-.day-counter .dc-number{font-family:'Fraunces',serif;font-size:30px;font-weight:800;color:var(--hnss)}
-.day-counter .dc-label{font-size:11px;color:var(--text-light);font-weight:600;text-transform:uppercase;letter-spacing:.5px}
-.actions{display:flex;gap:6px;justify-content:flex-end;margin-top:14px;flex-wrap:wrap}
-.btn-reset{padding:9px 16px;background:0 0;border:2px solid var(--border);border-radius:50px;font-family:'DM Sans',sans-serif;font-weight:600;font-size:11px;cursor:pointer;color:var(--text-muted);transition:all .2s}
-.btn-reset:hover{border-color:var(--warning);color:var(--warning)}
-.btn-action{padding:9px 16px;background:var(--accent);border:0;border-radius:50px;font-family:'DM Sans',sans-serif;font-weight:600;font-size:11px;cursor:pointer;color:#fff;transition:all .2s}
-.btn-action:hover{background:var(--accent-hover)}.btn-action.secondary{background:var(--hnss)}
-.generated-text{background:#fafaf8;border:1.5px solid var(--border);border-radius:var(--radius-sm);padding:14px;font-size:12px;line-height:1.7;white-space:pre-wrap;max-height:500px;overflow-y:auto}
-.pn-calc-info{background:linear-gradient(135deg,#f0f7ff,#e8f0fd);border:1px solid #b8d4f0;border-radius:var(--radius-sm);padding:14px;margin-top:12px}
-.pn-calc-row{display:flex;justify-content:space-between;padding:4px 0;font-size:12px}.pn-calc-row .pn-calc-label{color:var(--text-light)}.pn-calc-row .pn-calc-val{font-weight:700}
-/* Tabs */
-.tabs{display:flex;gap:0;margin-bottom:14px;border-bottom:2px solid var(--border)}
-.tab{padding:10px 20px;font-weight:600;font-size:13px;cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px;transition:all .2s;color:var(--text-muted)}
+.divider{height:1px;background:var(--border);margin:14px 0}
+.note{font-size:11px;color:var(--text-muted);background:#fafaf8;padding:8px 10px;border-radius:var(--r);border-left:3px solid var(--accent);margin-top:8px}
+.sbtn{display:flex;gap:7px;flex-wrap:wrap}
+.sb2{padding:9px 14px;border:2px solid var(--border);border-radius:var(--R);background:#fff;cursor:pointer;font-family:'DM Sans';font-weight:600;font-size:11px;transition:all .2s;display:flex;align-items:center;gap:5px}
+.sb2:hover{border-color:var(--accent);background:var(--accent-pale)}
+.badge{padding:2px 6px;border-radius:10px;font-size:9px;font-weight:700}
+/* Modal */
+.mo{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:200;display:flex;align-items:center;justify-content:center;padding:14px;backdrop-filter:blur(4px)}
+.md{background:#fff;border-radius:var(--R);max-width:750px;width:100%;max-height:90vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,.3)}
+.mh{padding:14px 18px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;background:#fff;z-index:10;border-radius:var(--R) var(--R) 0 0}
+.mh h2{font-family:'Fraunces',serif;font-size:15px}
+.mc{width:28px;height:28px;border:0;background:#f0f0f0;border-radius:7px;cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center}
+.mb{padding:18px}.mf{padding:12px 18px;border-top:1px solid var(--border);display:flex;justify-content:flex-end;gap:6px}
+.btn{padding:8px 16px;border:0;border-radius:7px;font-family:'DM Sans';font-weight:600;font-size:11px;cursor:pointer;transition:all .2s}
+.btn-p{background:var(--accent);color:#fff}.btn-p:hover{background:var(--accent-hover)}.btn-s{background:#f0f0f0;color:var(--text)}
+.sq{padding:10px 0;border-bottom:1px solid #f0f0f0}.sq:last-child{border-bottom:0}
+.sq label{display:flex;align-items:flex-start;gap:8px;cursor:pointer;font-size:12px;line-height:1.5}
+.sq input[type=checkbox],.sq input[type=radio]{margin-top:2px;width:16px;height:16px;accent-color:var(--accent);flex-shrink:0}
+.sgt{font-weight:700;font-size:12px;margin-bottom:5px;padding:6px 9px;border-radius:5px}
+.ns{font-family:'Fraunces',serif;font-size:32px;font-weight:800;text-align:center;padding:12px}
+.nr{text-align:center;padding:9px;border-radius:7px;font-weight:600;font-size:12px;margin-top:6px}
+.np{background:#fde8de;color:#c44d18}.nn{background:#d8f3dc;color:#1b4332}
+.tag{display:inline-block;padding:1px 6px;border-radius:4px;font-size:8px;font-weight:600}
+.tag.c{background:#fde8de;color:#c44d18}.tag.p{background:#deeafd;color:#1848c4}.tag.a{background:#f0e6ff;color:#6b4fa0}.tag.v{background:var(--accent-pale);color:var(--accent-hover)}
+.pc{border:2px solid var(--border);border-radius:var(--R);padding:10px;cursor:pointer;transition:all .2s;background:#fff}
+.pc:hover{border-color:var(--accent-light)}.pc.active{border-color:var(--accent);background:var(--accent-pale)}
+.pc .pn{font-weight:700;font-size:11px}.pc .pd{font-size:9px;color:var(--text-muted);margin-top:1px;line-height:1.3}
+.pi{padding:10px;border:1.5px solid var(--border);border-radius:var(--r);margin-bottom:5px;transition:all .2s;display:flex;justify-content:space-between;align-items:center}
+.pi:hover{border-color:var(--accent);background:#fafff8}
+.pi.tr{border-left:4px solid var(--accent);background:#f6fdf8}.pi.dis{opacity:.7;border-left:4px solid #b8b8b8;background:#fafafa}
+.pi .pin{font-weight:700;font-size:12px;cursor:pointer;display:flex;align-items:center;gap:5px}.pi .pin:hover{color:var(--accent)}
+.pi .pii{font-size:10px;color:var(--text-muted)}
+.pb2{padding:4px 8px;border:1.5px solid var(--border);border-radius:5px;background:#fff;cursor:pointer;font-size:9px;font-weight:600;font-family:'DM Sans';transition:all .2s}
+.pb2:hover{border-color:var(--accent)}.pb2.ta{background:var(--accent-pale);border-color:var(--accent);color:var(--accent-hover)}.pb2.dg{color:var(--warn)}
+.dcc{display:flex;align-items:center;gap:8px;padding:10px;background:linear-gradient(135deg,#edf2fa,#e8edf5);border-radius:var(--r);border:1px solid #c8d6ea}
+.dcc .dn2{font-family:'Fraunces',serif;font-size:28px;font-weight:800;color:var(--hn)}
+.dcc .dl{font-size:10px;color:var(--text-light);font-weight:600;text-transform:uppercase;letter-spacing:.5px}
+.tabs{display:flex;gap:0;margin-bottom:12px;border-bottom:2px solid var(--border)}
+.tab{padding:8px 18px;font-weight:600;font-size:12px;cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px;color:var(--text-muted)}
 .tab:hover{color:var(--text)}.tab.active{color:var(--accent);border-bottom-color:var(--accent)}
-.tab .tab-count{font-size:11px;background:#f0f0f0;padding:1px 7px;border-radius:10px;margin-left:4px}
-.tab.active .tab-count{background:var(--accent-pale);color:var(--accent-hover)}
-/* Tracking banner */
-.tracking-banner{background:linear-gradient(135deg,var(--accent-pale),#c7eed4);border:1.5px solid var(--accent-light);border-radius:var(--radius);padding:14px 18px;margin-bottom:14px}
-.tracking-banner .tb-title{font-family:'Fraunces',serif;font-size:14px;font-weight:700;color:var(--accent-hover);margin-bottom:6px}
-.tracking-chips{display:flex;gap:6px;flex-wrap:wrap}
-.tracking-chip{padding:5px 12px;background:#fff;border:1.5px solid var(--accent);border-radius:50px;font-size:11px;font-weight:600;color:var(--accent-hover);cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:5px}
-.tracking-chip:hover{background:var(--accent);color:#fff}
-.tracking-chip .chip-dot{width:7px;height:7px;border-radius:50%;background:var(--accent)}
-/* History timeline */
-.history-item{padding:14px;border-left:3px solid var(--accent-light);margin-left:8px;margin-bottom:12px;background:#fafff8;border-radius:0 var(--radius-sm) var(--radius-sm) 0}
-.history-item.discharge-note{border-left-color:#6b4fa0;background:#f8f4ff}
-.history-date{font-weight:700;font-size:13px;color:var(--accent-hover);margin-bottom:4px}
-.history-item.discharge-note .history-date{color:#6b4fa0}
-.history-content{font-size:12px;color:var(--text-light);line-height:1.6;white-space:pre-wrap}
-.loading-overlay{position:fixed;inset:0;background:var(--bg);z-index:300;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px}
-.loading-spinner{width:40px;height:40px;border:4px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin .8s linear infinite}
-@keyframes spin{to{transform:rotate(360deg)}}
-@media print{.header{position:static}.actions,.hdr-btn,.header-right,.tracking-banner{display:none}body{background:#fff}.section,.summary-section{box-shadow:none;break-inside:avoid}.modal-overlay{display:none!important}}
+.tab .tc{font-size:10px;background:#f0f0f0;padding:1px 6px;border-radius:8px;margin-left:3px}.tab.active .tc{background:var(--accent-pale);color:var(--accent-hover)}
+.hi{padding:12px;border-left:3px solid var(--accent-light);margin-left:6px;margin-bottom:10px;background:#fafff8;border-radius:0 var(--r) var(--r) 0}
+.hi.dn3{border-left-color:#6b4fa0;background:#f8f4ff}
+.hd{font-weight:700;font-size:12px;color:var(--accent-hover);margin-bottom:3px}.hi.dn3 .hd{color:#6b4fa0}
+.hc{font-size:11px;color:var(--text-light);line-height:1.6;white-space:pre-wrap}
+.tb{background:linear-gradient(135deg,var(--accent-pale),#c7eed4);border:1.5px solid var(--accent-light);border-radius:var(--R);padding:12px 16px;margin-bottom:12px}
+.tb .tt{font-family:'Fraunces',serif;font-size:13px;font-weight:700;color:var(--accent-hover);margin-bottom:5px}
+.tc2{display:flex;gap:5px;flex-wrap:wrap}
+.chip{padding:4px 10px;background:#fff;border:1.5px solid var(--accent);border-radius:50px;font-size:10px;font-weight:600;color:var(--accent-hover);cursor:pointer;transition:all .2s}
+.chip:hover{background:var(--accent);color:#fff}
+.actions{display:flex;gap:5px;justify-content:flex-end;margin-top:12px;flex-wrap:wrap}
+.ar{padding:8px 14px;background:0 0;border:2px solid var(--border);border-radius:50px;font-family:'DM Sans';font-weight:600;font-size:10px;cursor:pointer;color:var(--text-muted)}
+.ar:hover{border-color:var(--warn);color:var(--warn)}
+.aa{padding:8px 14px;background:var(--accent);border:0;border-radius:50px;font-family:'DM Sans';font-weight:600;font-size:10px;cursor:pointer;color:#fff}.aa:hover{background:var(--accent-hover)}
+.aa.s2{background:var(--hn)}
+.gt{background:#fafaf8;border:1.5px solid var(--border);border-radius:var(--r);padding:12px;font-size:11px;line-height:1.7;white-space:pre-wrap;max-height:400px;overflow-y:auto}
+.pci{background:linear-gradient(135deg,#f0f7ff,#e8f0fd);border:1px solid #b8d4f0;border-radius:var(--r);padding:12px;margin-top:10px}
+.pcr{display:flex;justify-content:space-between;padding:3px 0;font-size:11px}.pcr .pl{color:var(--text-light)}.pcr .pv{font-weight:700}
+.saving-indicator{position:fixed;bottom:20px;right:20px;background:var(--accent);color:#fff;padding:8px 16px;border-radius:50px;font-size:12px;font-weight:600;z-index:300;display:none;box-shadow:var(--shadow-lg)}
+@media print{.header{position:static}.actions,.hdr-btn,.header-right,.tb,.saving-indicator{display:none}body{background:#fff}.section,.ss{box-shadow:none;break-inside:avoid}.mo{display:none!important}}
 </style>
 </head>
 <body>
 
-<div class="loading-overlay" id="loadingOverlay"><div class="loading-spinner"></div><div style="font-size:13px;color:var(--text-muted)">Carregando...</div></div>
-
-<div class="header">
-  <div class="header-icon">🥗</div>
-  <div><h1>NutriCalc</h1><p>Nutrição Enteral & Parenteral</p></div>
-  <div class="header-right">
-    <button class="hdr-btn" onclick="openPatientsModal()">📋 Pacientes</button>
-    <button class="hdr-btn primary" onclick="exportAllToExcel()">📊 Exportar</button>
+<!-- LOGIN SCREEN -->
+<div id="loginScreen" class="login-screen">
+  <div class="login-box">
+    <div style="text-align:center;font-size:40px;margin-bottom:8px">🥗</div>
+    <h1>NutriCalc</h1>
+    <div class="sub">Nutrição Enteral & Parenteral<br>Santa Casa · HNSS</div>
+    <div class="login-error" id="loginError"></div>
+    <div class="field"><label>Email</label><input type="email" id="loginEmail" placeholder="seu@email.com"></div>
+    <div class="field"><label>Senha</label><input type="password" id="loginPass" placeholder="••••••••" onkeydown="if(event.key==='Enter')doAuth()"></div>
+    <button class="login-btn" id="authBtn" onclick="doAuth()">Entrar</button>
+    <div class="login-toggle"><span id="authToggleText">Não tem conta?</span> <a onclick="toggleAuthMode()" id="authToggleLink">Criar conta</a></div>
   </div>
 </div>
 
-<div class="container">
-  <div class="tracking-banner hidden" id="trackingBanner">
-    <div class="tb-title">📌 Acompanhamento Diário</div>
-    <div class="tracking-chips" id="trackingChips"></div>
+<!-- MAIN APP -->
+<div id="mainApp" class="hidden">
+<div class="header">
+  <div class="header-icon">🥗</div>
+  <div><h1>NutriCalc</h1><p>Enteral & Parenteral</p></div>
+  <div class="header-right">
+    <span class="user-info" id="userEmail"></span>
+    <button class="hdr-btn" onclick="openPts()">📋 Pacientes</button>
+    <button class="hdr-btn primary" onclick="exportCSV()">📊 Exportar</button>
+    <button class="hdr-btn" onclick="doLogout()" style="border-color:rgba(255,255,255,.1)">Sair</button>
   </div>
+</div>
+<div class="container">
+  <div class="tb hidden" id="tBanner"><div class="tt">📌 Acompanhamento</div><div class="tc2" id="tChips"></div></div>
 
   <!-- PATIENT -->
-  <div class="section">
-    <div class="section-title"><div class="icon" style="background:#edf2fa;color:var(--hnss)">👤</div>Dados do Paciente</div>
-    <div class="grid-5">
-      <div class="field" style="grid-column:span 2"><label>Nome</label><input type="text" id="patientName" placeholder="Nome completo"></div>
-      <div class="field"><label>Idade</label><input type="number" id="age" placeholder="0" min="0"></div>
-      <div class="field"><label>Sexo</label><select id="sex"><option value="">—</option><option value="M">Masculino</option><option value="F">Feminino</option></select></div>
-      <div class="field"><label>Peso (kg)</label><input type="number" id="weight" placeholder="0" step="0.1" min="0" oninput="calculate()"></div>
-    </div>
-    <div class="grid-4" style="margin-top:12px">
-      <div class="field"><label>Altura (m)</label><input type="number" id="height" placeholder="1.70" step="0.01" min="0" oninput="calculate()"></div>
-      <div class="field"><label>IMC</label><input type="text" id="imc" readonly placeholder="—"></div>
-      <div class="field"><label>Classificação</label><input type="text" id="imcClass" readonly placeholder="—"></div>
-      <div class="field"><label>Peso Ideal (IMC 22)</label><input type="text" id="idealWeight" readonly placeholder="—"></div>
-    </div>
+  <div class="section"><div class="section-title"><div class="icon" style="background:#edf2fa;color:var(--hn)">👤</div>Paciente</div>
+    <div class="grid-5"><div class="field" style="grid-column:span 2"><label>Nome</label><input type="text" id="pName"></div><div class="field"><label>Idade</label><input type="number" id="pAge" min="0"></div><div class="field"><label>Sexo</label><select id="pSex"><option value="">—</option><option value="M">M</option><option value="F">F</option></select></div><div class="field"><label>Peso (kg)</label><input type="number" id="pW" step="0.1" min="0" oninput="calc()"></div></div>
+    <div class="grid-4" style="margin-top:10px"><div class="field"><label>Altura (m)</label><input type="number" id="pH" step="0.01" min="0" oninput="calc()"></div><div class="field"><label>IMC</label><input type="text" id="pIMC" readonly></div><div class="field"><label>Classificação</label><input type="text" id="pIMCC" readonly></div><div class="field"><label>PI (IMC 22)</label><input type="text" id="pPI" readonly></div></div>
   </div>
 
   <!-- SCREENING -->
-  <div class="section">
-    <div class="section-title"><div class="icon" style="background:#fff3e0;color:#ef6c00">📋</div>Triagem & Diagnóstico</div>
-    <div class="screening-btns">
-      <button class="screen-btn" onclick="openNRS()">📝 NRS-2002 <span class="badge" style="background:var(--accent-pale);color:var(--accent)" id="nrsBadge">—</span></button>
-      <button class="screen-btn" onclick="openGLIM()">🔬 GLIM <span class="badge" style="background:#fde8de;color:#c44d18" id="glimBadge">—</span></button>
-    </div>
-    <div id="screeningSummary" class="note hidden" style="margin-top:12px"></div>
+  <div class="section"><div class="section-title"><div class="icon" style="background:#fff3e0;color:#ef6c00">📋</div>Triagem & Diagnóstico</div>
+    <div class="sbtn"><button class="sb2" onclick="openM('nrsM')">📝 NRS-2002 <span class="badge" style="background:var(--accent-pale);color:var(--accent)" id="nrsB">—</span></button><button class="sb2" onclick="openM('glimM')">🔬 GLIM <span class="badge" style="background:#fde8de;color:#c44d18" id="glimB">—</span></button></div>
+    <div id="scrSum" class="note hidden" style="margin-top:10px"></div>
   </div>
 
   <!-- GOALS -->
-  <div class="section">
-    <div class="section-title"><div class="icon" style="background:#fef5f0;color:var(--warning)">🎯</div>Metas Nutricionais</div>
-    <div class="grid-4">
-      <div class="field"><label>Kcal/kg/dia</label><input type="number" id="kcalPerKg" placeholder="25" step="0.5" min="0" oninput="calculate()"></div>
-      <div class="field"><label>VET Pleno</label><input type="text" id="vetPleno" readonly placeholder="—"></div>
-      <div class="field"><label>g Ptn/kg/dia</label><input type="number" id="protPerKg" placeholder="1.2" step="0.1" min="0" oninput="calculate()"></div>
-      <div class="field"><label>Proteína Meta</label><input type="text" id="protTarget" readonly placeholder="—"></div>
-    </div>
+  <div class="section"><div class="section-title"><div class="icon" style="background:#fef5f0;color:var(--warn)">🎯</div>Metas</div>
+    <div class="grid-4"><div class="field"><label>Kcal/kg</label><input type="number" id="mKK" step="0.5" min="0" oninput="calc()"></div><div class="field"><label>VET</label><input type="text" id="mVET" readonly></div><div class="field"><label>g Ptn/kg</label><input type="number" id="mPK" step="0.1" min="0" oninput="calc()"></div><div class="field"><label>Meta Ptn</label><input type="text" id="mPT" readonly></div></div>
   </div>
 
   <!-- INSTITUTION -->
-  <div class="section">
-    <div class="section-title"><div class="icon" style="background:#f0edf5;color:#6b4fa0">🏥</div>Instituição</div>
-    <div class="institution-picker">
-      <div class="inst-btn santa-casa" onclick="selInst('santa-casa')"><div class="inst-name">Santa Casa de Diamantina</div><div class="inst-detail">Enteral: 20h/dia</div></div>
-      <div class="inst-btn hnss" onclick="selInst('hnss')"><div class="inst-name">HNSS</div><div class="inst-detail">Enteral: 22h/dia</div></div>
-    </div>
+  <div class="section"><div class="section-title"><div class="icon" style="background:#f0edf5;color:#6b4fa0">🏥</div>Instituição</div>
+    <div class="inst-picker"><div class="inst-btn sc" onclick="sI('sc')"><div class="in">Santa Casa</div><div class="id">Enteral: 20h</div></div><div class="inst-btn hn" onclick="sI('hn')"><div class="in">HNSS</div><div class="id">Enteral: 22h</div></div></div>
   </div>
 
-  <div class="section hidden" id="sectionType">
-    <div class="section-title"><div class="icon" style="background:var(--accent-pale);color:var(--accent)">💉</div>Tipo de Terapia</div>
-    <div class="type-toggle">
-      <div class="type-btn" data-type="enteral" onclick="selType('enteral')">🍽 Enteral</div>
-      <div class="type-btn" data-type="parenteral" onclick="selType('parenteral')">💉 Parenteral</div>
-      <div class="type-btn" data-type="both" onclick="selType('both')">🔄 Enteral + Parenteral</div>
-    </div>
+  <div class="section hidden" id="secTy"><div class="section-title"><div class="icon" style="background:var(--accent-pale);color:var(--accent)">💉</div>Terapia</div>
+    <div class="type-toggle"><div class="type-btn" data-t="ent" onclick="sT('ent')">🍽 Enteral</div><div class="type-btn" data-t="pn" onclick="sT('pn')">💉 Parenteral</div><div class="type-btn" data-t="both" onclick="sT('both')">🔄 Ambos</div></div>
   </div>
 
   <!-- DATES -->
-  <div class="section hidden" id="sectionDates">
-    <div class="section-title"><div class="icon" style="background:#e8f5e9;color:#2e7d32">📅</div>Datas</div>
-    <div class="grid-3">
-      <div class="field" id="fieldED"><label>Início Enteral</label><input type="date" id="enteralStartDate" oninput="updateDC()"></div>
-      <div class="field" id="fieldPD"><label>Início NP</label><input type="date" id="parenteralStartDate" oninput="updateDC()"></div>
-      <div class="field"><label>Data Evolução</label><input type="date" id="evolutionDate" oninput="updateDC()"></div>
-    </div>
-    <div class="grid-2" style="margin-top:12px">
-      <div class="day-counter hidden" id="dcE"><div><div class="dc-number" id="dcED">0</div><div class="dc-label">Dias Enteral</div></div></div>
-      <div class="day-counter hidden" id="dcP"><div><div class="dc-number" id="dcPD" style="color:var(--santa-casa)">0</div><div class="dc-label">Dias NP</div></div></div>
-    </div>
+  <div class="section hidden" id="secDt"><div class="section-title"><div class="icon" style="background:#e8f5e9;color:#2e7d32">📅</div>Datas</div>
+    <div class="grid-3"><div class="field" id="fED"><label>Início Enteral</label><input type="date" id="dES" oninput="uDC()"></div><div class="field" id="fPD"><label>Início NP</label><input type="date" id="dPS" oninput="uDC()"></div><div class="field"><label>Evolução</label><input type="date" id="dEv" oninput="uDC()"></div></div>
+    <div class="grid-2" style="margin-top:10px"><div class="dcc hidden" id="dcE"><div><div class="dn2" id="dcED">0</div><div class="dl">Dias Enteral</div></div></div><div class="dcc hidden" id="dcP"><div><div class="dn2" id="dcPD" style="color:var(--sc)">0</div><div class="dl">Dias NP</div></div></div></div>
   </div>
 
   <!-- ENTERAL -->
-  <div class="section hidden" id="sectionEnteral">
-    <div class="section-title"><div class="icon" style="background:#e8f5e9;color:#2e7d32">🍽</div>Dieta Enteral <span id="entLabel" style="font-size:11px;font-weight:500;color:var(--text-muted)"></span></div>
-    <div id="entDietsC" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:8px"></div>
+  <div class="section hidden" id="secEnt"><div class="section-title"><div class="icon" style="background:#e8f5e9;color:#2e7d32">🍽</div>Enteral <span id="entLbl" style="font-size:10px;color:var(--text-muted)"></span></div>
+    <div id="entDC" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:7px"></div>
     <div class="divider"></div>
-    <div class="grid-3">
-      <div class="field"><label>Vazão (ml/h)</label><input type="number" id="entRate" placeholder="0" step="1" min="0" oninput="calcEnt()"></div>
-      <div class="field"><label>Horas</label><input type="text" id="entHours" readonly placeholder="—"></div>
-      <div class="field"><label>Volume (ml/dia)</label><input type="text" id="entVol" readonly placeholder="—"></div>
-    </div>
-    <div class="results-grid">
-      <div class="result-box"><div class="result-label">Calorias</div><div class="result-value" id="entKcal">—</div><div class="result-unit">kcal</div></div>
-      <div class="result-box"><div class="result-label">Proteína</div><div class="result-value" id="entProt">—</div><div class="result-unit">g</div></div>
-      <div class="result-box"><div class="result-label">CHO</div><div class="result-value" id="entCarb">—</div><div class="result-unit">g</div></div>
-      <div class="result-box"><div class="result-label">Lipídio</div><div class="result-value" id="entLip">—</div><div class="result-unit">g</div></div>
-    </div>
+    <div class="grid-3"><div class="field"><label>ml/h</label><input type="number" id="eR" step="1" min="0" oninput="cE()"></div><div class="field"><label>Horas</label><input type="text" id="eH" readonly></div><div class="field"><label>Volume</label><input type="text" id="eV" readonly></div></div>
+    <div class="rg"><div class="rb"><div class="rl">Kcal</div><div class="rv" id="eK">—</div></div><div class="rb"><div class="rl">Ptn</div><div class="rv" id="eP">—</div><div class="ru">g</div></div><div class="rb"><div class="rl">CHO</div><div class="rv" id="eC">—</div><div class="ru">g</div></div><div class="rb"><div class="rl">Lip</div><div class="rv" id="eL">—</div><div class="ru">g</div></div></div>
     <div class="divider"></div>
-    <div style="font-weight:700;font-size:13px;margin-bottom:8px">💪 Supl. Proteica</div>
-    <div class="grid-3">
-      <div class="field"><label>Módulo (g/dia)</label><input type="number" id="protSupp" placeholder="0" step="1" min="0" oninput="calcEnt()"></div>
-      <div class="field"><label>Ptn Total</label><input type="text" id="totProtEnt" readonly placeholder="—"></div>
-      <div class="field"><label>g/kg/dia</label><input type="text" id="realPKg" readonly placeholder="—"></div>
-    </div>
+    <div style="font-weight:700;font-size:12px;margin-bottom:6px">💪 Supl. Proteica</div>
+    <div class="grid-3"><div class="field"><label>Módulo (g)</label><input type="number" id="eSP" step="1" min="0" oninput="cE()"></div><div class="field"><label>Total Ptn</label><input type="text" id="eTP" readonly></div><div class="field"><label>g/kg</label><input type="text" id="ePK" readonly></div></div>
   </div>
 
   <!-- PARENTERAL -->
-  <div class="section hidden" id="sectionPN">
-    <div class="section-title"><div class="icon" style="background:#fce4ec;color:#c62828">💉</div>Nutrição Parenteral</div>
-    <div style="font-weight:600;font-size:12px;margin-bottom:8px;color:var(--text-light)">Bolsa:</div>
-    <div id="pnBagsC" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:8px"></div>
+  <div class="section hidden" id="secPN"><div class="section-title"><div class="icon" style="background:#fce4ec;color:#c62828">💉</div>NP</div>
+    <div style="font-weight:600;font-size:11px;margin-bottom:6px;color:var(--text-light)">Bolsa:</div>
+    <div id="pnBC" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:7px"></div>
     <div class="divider"></div>
-    <div id="pnCalc" class="hidden">
-      <div style="font-weight:700;font-size:14px;margin-bottom:8px;color:var(--accent)">⚙️ <span id="pnSelName"></span></div>
-      <div class="note" style="margin-top:0;margin-bottom:12px"><span id="pnBagInfo"></span></div>
-      <div class="grid-4">
-        <div class="field"><label>Kcal Desejadas</label><input type="number" id="pnDK" placeholder="0" step="10" min="0" oninput="calcPN()"></div>
-        <div class="field"><label>Horas</label><input type="number" id="pnH" value="24" step="1" min="1" max="24" oninput="calcPN()"></div>
-        <div class="field"><label>Vazão (ml/h)</label><input type="text" id="pnR" readonly placeholder="—"></div>
-        <div class="field"><label>Volume (ml)</label><input type="text" id="pnV" readonly placeholder="—"></div>
-      </div>
-      <div class="pn-calc-info">
-        <div style="font-weight:700;font-size:12px;margin-bottom:8px;color:var(--hnss)">📊 Composição:</div>
-        <div class="grid-6">
-          <div class="result-box" style="padding:10px"><div class="result-label">Cal</div><div class="result-value" id="pnK" style="font-size:20px">—</div><div class="result-unit">kcal</div></div>
-          <div class="result-box" style="padding:10px"><div class="result-label">Cal NP</div><div class="result-value" id="pnKNP" style="font-size:20px">—</div><div class="result-unit">kcal</div></div>
-          <div class="result-box" style="padding:10px"><div class="result-label">AA</div><div class="result-value" id="pnAA" style="font-size:20px">—</div><div class="result-unit">g</div></div>
-          <div class="result-box" style="padding:10px"><div class="result-label">Glic</div><div class="result-value" id="pnG" style="font-size:20px">—</div><div class="result-unit">g</div></div>
-          <div class="result-box" style="padding:10px"><div class="result-label">Lip</div><div class="result-value" id="pnL" style="font-size:20px">—</div><div class="result-unit">g</div></div>
-          <div class="result-box" style="padding:10px"><div class="result-label">N₂</div><div class="result-value" id="pnN" style="font-size:20px">—</div><div class="result-unit">g</div></div>
-        </div>
-        <div style="margin-top:10px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px">
-          <div class="pn-calc-row"><span class="pn-calc-label">kcalNP/gN:</span><span class="pn-calc-val" id="pnRel">—</span></div>
-          <div class="pn-calc-row"><span class="pn-calc-label">Osm:</span><span class="pn-calc-val" id="pnOsm">—</span></div>
-          <div class="pn-calc-row"><span class="pn-calc-label">Acesso:</span><span class="pn-calc-val" id="pnAcc">—</span></div>
-        </div>
-        <div id="pnNote" class="note hidden" style="margin-top:10px;border-left-color:var(--warning)"></div>
+    <div id="pnCS" class="hidden">
+      <div style="font-weight:700;font-size:13px;margin-bottom:6px;color:var(--accent)">⚙️ <span id="pnSN"></span></div>
+      <div class="note" style="margin-top:0;margin-bottom:10px"><span id="pnBI"></span></div>
+      <div class="grid-4"><div class="field"><label>Kcal Desejadas</label><input type="number" id="pnDK" step="10" min="0" oninput="cP()"></div><div class="field"><label>Horas</label><input type="number" id="pnHr" value="24" step="1" min="1" max="24" oninput="cP()"></div><div class="field"><label>ml/h</label><input type="text" id="pnRt" readonly></div><div class="field"><label>Volume</label><input type="text" id="pnVl" readonly></div></div>
+      <div class="pci"><div style="font-weight:700;font-size:11px;margin-bottom:6px;color:var(--hn)">📊 Composição:</div>
+        <div class="grid-6"><div class="rb" style="padding:8px"><div class="rl">Cal</div><div class="rv" id="pK" style="font-size:18px">—</div></div><div class="rb" style="padding:8px"><div class="rl">NP</div><div class="rv" id="pKN" style="font-size:18px">—</div></div><div class="rb" style="padding:8px"><div class="rl">AA</div><div class="rv" id="pA" style="font-size:18px">—</div><div class="ru">g</div></div><div class="rb" style="padding:8px"><div class="rl">Glic</div><div class="rv" id="pG" style="font-size:18px">—</div><div class="ru">g</div></div><div class="rb" style="padding:8px"><div class="rl">Lip</div><div class="rv" id="pL2" style="font-size:18px">—</div><div class="ru">g</div></div><div class="rb" style="padding:8px"><div class="rl">N₂</div><div class="rv" id="pN2" style="font-size:18px">—</div><div class="ru">g</div></div></div>
+        <div style="margin-top:8px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px"><div class="pcr"><span class="pl">kcalNP/gN:</span><span class="pv" id="pRl">—</span></div><div class="pcr"><span class="pl">Osm:</span><span class="pv" id="pOs">—</span></div><div class="pcr"><span class="pl">Acesso:</span><span class="pv" id="pAc">—</span></div></div>
+        <div id="pNt" class="note hidden" style="margin-top:8px;border-left-color:var(--warn)"></div>
       </div>
     </div>
   </div>
 
   <!-- SUMMARY -->
-  <div class="summary-section hidden" id="sectionSum">
-    <div class="section-title"><div class="icon" style="background:rgba(255,255,255,.1);color:#95d5b2">📊</div>Resumo</div>
-    <div class="summary-grid">
-      <div class="summary-box"><div class="result-label">Calorias</div><div class="result-value" id="sK">—</div><div class="result-unit">kcal</div><div class="pct-bar"><div class="pct-bar-fill green" id="bK" style="width:0%"></div></div><div class="result-unit" id="sKP" style="margin-top:4px"></div></div>
-      <div class="summary-box"><div class="result-label">Proteína</div><div class="result-value" id="sP">—</div><div class="result-unit">g</div><div class="pct-bar"><div class="pct-bar-fill green" id="bP" style="width:0%"></div></div><div class="result-unit" id="sPP" style="margin-top:4px"></div></div>
-      <div class="summary-box"><div class="result-label">Kcal/kg</div><div class="result-value" id="sKK">—</div><div class="result-unit">kcal/kg</div></div>
-      <div class="summary-box"><div class="result-label">Ptn/kg</div><div class="result-value" id="sPK">—</div><div class="result-unit">g/kg</div></div>
-    </div>
+  <div class="ss hidden" id="secSum"><div class="section-title"><div class="icon" style="background:rgba(255,255,255,.1);color:#95d5b2">📊</div>Resumo</div>
+    <div class="sg"><div class="sb"><div class="rl">Kcal</div><div class="rv" id="sK">—</div><div class="pb"><div class="pf g" id="bK" style="width:0%"></div></div><div class="ru" id="sKP" style="margin-top:3px"></div></div><div class="sb"><div class="rl">Ptn</div><div class="rv" id="sP">—</div><div class="pb"><div class="pf g" id="bP" style="width:0%"></div></div><div class="ru" id="sPP" style="margin-top:3px"></div></div><div class="sb"><div class="rl">Kcal/kg</div><div class="rv" id="sKK">—</div></div><div class="sb"><div class="rl">Ptn/kg</div><div class="rv" id="sPK2">—</div></div></div>
   </div>
 
-  <!-- EVOLUTION -->
-  <div class="section"><div class="section-title"><div class="icon" style="background:#f3e8fd;color:#7b2cbf">📝</div>Evolução</div><div class="field"><textarea id="evoNotes" placeholder="Evolução, observações, condutas..."></textarea></div></div>
+  <div class="section"><div class="section-title"><div class="icon" style="background:#f3e8fd;color:#7b2cbf">📝</div>Evolução</div><div class="field"><textarea id="evoN" placeholder="Evolução, observações, condutas..."></textarea></div></div>
 
   <div class="actions">
-    <button class="btn-reset" onclick="resetAll()">🗑 Limpar</button>
-    <button class="btn-action secondary" onclick="genText()">📄 Gerar Texto</button>
-    <button class="btn-action" onclick="savePatient()">💾 Salvar</button>
-    <button class="btn-action" style="background:#555" onclick="window.print()">🖨</button>
+    <button class="ar" onclick="resetAll()">🗑 Limpar</button>
+    <button class="aa s2" onclick="genTxt()">📄 Texto</button>
+    <button class="aa" onclick="savePt()">💾 Salvar</button>
+    <button class="aa" style="background:#555" onclick="window.print()">🖨</button>
   </div>
-
-  <div class="section hidden" id="sectionGen">
-    <div class="section-title"><div class="icon" style="background:#e8f5e9;color:#2e7d32">📄</div>Texto<button class="btn" style="margin-left:auto;font-size:10px;padding:5px 10px;background:#f0f0f0" onclick="copyTxt()">📋 Copiar</button></div>
-    <div class="generated-text" id="genTxt"></div>
-  </div>
+  <div class="section hidden" id="secGen"><div class="section-title"><div class="icon" style="background:#e8f5e9;color:#2e7d32">📄</div>Texto<button class="btn" style="margin-left:auto;font-size:9px;padding:4px 8px;background:#f0f0f0" onclick="cpTxt()">📋</button></div><div class="gt" id="gTxt"></div></div>
+</div>
 </div>
 
-<!-- NRS MODAL -->
-<div class="modal-overlay hidden" id="nrsM" onclick="if(event.target===this)closeM('nrsM')"><div class="modal">
-  <div class="modal-header"><h2>📝 NRS-2002</h2><button class="modal-close" onclick="closeM('nrsM')">✕</button></div>
-  <div class="modal-body">
-    <div class="screening-group"><div class="screening-group-title" style="background:#edf2fa;color:var(--hnss)">Etapa 1</div>
-      <div class="screening-question"><label><input type="checkbox" id="n1" onchange="cNRS()"> IMC &lt;20,5?</label></div>
-      <div class="screening-question"><label><input type="checkbox" id="n2" onchange="cNRS()"> Perdeu peso 3m?</label></div>
-      <div class="screening-question"><label><input type="checkbox" id="n3" onchange="cNRS()"> Ingestão ↓ última sem?</label></div>
-      <div class="screening-question"><label><input type="checkbox" id="n4" onchange="cNRS()"> Gravemente doente?</label></div>
-    </div>
-    <div id="nE2" class="hidden">
-      <div class="screening-group"><div class="screening-group-title" style="background:#e8f5e9;color:#2e7d32">Estado Nutricional</div>
-        <div class="screening-question"><label><input type="radio" name="nN" value="0" onchange="cNRS()" checked> <b>0</b> Normal</label></div>
-        <div class="screening-question"><label><input type="radio" name="nN" value="1" onchange="cNRS()"> <b>1</b> Perda >5%/3m OU ingestão 50-75%</label></div>
-        <div class="screening-question"><label><input type="radio" name="nN" value="2" onchange="cNRS()"> <b>2</b> Perda >5%/2m OU IMC 18,5-20,5 OU ingest 25-60%</label></div>
-        <div class="screening-question"><label><input type="radio" name="nN" value="3" onchange="cNRS()"> <b>3</b> Perda >5%/1m OU IMC &lt;18,5 OU ingest 0-25%</label></div>
-      </div>
-      <div class="screening-group"><div class="screening-group-title" style="background:#fef5f0;color:#c44d18">Gravidade Doença</div>
-        <div class="screening-question"><label><input type="radio" name="nD" value="0" onchange="cNRS()" checked> <b>0</b> Normal</label></div>
-        <div class="screening-question"><label><input type="radio" name="nD" value="1" onchange="cNRS()"> <b>1</b> Fx quadril, crônicos agudizados</label></div>
-        <div class="screening-question"><label><input type="radio" name="nD" value="2" onchange="cNRS()"> <b>2</b> Cx grande, AVC, pneumonia grave</label></div>
-        <div class="screening-question"><label><input type="radio" name="nD" value="3" onchange="cNRS()"> <b>3</b> Trauma, TMO, UTI APACHE>10</label></div>
-      </div>
-      <div class="screening-group"><div class="screening-group-title" style="background:#f5f0ff;color:#6b4fa0">Idade</div>
-        <div class="screening-question"><label><input type="checkbox" id="nA" onchange="cNRS()"> ≥70a (+1)</label></div>
-      </div>
-    </div>
-    <div style="border-top:2px solid var(--border);padding-top:14px;margin-top:14px"><div class="nrs-score" id="nSD">—</div><div class="nrs-result" id="nRD" style="background:#f0f0f0;color:var(--text-muted)">Preencha</div></div>
+<!-- NRS -->
+<div class="mo hidden" id="nrsM" onclick="if(event.target===this)closeM('nrsM')"><div class="md"><div class="mh"><h2>📝 NRS-2002</h2><button class="mc" onclick="closeM('nrsM')">✕</button></div><div class="mb">
+  <div style="margin-bottom:12px"><div class="sgt" style="background:#edf2fa;color:var(--hn)">Etapa 1</div>
+    <div class="sq"><label><input type="checkbox" id="n1" onchange="cNRS()"> IMC &lt;20,5?</label></div>
+    <div class="sq"><label><input type="checkbox" id="n2" onchange="cNRS()"> Perdeu peso 3m?</label></div>
+    <div class="sq"><label><input type="checkbox" id="n3" onchange="cNRS()"> Ingestão ↓?</label></div>
+    <div class="sq"><label><input type="checkbox" id="n4" onchange="cNRS()"> Gravemente doente?</label></div></div>
+  <div id="nE2" class="hidden">
+    <div style="margin-bottom:12px"><div class="sgt" style="background:#e8f5e9;color:#2e7d32">Estado Nutricional</div>
+      <div class="sq"><label><input type="radio" name="nN" value="0" onchange="cNRS()" checked> <b>0</b> Normal</label></div>
+      <div class="sq"><label><input type="radio" name="nN" value="1" onchange="cNRS()"> <b>1</b> Leve</label></div>
+      <div class="sq"><label><input type="radio" name="nN" value="2" onchange="cNRS()"> <b>2</b> Moderado</label></div>
+      <div class="sq"><label><input type="radio" name="nN" value="3" onchange="cNRS()"> <b>3</b> Grave</label></div></div>
+    <div style="margin-bottom:12px"><div class="sgt" style="background:#fef5f0;color:#c44d18">Gravidade Doença</div>
+      <div class="sq"><label><input type="radio" name="nD" value="0" onchange="cNRS()" checked> <b>0</b> Normal</label></div>
+      <div class="sq"><label><input type="radio" name="nD" value="1" onchange="cNRS()"> <b>1</b> Leve</label></div>
+      <div class="sq"><label><input type="radio" name="nD" value="2" onchange="cNRS()"> <b>2</b> Moderado</label></div>
+      <div class="sq"><label><input type="radio" name="nD" value="3" onchange="cNRS()"> <b>3</b> Grave</label></div></div>
+    <div><div class="sgt" style="background:#f5f0ff;color:#6b4fa0">Idade</div><div class="sq"><label><input type="checkbox" id="nA" onchange="cNRS()"> ≥70a (+1)</label></div></div>
   </div>
-  <div class="modal-footer"><button class="btn btn-secondary" onclick="closeM('nrsM')">Fechar</button><button class="btn btn-primary" onclick="sNRS()">Salvar</button></div>
-</div></div>
+  <div style="border-top:2px solid var(--border);padding-top:12px;margin-top:12px"><div class="ns" id="nSD">—</div><div class="nr" id="nRD" style="background:#f0f0f0;color:var(--text-muted)">Preencha</div></div>
+</div><div class="mf"><button class="btn btn-s" onclick="closeM('nrsM')">Fechar</button><button class="btn btn-p" onclick="sNRS()">Salvar</button></div></div></div>
 
-<!-- GLIM MODAL -->
-<div class="modal-overlay hidden" id="glimM" onclick="if(event.target===this)closeM('glimM')"><div class="modal">
-  <div class="modal-header"><h2>🔬 GLIM</h2><button class="modal-close" onclick="closeM('glimM')">✕</button></div>
-  <div class="modal-body">
-    <div class="note" style="margin-bottom:14px">≥1 fenot + ≥1 etiol = desnutrição</div>
-    <div class="screening-group"><div class="screening-group-title" style="background:#e8f5e9;color:#2e7d32">Fenotípicos</div>
-      <div class="screening-question"><label><input type="checkbox" id="gf1" onchange="cGLIM()"> Perda peso</label></div>
-      <div class="screening-question"><label><input type="checkbox" id="gf2" onchange="cGLIM()"> Baixo IMC</label></div>
-      <div class="screening-question"><label><input type="checkbox" id="gf3" onchange="cGLIM()"> ↓ Massa muscular</label></div>
-    </div>
-    <div class="screening-group"><div class="screening-group-title" style="background:#f3e8fd;color:#7b2cbf">Etiológicos</div>
-      <div class="screening-question"><label><input type="checkbox" id="ge1" onchange="cGLIM()"> ↓ Ingestão/absorção</label></div>
-      <div class="screening-question"><label><input type="checkbox" id="ge2" onchange="cGLIM()"> Inflamação</label></div>
-    </div>
-    <div class="screening-group"><div class="screening-group-title" style="background:#fef5f0;color:#c44d18">Gravidade</div>
-      <div class="screening-question"><label><input type="radio" name="gS" value="" onchange="cGLIM()" checked> Não class.</label></div>
-      <div class="screening-question"><label><input type="radio" name="gS" value="moderada" onchange="cGLIM()"> Moderada</label></div>
-      <div class="screening-question"><label><input type="radio" name="gS" value="grave" onchange="cGLIM()"> Grave</label></div>
-    </div>
-    <div style="border-top:2px solid var(--border);padding-top:14px;margin-top:14px"><div class="nrs-result" id="gRD" style="background:#f0f0f0;color:var(--text-muted)">Preencha</div></div>
-  </div>
-  <div class="modal-footer"><button class="btn btn-secondary" onclick="closeM('glimM')">Fechar</button><button class="btn btn-primary" onclick="sGLIM()">Salvar</button></div>
-</div></div>
+<!-- GLIM -->
+<div class="mo hidden" id="glimM" onclick="if(event.target===this)closeM('glimM')"><div class="md"><div class="mh"><h2>🔬 GLIM</h2><button class="mc" onclick="closeM('glimM')">✕</button></div><div class="mb">
+  <div class="note" style="margin-bottom:12px">≥1 fenot + ≥1 etiol = desnutrição</div>
+  <div style="margin-bottom:12px"><div class="sgt" style="background:#e8f5e9;color:#2e7d32">Fenotípicos</div>
+    <div class="sq"><label><input type="checkbox" id="gf1" onchange="cGLIM()"> Perda peso</label></div>
+    <div class="sq"><label><input type="checkbox" id="gf2" onchange="cGLIM()"> Baixo IMC</label></div>
+    <div class="sq"><label><input type="checkbox" id="gf3" onchange="cGLIM()"> ↓Massa muscular</label></div></div>
+  <div style="margin-bottom:12px"><div class="sgt" style="background:#f3e8fd;color:#7b2cbf">Etiológicos</div>
+    <div class="sq"><label><input type="checkbox" id="ge1" onchange="cGLIM()"> ↓Ingestão</label></div>
+    <div class="sq"><label><input type="checkbox" id="ge2" onchange="cGLIM()"> Inflamação</label></div></div>
+  <div><div class="sgt" style="background:#fef5f0;color:#c44d18">Gravidade</div>
+    <div class="sq"><label><input type="radio" name="gS" value="" onchange="cGLIM()" checked> —</label></div>
+    <div class="sq"><label><input type="radio" name="gS" value="moderada" onchange="cGLIM()"> Moderada</label></div>
+    <div class="sq"><label><input type="radio" name="gS" value="grave" onchange="cGLIM()"> Grave</label></div></div>
+  <div style="border-top:2px solid var(--border);padding-top:12px;margin-top:12px"><div class="nr" id="gRD" style="background:#f0f0f0;color:var(--text-muted)">Preencha</div></div>
+</div><div class="mf"><button class="btn btn-s" onclick="closeM('glimM')">Fechar</button><button class="btn btn-p" onclick="sGLIM()">Salvar</button></div></div></div>
 
-<!-- PATIENTS MODAL -->
-<div class="modal-overlay hidden" id="ptsM" onclick="if(event.target===this)closeM('ptsM')"><div class="modal" style="max-width:850px">
-  <div class="modal-header"><h2>📋 Pacientes</h2><button class="modal-close" onclick="closeM('ptsM')">✕</button></div>
-  <div class="modal-body">
-    <div class="tabs">
-      <div class="tab active" id="tabAtivos" onclick="switchTab('ativos')">Ativos <span class="tab-count" id="countAtivos">0</span></div>
-      <div class="tab" id="tabAltas" onclick="switchTab('altas')">Altas <span class="tab-count" id="countAltas">0</span></div>
-    </div>
-    <div id="ptsList"></div>
-    <div id="noPts" style="text-align:center;padding:24px;color:var(--text-muted)">Nenhum paciente.</div>
-  </div>
-  <div class="modal-footer"><button class="btn btn-secondary" onclick="closeM('ptsM')">Fechar</button><button class="btn btn-primary" onclick="exportAllToExcel()">📊 Exportar</button></div>
-</div></div>
+<!-- PATIENTS -->
+<div class="mo hidden" id="ptsM" onclick="if(event.target===this)closeM('ptsM')"><div class="md" style="max-width:850px"><div class="mh"><h2>📋 Pacientes</h2><button class="mc" onclick="closeM('ptsM')">✕</button></div><div class="mb">
+  <div class="tabs"><div class="tab active" id="tA" onclick="sTab('a')">Ativos <span class="tc" id="cA">0</span></div><div class="tab" id="tD" onclick="sTab('d')">Altas <span class="tc" id="cD">0</span></div></div>
+  <div id="ptL"></div><div id="nP" style="text-align:center;padding:20px;color:var(--text-muted)">Nenhum.</div>
+</div><div class="mf"><button class="btn btn-s" onclick="closeM('ptsM')">Fechar</button><button class="btn btn-p" onclick="exportCSV()">📊 Exportar</button></div></div></div>
 
-<!-- DISCHARGE MODAL -->
-<div class="modal-overlay hidden" id="dischargeM" onclick="if(event.target===this)closeM('dischargeM')"><div class="modal" style="max-width:500px">
-  <div class="modal-header"><h2>🏥 Alta Nutricional</h2><button class="modal-close" onclick="closeM('dischargeM')">✕</button></div>
-  <div class="modal-body">
-    <div style="font-weight:700;font-size:14px;margin-bottom:12px" id="dischargeName"></div>
-    <div class="field"><label>Data da Alta</label><input type="date" id="dischargeDate"></div>
-    <div class="field" style="margin-top:12px"><label>Nota de Alta</label><textarea id="dischargeNote" placeholder="Motivo da alta, condição nutricional na alta, orientações..." style="min-height:120px"></textarea></div>
-  </div>
-  <div class="modal-footer"><button class="btn btn-secondary" onclick="closeM('dischargeM')">Cancelar</button><button class="btn btn-primary" onclick="confirmDischarge()">Confirmar Alta</button></div>
-</div></div>
+<!-- DISCHARGE -->
+<div class="mo hidden" id="disM" onclick="if(event.target===this)closeM('disM')"><div class="md" style="max-width:480px"><div class="mh"><h2>🏥 Alta</h2><button class="mc" onclick="closeM('disM')">✕</button></div><div class="mb">
+  <div style="font-weight:700;font-size:13px;margin-bottom:10px" id="disNm"></div>
+  <div class="field"><label>Data Alta</label><input type="date" id="disDt"></div>
+  <div class="field" style="margin-top:10px"><label>Nota</label><textarea id="disNt" placeholder="Condição, orientações..." style="min-height:100px"></textarea></div>
+</div><div class="mf"><button class="btn btn-s" onclick="closeM('disM')">Cancelar</button><button class="btn btn-p" onclick="cDis()">Confirmar</button></div></div></div>
 
-<!-- HISTORY MODAL -->
-<div class="modal-overlay hidden" id="histM" onclick="if(event.target===this)closeM('histM')"><div class="modal" style="max-width:700px">
-  <div class="modal-header"><h2 id="histTitle">📋 Histórico</h2><button class="modal-close" onclick="closeM('histM')">✕</button></div>
-  <div class="modal-body" id="histBody"></div>
-  <div class="modal-footer"><button class="btn btn-secondary" onclick="closeM('histM')">Fechar</button></div>
-</div></div>
+<!-- HISTORY -->
+<div class="mo hidden" id="hisM" onclick="if(event.target===this)closeM('hisM')"><div class="md" style="max-width:700px"><div class="mh"><h2 id="hisT">📋 Histórico</h2><button class="mc" onclick="closeM('hisM')">✕</button></div><div class="mb" id="hisB"></div><div class="mf"><button class="btn btn-s" onclick="closeM('hisM')">Fechar</button></div></div></div>
+
+<div class="saving-indicator" id="savInd">💾 Salvando...</div>
+
+<!-- FIREBASE -->
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 
 <script>
+// Firebase init
+firebase.initializeApp({
+  apiKey:"AIzaSyD6ShlslSdsNeZ5kn5MojWhSBeiX9VuEnI",
+  authDomain:"nutricao-enteral-e-parenteral.firebaseapp.com",
+  projectId:"nutricao-enteral-e-parenteral",
+  storageBucket:"nutricao-enteral-e-parenteral.firebasestorage.app",
+  messagingSenderId:"1097726056063",
+  appId:"1:1097726056063:web:1154b01ae886eec1a3514a"
+});
+const auth=firebase.auth();
+const db=firebase.firestore();
+let uid=null;
+let pts=[];
+let cTab='a';
+let disId=null;
+
+// ===== AUTH =====
+let isLogin=true;
+function toggleAuthMode(){isLogin=!isLogin;$('authBtn').textContent=isLogin?'Entrar':'Criar Conta';$('authToggleText').textContent=isLogin?'Não tem conta?':'Já tem conta?';$('authToggleLink').textContent=isLogin?'Criar conta':'Entrar';$('loginError').style.display='none'}
+function doAuth(){
+  const e=$('loginEmail').value,p=$('loginPass').value;
+  if(!e||!p){shErr('Preencha email e senha.');return}
+  $('authBtn').textContent='Aguarde...';$('authBtn').disabled=true;
+  const fn=isLogin?auth.signInWithEmailAndPassword(e,p):auth.createUserWithEmailAndPassword(e,p);
+  fn.then(()=>{$('loginError').style.display='none'}).catch(err=>{
+    let msg='Erro ao autenticar.';
+    if(err.code==='auth/user-not-found'||err.code==='auth/wrong-password'||err.code==='auth/invalid-credential')msg='Email ou senha incorretos.';
+    else if(err.code==='auth/email-already-in-use')msg='Email já cadastrado.';
+    else if(err.code==='auth/weak-password')msg='Senha deve ter pelo menos 6 caracteres.';
+    else if(err.code==='auth/invalid-email')msg='Email inválido.';
+    shErr(msg);
+  }).finally(()=>{$('authBtn').textContent=isLogin?'Entrar':'Criar Conta';$('authBtn').disabled=false})
+}
+function shErr(m){const e=$('loginError');e.textContent=m;e.style.display='block'}
+function doLogout(){auth.signOut()}
+
+auth.onAuthStateChanged(user=>{
+  if(user){uid=user.uid;$('loginScreen').classList.add('hidden');$('mainApp').classList.remove('hidden');$('userEmail').textContent=user.email;loadPts()}
+  else{uid=null;$('loginScreen').classList.remove('hidden');$('mainApp').classList.add('hidden');pts=[]}
+});
+
+// ===== FIRESTORE =====
+async function loadPts(){
+  try{const snap=await db.collection('patients').where('uid','==',uid).get();pts=[];snap.forEach(d=>{pts.push({fid:d.id,...d.data()})});renderBanner()}catch(e){console.error(e)}
+}
+function showSaving(){$('savInd').style.display='block';setTimeout(()=>$('savInd').style.display='none',1500)}
+
 // ===== DATA =====
-const ED={
-  'santa-casa':[
-    {n:'Fresubin Original',d:'Normocalórica',k:1.0,p:3.8,c:14,l:3.4,o:220},
-    {n:'Fresubin HP Energy',d:'Hipercal/Hiperprot',k:1.5,p:7.5,c:17,l:5.8,o:300},
-    {n:'Fresubin 2.0 HP',d:'Hipercal/Hiperprot',k:2.0,p:10,c:18,l:10,o:410}
-  ],
-  'hnss':[
-    {n:'Normocalórica',d:'Sem fibras',k:1.2,p:4.4,c:null,l:null},
-    {n:'Normocal c/ Fibras',d:'Com fibras',k:1.2,p:4.4,c:null,l:null},
-    {n:'Hipercalórica',d:'1.5kcal/ml',k:1.5,p:6.3,c:null,l:null}
-  ]
-};
-const IH={'santa-casa':20,'hnss':22};
-const PB=[
-  {n:'Kabiven 1026',t:'Kabiven',a:'Central',v:1026,k:900,kn:800,aa:34,g:100,l:40,n2:5.4,o:1060,r:148},
-  {n:'Kabiven 2053',t:'Kabiven',a:'Central',v:2053,k:1900,kn:1600,aa:68,g:200,l:80,n2:10.8,o:1060,r:148},
-  {n:'SmofKab 986',t:'SmofKabiven',a:'Central',v:986,k:1100,kn:900,aa:50,g:125,l:37,n2:8,o:1500,r:112},
-  {n:'SmofKab 1477',t:'SmofKabiven',a:'Central',v:1477,k:1600,kn:1300,aa:75,g:188,l:56,n2:12,o:1500,r:112},
-  {n:'SmofKab 1970',t:'SmofKabiven',a:'Central',v:1970,k:2200,kn:1800,aa:100,g:250,l:75,n2:16,o:1500,r:112},
-  {n:'SmofKab ExN 1012',t:'SmofKab Extra N',a:'Central',v:1012,k:900,kn:635,aa:66,g:86,l:29,n2:11,o:1300,r:58},
-  {n:'SmofKab ExN 1518',t:'SmofKab Extra N',a:'Central',v:1518,k:1350,kn:952,aa:99,g:129,l:44,n2:16,o:1300,r:58},
-  {n:'Kab Periph 1440',t:'Kab Periph',a:'Periférico',v:1440,k:1000,kn:900,aa:34,g:97,l:51,n2:5.4,o:750,r:167},
-  {n:'Kab Periph 1920',t:'Kab Periph',a:'Periférico',v:1920,k:1400,kn:1200,aa:45,g:130,l:68,n2:7.2,o:750,r:167},
-  {n:'SmofKab P 1206',t:'SmofKab Periph',a:'Periférico',v:1206,k:800,kn:700,aa:39,g:86,l:34,n2:6.2,o:850,r:113},
-  {n:'SmofKab P 1904',t:'SmofKab Periph',a:'Periférico',v:1904,k:1300,kn:1100,aa:61,g:135,l:53,n2:9.7,o:850,r:113},
-];
+const ED={'sc':[{n:'Fresubin Original',d:'Normocalórica',k:1.0,p:3.8,c:14,l:3.4,o:220},{n:'Fresubin HP Energy',d:'Hipercal/Hiperprot',k:1.5,p:7.5,c:17,l:5.8,o:300},{n:'Fresubin 2.0 HP',d:'Hipercal/Hiperprot',k:2.0,p:10,c:18,l:10,o:410}],'hn':[{n:'Normocalórica',d:'Sem fibras',k:1.2,p:4.4,c:null,l:null},{n:'Normocal c/Fibras',d:'Com fibras',k:1.2,p:4.4,c:null,l:null},{n:'Hipercalórica',d:'1.5kcal/ml',k:1.5,p:6.3,c:null,l:null}]};
+const IH={'sc':20,'hn':22};
+const PBD=[{n:'Kabiven 1026',t:'Kabiven',a:'Central',v:1026,k:900,kn:800,aa:34,g:100,l:40,n2:5.4,o:1060,r:148},{n:'Kabiven 2053',t:'Kabiven',a:'Central',v:2053,k:1900,kn:1600,aa:68,g:200,l:80,n2:10.8,o:1060,r:148},{n:'SmofKab 986',t:'SmofKabiven',a:'Central',v:986,k:1100,kn:900,aa:50,g:125,l:37,n2:8,o:1500,r:112},{n:'SmofKab 1477',t:'SmofKabiven',a:'Central',v:1477,k:1600,kn:1300,aa:75,g:188,l:56,n2:12,o:1500,r:112},{n:'SmofKab 1970',t:'SmofKabiven',a:'Central',v:1970,k:2200,kn:1800,aa:100,g:250,l:75,n2:16,o:1500,r:112},{n:'SmofKab ExN 1012',t:'SmofKab ExtraN',a:'Central',v:1012,k:900,kn:635,aa:66,g:86,l:29,n2:11,o:1300,r:58},{n:'SmofKab ExN 1518',t:'SmofKab ExtraN',a:'Central',v:1518,k:1350,kn:952,aa:99,g:129,l:44,n2:16,o:1300,r:58},{n:'Kab Periph 1440',t:'Kab Periph',a:'Periférico',v:1440,k:1000,kn:900,aa:34,g:97,l:51,n2:5.4,o:750,r:167},{n:'Kab Periph 1920',t:'Kab Periph',a:'Periférico',v:1920,k:1400,kn:1200,aa:45,g:130,l:68,n2:7.2,o:750,r:167},{n:'SmofKab P 1206',t:'SmofKab Periph',a:'Periférico',v:1206,k:800,kn:700,aa:39,g:86,l:34,n2:6.2,o:850,r:113},{n:'SmofKab P 1904',t:'SmofKab Periph',a:'Periférico',v:1904,k:1300,kn:1100,aa:61,g:135,l:53,n2:9.7,o:850,r:113}];
 
-let S={inst:null,type:null,sE:null,sP:null,nrs:null,glim:null};
-let pts=[];// {id,patientName,age,sex,...,tracking,discharged,dischargeDate,dischargeNote,evolutions:[{date,text,data}]}
-let currentTab='ativos';
-let dischargeTargetId=null;
-
-// ===== STORAGE =====
-async function sGet(k){try{const r=await window.storage.get(k);return r?JSON.parse(r.value):null}catch{return null}}
-async function sSet(k,v){try{await window.storage.set(k,JSON.stringify(v));return true}catch(e){console.error(e);return false}}
-async function loadAll(){
-  pts=await sGet('pts')||[];
-  const sd=await sGet('sd')||{};
-  if(sd.e)$('enteralStartDate').value=sd.e;
-  if(sd.p)$('parenteralStartDate').value=sd.p;
-  renderBanner();
-  $('loadingOverlay').classList.add('hidden');
-}
-async function saveAll(){await sSet('pts',pts)}
-async function saveSD(){
-  await sSet('sd',{e:$('enteralStartDate').value,p:$('parenteralStartDate').value});
-}
+let S={i:null,t:null,sE:null,sP:null,nrs:null,glim:null};
 
 // ===== HELPERS =====
 const $=id=>document.getElementById(id);
@@ -462,257 +371,168 @@ const gt=id=>$(id).textContent;
 const st=(id,v)=>{$(id).textContent=v};
 const tog=(id,s)=>{const e=$(id);if(e)e.classList.toggle('hidden',!s)};
 const fD=d=>{if(!d)return'';const[y,m,dd]=d.split('-');return`${dd}/${m}/${y}`};
+const openM=id=>$(id).classList.remove('hidden');
 const closeM=id=>$(id).classList.add('hidden');
 const td=()=>new Date().toISOString().slice(0,10);
 
 // ===== CALC =====
-function calculate(){
-  const w=pf('weight'),h=pf('height'),kk=pf('kcalPerKg'),pk=pf('protPerKg');
-  if(w>0&&h>0){const i=w/(h*h);sv('imc',i.toFixed(1));sv('imcClass',cIMC(i));sv('idealWeight',(22*h*h).toFixed(1)+' kg')}
-  else{sv('imc','');sv('imcClass','');sv('idealWeight','')}
-  sv('vetPleno',w>0&&kk>0?Math.round(kk*w)+' kcal':'');
-  sv('protTarget',w>0&&pk>0?(pk*w).toFixed(1)+' g':'');
-  calcEnt();calcPN();updateSum();
-}
-function cIMC(i){if(i<16)return'Magreza III';if(i<17)return'Magreza II';if(i<18.5)return'Magreza I';if(i<25)return'Eutrófico';if(i<30)return'Sobrepeso';if(i<35)return'Obesidade I';if(i<40)return'Obesidade II';return'Obesidade III'}
+function calc(){const w=pf('pW'),h=pf('pH'),kk=pf('mKK'),pk=pf('mPK');if(w>0&&h>0){const i=w/(h*h);sv('pIMC',i.toFixed(1));sv('pIMCC',cIMC(i));sv('pPI',(22*h*h).toFixed(1)+'kg')}else{sv('pIMC','');sv('pIMCC','');sv('pPI','')}sv('mVET',w>0&&kk>0?Math.round(kk*w)+'kcal':'');sv('mPT',w>0&&pk>0?(pk*w).toFixed(1)+'g':'');cE();cP();uS()}
+function cIMC(i){if(i<16)return'Magreza III';if(i<17)return'Magreza II';if(i<18.5)return'Magreza I';if(i<25)return'Eutrófico';if(i<30)return'Sobrepeso';if(i<35)return'Obes I';if(i<40)return'Obes II';return'Obes III'}
 
-function selInst(i){S.inst=i;S.sE=null;document.querySelectorAll('.inst-btn').forEach(b=>b.classList.remove('active'));document.querySelector(`.inst-btn.${i}`).classList.add('active');tog('sectionType',true);sv('entHours',IH[i]+'h');selType(null);renderED()}
-function selType(t){
-  S.type=t;document.querySelectorAll('.type-btn').forEach(b=>b.classList.remove('active'));
-  if(t)document.querySelectorAll('.type-btn').forEach(b=>{if(b.dataset.type===t)b.classList.add('active')});
-  const sE=t==='enteral'||t==='both',sP=t==='parenteral'||t==='both';
-  tog('sectionEnteral',sE);tog('sectionPN',sP);tog('sectionSum',!!t);tog('sectionDates',!!t);
-  tog('fieldED',sE);tog('fieldPD',sP);tog('dcE',sE);tog('dcP',sP);
-  if(sE){renderED();$('entLabel').textContent=S.inst==='santa-casa'?'— Santa Casa':'— HNSS'}
-  if(sP)renderPB();updateSum();updateDC();
-}
+function sI(i){S.i=i;S.sE=null;document.querySelectorAll('.inst-btn').forEach(b=>b.classList.remove('active'));document.querySelector(`.inst-btn.${i}`).classList.add('active');tog('secTy',true);sv('eH',IH[i]+'h');sT(null);rED()}
+function sT(t){S.t=t;document.querySelectorAll('.type-btn').forEach(b=>b.classList.remove('active'));if(t)document.querySelectorAll('.type-btn').forEach(b=>{if(b.dataset.t===t)b.classList.add('active')});const sE=t==='ent'||t==='both',sP=t==='pn'||t==='both';tog('secEnt',sE);tog('secPN',sP);tog('secSum',!!t);tog('secDt',!!t);tog('fED',sE);tog('fPD',sP);tog('dcE',sE);tog('dcP',sP);if(sE){rED();$('entLbl').textContent=S.i==='sc'?'— SC':'— HNSS'}if(sP)rPB();uS();uDC()}
 
-function renderED(){if(!S.inst)return;const c=$('entDietsC'),ds=ED[S.inst];c.innerHTML=ds.map((d,i)=>`<div class="diet-card ${S.sE===i?'active':''}" onclick="selED(${i})"><div class="diet-name">${d.n}</div><div class="diet-info">${d.k}kcal/ml · ${d.p}g ptn/100ml<br>${d.d}</div></div>`).join('')}
-function selED(i){S.sE=i;renderED();calcEnt()}
-function calcEnt(){
-  if(!S.inst||S.sE===null)return;
-  const d=ED[S.inst][S.sE],r=pf('entRate'),h=IH[S.inst],v=r*h,w=pf('weight');
-  sv('entVol',v+' ml');const kc=v*d.k,pr=v*d.p/100;
-  st('entKcal',Math.round(kc));st('entProt',pr.toFixed(1));
-  st('entCarb',d.c!==null?(v*d.c/100).toFixed(1):'—');st('entLip',d.l!==null?(v*d.l/100).toFixed(1):'—');
-  const sp=pf('protSupp'),tp=pr+sp;sv('totProtEnt',tp.toFixed(1)+' g');if(w>0)sv('realPKg',(tp/w).toFixed(2)+' g/kg');
-  updateSum();
-}
+function rED(){if(!S.i)return;const c=$('entDC'),ds=ED[S.i];c.innerHTML=ds.map((d,i)=>`<div class="dc ${S.sE===i?'active':''}" onclick="sED(${i})"><div class="dn">${d.n}</div><div class="di">${d.k}kcal/ml · ${d.p}g/100ml<br>${d.d}</div></div>`).join('')}
+function sED(i){S.sE=i;rED();cE()}
+function cE(){if(!S.i||S.sE===null)return;const d=ED[S.i][S.sE],r=pf('eR'),h=IH[S.i],v=r*h,w=pf('pW');sv('eV',v+'ml');const kc=v*d.k,pr=v*d.p/100;st('eK',Math.round(kc));st('eP',pr.toFixed(1));st('eC',d.c!==null?(v*d.c/100).toFixed(1):'—');st('eL',d.l!==null?(v*d.l/100).toFixed(1):'—');const sp=pf('eSP'),tp=pr+sp;sv('eTP',tp.toFixed(1)+'g');if(w>0)sv('ePK',(tp/w).toFixed(2)+'g/kg');uS()}
 
-function renderPB(){const c=$('pnBagsC'),gr={};PB.forEach((b,i)=>{if(!gr[b.t])gr[b.t]=[];gr[b.t].push({...b,idx:i})});let h='';for(const[t,bs]of Object.entries(gr)){h+=`<div style="grid-column:1/-1;font-weight:700;font-size:12px;margin-top:4px;color:var(--text-light)">${t}</div>`;bs.forEach(b=>{h+=`<div class="parenteral-card ${S.sP===b.idx?'active':''}" onclick="selPB(${b.idx})"><div class="pn-name">${b.n}</div><div class="pn-details"><span class="tag ${b.a==='Central'?'central':'periferico'}">${b.a}</span> · ${b.k}kcal · ${b.aa}g AA</div></div>`})}c.innerHTML=h}
-function selPB(i){S.sP=i;renderPB();const b=PB[i];tog('pnCalc',true);st('pnSelName',b.n);$('pnBagInfo').innerHTML=`<b>${b.n}</b> — ${b.a} | ${b.v}ml | ${b.k}kcal (NP:${b.kn}) | AA:${b.aa}g | Glic:${b.g}g | Lip:${b.l}g`;sv('pnDK',b.k);calcPN()}
-function calcPN(){
-  if(S.sP===null)return;const b=PB[S.sP],dk=pf('pnDK'),hr=pf('pnH')||24;
-  if(dk<=0){['pnK','pnKNP','pnAA','pnG','pnL','pnN'].forEach(i=>st(i,'—'));sv('pnR','—');sv('pnV','—');tog('pnNote',false);updateSum();return}
-  const f=dk/b.k,v=Math.round(b.v*f),r=(v/hr).toFixed(1);
-  sv('pnR',r+' ml/h');sv('pnV',v+' ml');
-  st('pnK',Math.round(b.k*f));st('pnKNP',Math.round(b.kn*f));st('pnAA',(b.aa*f).toFixed(1));st('pnG',(b.g*f).toFixed(1));st('pnL',(b.l*f).toFixed(1));st('pnN',(b.n2*f).toFixed(1));
-  st('pnRel',b.r);st('pnOsm',b.o+' mOsm/L');st('pnAcc',b.a);
-  const nt=$('pnNote'),pct=Math.round(f*100);
-  f>1?nt.textContent=`⚠️ ${pct}% — ${f.toFixed(1)} bolsas necessárias`:nt.textContent=`${pct}% da bolsa (${v}/${b.v}ml)`;nt.classList.remove('hidden');
-  updateSum();
-}
+function rPB(){const c=$('pnBC'),gr={};PBD.forEach((b,i)=>{if(!gr[b.t])gr[b.t]=[];gr[b.t].push({...b,idx:i})});let h='';for(const[t,bs]of Object.entries(gr)){h+=`<div style="grid-column:1/-1;font-weight:700;font-size:11px;margin-top:3px;color:var(--text-light)">${t}</div>`;bs.forEach(b=>{h+=`<div class="pc ${S.sP===b.idx?'active':''}" onclick="sPB(${b.idx})"><div class="pn">${b.n}</div><div class="pd"><span class="tag ${b.a==='Central'?'c':'p'}">${b.a}</span> ${b.k}kcal · ${b.aa}gAA</div></div>`})}c.innerHTML=h}
+function sPB(i){S.sP=i;rPB();const b=PBD[i];tog('pnCS',true);st('pnSN',b.n);$('pnBI').innerHTML=`<b>${b.n}</b> ${b.a} | ${b.v}ml | ${b.k}kcal (NP:${b.kn}) | AA:${b.aa}g | G:${b.g}g | L:${b.l}g`;sv('pnDK',b.k);cP()}
+function cP(){if(S.sP===null)return;const b=PBD[S.sP],dk=pf('pnDK'),hr=pf('pnHr')||24;if(dk<=0){['pK','pKN','pA','pG','pL2','pN2'].forEach(i=>st(i,'—'));sv('pnRt','—');sv('pnVl','—');tog('pNt',false);uS();return}const f=dk/b.k,v=Math.round(b.v*f),r=(v/hr).toFixed(1);sv('pnRt',r+'ml/h');sv('pnVl',v+'ml');st('pK',Math.round(b.k*f));st('pKN',Math.round(b.kn*f));st('pA',(b.aa*f).toFixed(1));st('pG',(b.g*f).toFixed(1));st('pL2',(b.l*f).toFixed(1));st('pN2',(b.n2*f).toFixed(1));st('pRl',b.r);st('pOs',b.o);st('pAc',b.a);const nt=$('pNt'),pct=Math.round(f*100);f>1?nt.textContent=`⚠️ ${pct}% — ${f.toFixed(1)} bolsas`:nt.textContent=`${pct}% da bolsa (${v}/${b.v}ml)`;nt.classList.remove('hidden');uS()}
 
-function updateSum(){
-  const t=S.type;if(!t)return;const w=pf('weight');let tk=0,tp=0;
-  if((t==='enteral'||t==='both')&&S.sE!==null){tk+=parseFloat(gt('entKcal'))||0;tp+=(parseFloat(gt('entProt'))||0)+pf('protSupp')}
-  if((t==='parenteral'||t==='both')&&S.sP!==null){tk+=parseFloat(gt('pnK'))||0;tp+=parseFloat(gt('pnAA'))||0}
-  st('sK',Math.round(tk));st('sP',tp.toFixed(1));
-  if(w>0){st('sKK',(tk/w).toFixed(1));st('sPK',(tp/w).toFixed(2))}
-  const vt=parseFloat(gv('vetPleno'))||0,pt=parseFloat(gv('protTarget'))||0;
-  if(vt>0){const p=Math.min(tk/vt*100,150);$('bK').style.width=Math.min(p,100)+'%';$('bK').className='pct-bar-fill '+(p<80?'yellow':p<=110?'green':'red');st('sKP',Math.round(p)+'%')}
-  if(pt>0){const p=Math.min(tp/pt*100,150);$('bP').style.width=Math.min(p,100)+'%';$('bP').className='pct-bar-fill '+(p<80?'yellow':p<=110?'green':'red');st('sPP',Math.round(p)+'%')}
-}
-function updateDC(){
-  const ref=gv('evolutionDate')?new Date(gv('evolutionDate')+'T12:00:00'):new Date();
-  const ed=gv('enteralStartDate'),pd=gv('parenteralStartDate');
-  if(ed){const d=Math.floor((ref-new Date(ed+'T12:00:00'))/864e5)+1;st('dcED',Math.max(d,1))}
-  if(pd){const d=Math.floor((ref-new Date(pd+'T12:00:00'))/864e5)+1;st('dcPD',Math.max(d,1))}
-  saveSD();
-}
+function uS(){const t=S.t;if(!t)return;const w=pf('pW');let tk=0,tp=0;if((t==='ent'||t==='both')&&S.sE!==null){tk+=parseFloat(gt('eK'))||0;tp+=(parseFloat(gt('eP'))||0)+pf('eSP')}if((t==='pn'||t==='both')&&S.sP!==null){tk+=parseFloat(gt('pK'))||0;tp+=parseFloat(gt('pA'))||0}st('sK',Math.round(tk));st('sP',tp.toFixed(1));if(w>0){st('sKK',(tk/w).toFixed(1));st('sPK2',(tp/w).toFixed(2))}const vt=parseFloat(gv('mVET'))||0,pt=parseFloat(gv('mPT'))||0;if(vt>0){const p=Math.min(tk/vt*100,150);$('bK').style.width=Math.min(p,100)+'%';$('bK').className='pf '+(p<80?'y':p<=110?'g':'r');st('sKP',Math.round(p)+'%')}if(pt>0){const p=Math.min(tp/pt*100,150);$('bP').style.width=Math.min(p,100)+'%';$('bP').className='pf '+(p<80?'y':p<=110?'g':'r');st('sPP',Math.round(p)+'%')}}
 
-// ===== NRS =====
-function openNRS(){$('nrsM').classList.remove('hidden')}
-function cNRS(){const e1=['n1','n2','n3','n4'].some(i=>$(i).checked);tog('nE2',e1);if(!e1){st('nSD','0');const e=$('nRD');e.className='nrs-result nrs-negative';e.textContent='Negativa';return}const n=parseInt(document.querySelector('input[name="nN"]:checked')?.value||0),d=parseInt(document.querySelector('input[name="nD"]:checked')?.value||0),a=$('nA').checked?1:0,t=n+d+a;st('nSD',t);const e=$('nRD');t>=3?(e.className='nrs-result nrs-positive',e.textContent='Em risco (≥3)'):(e.className='nrs-result nrs-negative',e.textContent='Sem risco (<3)')}
-function sNRS(){const e1=['n1','n2','n3','n4'].some(i=>$(i).checked);if(!e1)S.nrs={s:0,r:false,t:'Negativa'};else{const n=parseInt(document.querySelector('input[name="nN"]:checked')?.value||0),d=parseInt(document.querySelector('input[name="nD"]:checked')?.value||0),a=$('nA').checked?1:0,t=n+d+a;S.nrs={s:t,n,d,a,r:t>=3,t:t>=3?'Em risco':'Sem risco'}}$('nrsBadge').textContent=S.nrs.s+' pts';$('nrsBadge').style.background=S.nrs.r?'#fde8de':'var(--accent-pale)';$('nrsBadge').style.color=S.nrs.r?'#c44d18':'var(--accent)';uSS();closeM('nrsM')}
+function uDC(){const ref=gv('dEv')?new Date(gv('dEv')+'T12:00:00'):new Date();const ed=gv('dES'),pd=gv('dPS');if(ed){const d=Math.floor((ref-new Date(ed+'T12:00:00'))/864e5)+1;st('dcED',Math.max(d,1))}if(pd){const d=Math.floor((ref-new Date(pd+'T12:00:00'))/864e5)+1;st('dcPD',Math.max(d,1))}}
 
-function openGLIM(){$('glimM').classList.remove('hidden')}
-function cGLIM(){const f=['gf1','gf2','gf3'].filter(i=>$(i).checked).length,e=['ge1','ge2'].filter(i=>$(i).checked).length,sv=document.querySelector('input[name="gS"]:checked')?.value||'';const el=$('gRD');f>=1&&e>=1?(el.className='nrs-result nrs-positive',el.textContent=sv?`Desnutrição ${sv}`:'Desnutrição confirmada'):(el.className='nrs-result nrs-negative',el.textContent=`Insuficiente (${f}f, ${e}e)`)}
-function sGLIM(){const fn=[$('gf1').checked&&'Perda peso',$('gf2').checked&&'↓IMC',$('gf3').checked&&'↓Massa'].filter(Boolean),et=[$('ge1').checked&&'↓Ingestão',$('ge2').checked&&'Inflamação'].filter(Boolean),sv=document.querySelector('input[name="gS"]:checked')?.value||'',dg=fn.length>=1&&et.length>=1;S.glim={dg,sv,fn,et,t:dg?(sv?`Desnutrição ${sv}`:'Desnutrição'):'Sem desnutrição'};$('glimBadge').textContent=dg?(sv||'Sim'):'Não';$('glimBadge').style.background=dg?'#fde8de':'var(--accent-pale)';$('glimBadge').style.color=dg?'#c44d18':'var(--accent)';uSS();closeM('glimM')}
-function uSS(){const el=$('screeningSummary');let p=[];if(S.nrs)p.push(`NRS: ${S.nrs.t} (${S.nrs.s}pts)`);if(S.glim)p.push(`GLIM: ${S.glim.t}`);p.length?(el.textContent=p.join(' | '),el.classList.remove('hidden')):el.classList.add('hidden')}
+// ===== NRS / GLIM =====
+function cNRS(){const e1=['n1','n2','n3','n4'].some(i=>$(i).checked);tog('nE2',e1);if(!e1){st('nSD','0');$('nRD').className='nr nn';$('nRD').textContent='Negativa';return}const n=parseInt(document.querySelector('input[name="nN"]:checked')?.value||0),d=parseInt(document.querySelector('input[name="nD"]:checked')?.value||0),a=$('nA').checked?1:0,t=n+d+a;st('nSD',t);const e=$('nRD');t>=3?(e.className='nr np',e.textContent='Em risco (≥3)'):(e.className='nr nn',e.textContent='Sem risco (<3)')}
+function sNRS(){const e1=['n1','n2','n3','n4'].some(i=>$(i).checked);if(!e1)S.nrs={s:0,r:false,t:'Neg'};else{const n=parseInt(document.querySelector('input[name="nN"]:checked')?.value||0),d=parseInt(document.querySelector('input[name="nD"]:checked')?.value||0),a=$('nA').checked?1:0,t=n+d+a;S.nrs={s:t,n,d,a,r:t>=3,t:t>=3?'Risco':'Sem risco'}}$('nrsB').textContent=S.nrs.s+'pts';$('nrsB').style.background=S.nrs.r?'#fde8de':'var(--accent-pale)';$('nrsB').style.color=S.nrs.r?'#c44d18':'var(--accent)';uSS();closeM('nrsM')}
+function cGLIM(){const f=['gf1','gf2','gf3'].filter(i=>$(i).checked).length,e=['ge1','ge2'].filter(i=>$(i).checked).length,s=document.querySelector('input[name="gS"]:checked')?.value||'';const el=$('gRD');f>=1&&e>=1?(el.className='nr np',el.textContent=s?`Desnutrição ${s}`:'Desnutrição'):(el.className='nr nn',el.textContent=`(${f}f, ${e}e)`)}
+function sGLIM(){const fn=[$('gf1').checked&&'Perda peso',$('gf2').checked&&'↓IMC',$('gf3').checked&&'↓Massa'].filter(Boolean),et=[$('ge1').checked&&'↓Ingestão',$('ge2').checked&&'Inflam'].filter(Boolean),sv2=document.querySelector('input[name="gS"]:checked')?.value||'',dg=fn.length>=1&&et.length>=1;S.glim={dg,sv:sv2,fn,et,t:dg?(sv2?`Desnutr. ${sv2}`:'Desnutr.'):'Sem desnutr.'};$('glimB').textContent=dg?(sv2||'Sim'):'Não';$('glimB').style.background=dg?'#fde8de':'var(--accent-pale)';$('glimB').style.color=dg?'#c44d18':'var(--accent)';uSS();closeM('glimM')}
+function uSS(){const el=$('scrSum');let p=[];if(S.nrs)p.push(`NRS:${S.nrs.t}(${S.nrs.s})`);if(S.glim)p.push(`GLIM:${S.glim.t}`);p.length?(el.textContent=p.join(' | '),el.classList.remove('hidden')):el.classList.add('hidden')}
 
-// ===== TRACKING BANNER =====
-function renderBanner(){const tr=pts.filter(p=>p.tracking&&!p.discharged),b=$('trackingBanner');if(!tr.length){b.classList.add('hidden');return}b.classList.remove('hidden');$('trackingChips').innerHTML=tr.map(p=>`<div class="tracking-chip" onclick="loadPt(${p.id})"><div class="chip-dot"></div>${p.patientName}</div>`).join('')}
+// ===== BANNER =====
+function renderBanner(){const tr=pts.filter(p=>p.tracking&&!p.discharged);const b=$('tBanner');if(!tr.length){b.classList.add('hidden');return}b.classList.remove('hidden');$('tChips').innerHTML=tr.map(p=>`<div class="chip" onclick="ldPt('${p.fid}')">${p.patientName}</div>`).join('')}
 
-// ===== BUILD EVOLUTION TEXT =====
-function buildEvoText(){
-  const nm=gv('patientName'),w=gv('weight'),h=gv('height'),notes=$('evoNotes').value;
-  let t=`Data: ${fD(gv('evolutionDate'))}\n`;
-  t+=`${nm||'—'}, ${gv('age')||'—'}a, ${gv('sex')==='M'?'M':'F'} | ${w}kg | ${h}m | IMC:${gv('imc')} (${gv('imcClass')}) | PI:${gv('idealWeight')}\n`;
-  if(S.nrs)t+=`NRS: ${S.nrs.t} (${S.nrs.s}pts) | `;if(S.glim)t+=`GLIM: ${S.glim.t}`;if(S.nrs||S.glim)t+='\n';
-  t+=`Meta: ${gv('kcalPerKg')}kcal/kg → ${gv('vetPleno')} | ${gv('protPerKg')}g/kg → ${gv('protTarget')}\n`;
-  const ty=S.type;
-  if((ty==='enteral'||ty==='both')&&S.sE!==null){const d=ED[S.inst][S.sE];t+=`Ent: ${d.n} ${gv('entRate')}ml/h×${IH[S.inst]}h=${gv('entVol')} → ${gt('entKcal')}kcal, ${gt('entProt')}g ptn\n`;const sp=pf('protSupp');if(sp>0)t+=`Supl: +${sp}g → ${gv('totProtEnt')}\n`}
-  if((ty==='parenteral'||ty==='both')&&S.sP!==null){const b=PB[S.sP];t+=`NP: ${b.n} ${gv('pnDK')}kcal/${gv('pnH')}h → ${gv('pnR')} (${gv('pnV')}) | AA:${gt('pnAA')}g\n`}
-  if(ty)t+=`TOTAL: ${gt('sK')}kcal (${gt('sKK')}kcal/kg) | Ptn:${gt('sP')}g (${gt('sPK')}g/kg)\n`;
-  if(notes)t+=`\n${notes}`;
+// ===== BUILD TEXT =====
+function bTxt(){
+  let t=`EVOLUÇÃO NUTRICIONAL — ${fD(gv('dEv'))}\n\n`;
+  t+=`${gv('pName')||'—'}, ${gv('pAge')||'—'}a, ${gv('pSex')||'—'} | ${gv('pW')}kg | ${gv('pH')}m | IMC:${gv('pIMC')} (${gv('pIMCC')}) | PI:${gv('pPI')}\n`;
+  if(S.nrs)t+=`NRS-2002: ${S.nrs.t} (${S.nrs.s}pts)\n`;
+  if(S.glim)t+=`GLIM: ${S.glim.t}\n`;
+  t+=`Meta: ${gv('mKK')}kcal/kg → ${gv('mVET')} | ${gv('mPK')}g/kg → ${gv('mPT')}\n`;
+  t+=`Inst: ${S.i==='sc'?'Santa Casa':'HNSS'}\n`;
+  const ty=S.t;
+  if((ty==='ent'||ty==='both')&&S.sE!==null){const d=ED[S.i][S.sE],esd=gv('dES');t+=`\nENTERAL${esd?' (início '+fD(esd)+', '+gt('dcED')+'ºdia)':''}\n${d.n} (${d.k}kcal/ml) | ${gv('eR')}ml/h × ${IH[S.i]}h = ${gv('eV')}\nKcal:${gt('eK')} | Ptn:${gt('eP')}g`;if(d.c!==null)t+=` | CHO:${gt('eC')}g | Lip:${gt('eL')}g`;t+='\n';const sp=pf('eSP');if(sp>0)t+=`Supl: +${sp}g → Total:${gv('eTP')}\n`}
+  if((ty==='pn'||ty==='both')&&S.sP!==null){const b=PBD[S.sP],psd=gv('dPS');t+=`\nNP${psd?' (início '+fD(psd)+', '+gt('dcPD')+'ºdia)':''}\n${b.n} (${b.a}) | ${gv('pnDK')}kcal/${gv('pnHr')}h → ${gv('pnRt')} (${gv('pnVl')})\nKcal:${gt('pK')} (NP:${gt('pKN')}) | AA:${gt('pA')}g | G:${gt('pG')}g | L:${gt('pL2')}g | N₂:${gt('pN2')}g\n`}
+  if(ty)t+=`\nRESUMO: Kcal:${gt('sK')} (${gt('sKK')}kcal/kg) ${gt('sKP')||''} | Ptn:${gt('sP')}g (${gt('sPK2')}g/kg) ${gt('sPP')||''}\n`;
+  const n=$('evoN').value;if(n)t+=`\n${n}\n`;
   return t;
 }
 
-// ===== SAVE =====
-async function savePatient(){
-  const name=gv('patientName');if(!name){alert('Preencha o nome.');return}
-  // Find existing patient or create new
-  let existing=pts.find(p=>p.patientName===name&&!p.discharged);
-  const evoText=buildEvoText();
-  const evoEntry={date:gv('evolutionDate')||td(),text:evoText,savedAt:new Date().toISOString(),
-    data:{weight:gv('weight'),imc:gv('imc'),sumKcal:gt('sK'),sumProt:gt('sP'),sumKcalKg:gt('sKK'),sumProtKg:gt('sPK')}};
+// ===== SAVE PATIENT =====
+async function savePt(){
+  const name=gv('pName');if(!name){alert('Nome!');return}
+  showSaving();
+  const evoEntry={date:gv('dEv')||td(),text:bTxt(),at:new Date().toISOString(),data:{w:gv('pW'),imc:gv('pIMC'),sK:gt('sK'),sP:gt('sP'),sKK:gt('sKK'),sPK:gt('sPK2')}};
+  // Find existing active patient with same name
+  let ex=pts.find(p=>p.patientName===name&&!p.discharged);
+  const pData={uid,patientName:name,age:gv('pAge'),sex:gv('pSex'),weight:gv('pW'),height:gv('pH'),
+    kcalPerKg:gv('mKK'),protPerKg:gv('mPK'),inst:S.i,type:S.t,sE:S.sE,sP:S.sP,
+    entRate:gv('eR'),protSupp:gv('eSP'),pnDK:gv('pnDK'),pnH:gv('pnHr'),
+    enteralStart:gv('dES'),pnStart:gv('dPS'),lastEvo:gv('dEv')||td(),
+    nrs:S.nrs,glim:S.glim,updatedAt:firebase.firestore.FieldValue.serverTimestamp()};
 
-  if(existing){
-    // Update patient data, add evolution
-    existing.age=gv('age');existing.sex=gv('sex');existing.weight=gv('weight');existing.height=gv('height');
-    existing.kcalPerKg=gv('kcalPerKg');existing.protPerKg=gv('protPerKg');
-    existing.inst=S.inst;existing.type=S.type;existing.sE=S.sE;existing.sP=S.sP;
-    existing.entRate=gv('entRate');existing.protSupp=gv('protSupp');
-    existing.pnDK=gv('pnDK');existing.pnH=gv('pnH');
-    existing.enteralStart=gv('enteralStartDate');existing.pnStart=gv('parenteralStartDate');
-    existing.nrs=S.nrs;existing.glim=S.glim;existing.lastEvo=gv('evolutionDate')||td();
-    existing.evolutions.push(evoEntry);
-    alert(`Evolução de "${name}" salva! (${existing.evolutions.length} evoluções)`);
-  } else {
-    const p={id:Date.now(),patientName:name,age:gv('age'),sex:gv('sex'),weight:gv('weight'),height:gv('height'),
-      kcalPerKg:gv('kcalPerKg'),protPerKg:gv('protPerKg'),
-      inst:S.inst,type:S.type,sE:S.sE,sP:S.sP,
-      entRate:gv('entRate'),protSupp:gv('protSupp'),pnDK:gv('pnDK'),pnH:gv('pnH'),
-      enteralStart:gv('enteralStartDate'),pnStart:gv('parenteralStartDate'),
-      nrs:S.nrs,glim:S.glim,lastEvo:gv('evolutionDate')||td(),
-      tracking:false,discharged:false,dischargeDate:null,dischargeNote:null,
-      evolutions:[evoEntry]};
-    pts.unshift(p);
-    alert(`"${name}" salvo!`);
-  }
-  await saveAll();renderBanner();
+  try{
+    if(ex){
+      await db.collection('patients').doc(ex.fid).update({...pData,evolutions:firebase.firestore.FieldValue.arrayUnion(evoEntry)});
+      alert(`Evolução de "${name}" salva! ✅`);
+    } else {
+      await db.collection('patients').add({...pData,tracking:false,discharged:false,dischargeDate:null,dischargeNote:null,evolutions:[evoEntry],createdAt:firebase.firestore.FieldValue.serverTimestamp()});
+      alert(`"${name}" salvo! ✅`);
+    }
+    await loadPts();
+  }catch(e){console.error(e);alert('Erro ao salvar: '+e.message)}
 }
 
 // ===== LOAD =====
-function loadPt(id){
-  const p=pts.find(x=>x.id===id);if(!p)return;
-  sv('patientName',p.patientName);sv('age',p.age);$('sex').value=p.sex||'';
-  sv('weight',p.weight);sv('height',p.height);sv('kcalPerKg',p.kcalPerKg);sv('protPerKg',p.protPerKg);
-  sv('entRate',p.entRate);sv('protSupp',p.protSupp);sv('pnDK',p.pnDK);sv('pnH',p.pnH||24);
-  sv('enteralStartDate',p.enteralStart||'');sv('parenteralStartDate',p.pnStart||'');
-  sv('evolutionDate',td());$('evoNotes').value='';
+function ldPt(fid){
+  const p=pts.find(x=>x.fid===fid);if(!p)return;
+  sv('pName',p.patientName);sv('pAge',p.age);$('pSex').value=p.sex||'';
+  sv('pW',p.weight);sv('pH',p.height);sv('mKK',p.kcalPerKg);sv('mPK',p.protPerKg);
+  sv('eR',p.entRate);sv('eSP',p.protSupp);sv('pnDK',p.pnDK);sv('pnHr',p.pnH||24);
+  sv('dES',p.enteralStart||'');sv('dPS',p.pnStart||'');
+  sv('dEv',td());$('evoN').value='';
   S.nrs=p.nrs;S.glim=p.glim;
-  if(S.nrs)$('nrsBadge').textContent=S.nrs.s+' pts';
-  if(S.glim)$('glimBadge').textContent=S.glim.dg?(S.glim.sv||'Sim'):'Não';
-  uSS();if(p.inst)selInst(p.inst);if(p.type)selType(p.type);
-  if(p.sE!==null&&p.sE!==undefined)selED(p.sE);
-  if(p.sP!==null&&p.sP!==undefined)selPB(p.sP);
-  if(p.pnDK)sv('pnDK',p.pnDK);if(p.pnH)sv('pnH',p.pnH);
-  calculate();closeM('ptsM');window.scrollTo({top:0,behavior:'smooth'});
+  if(S.nrs){$('nrsB').textContent=S.nrs.s+'pts'}if(S.glim){$('glimB').textContent=S.glim.dg?(S.glim.sv||'Sim'):'Não'}
+  uSS();if(p.inst)sI(p.inst);if(p.type)sT(p.type);
+  if(p.sE!==null&&p.sE!==undefined)sED(p.sE);if(p.sP!==null&&p.sP!==undefined)sPB(p.sP);
+  if(p.pnDK)sv('pnDK',p.pnDK);if(p.pnH)sv('pnHr',p.pnH);
+  calc();closeM('ptsM');window.scrollTo({top:0,behavior:'smooth'});
 }
 
 // ===== TRACKING =====
-async function togTrack(id){const p=pts.find(x=>x.id===id);if(p){p.tracking=!p.tracking;await saveAll();renderPtsList();renderBanner()}}
+async function tTr(fid){const p=pts.find(x=>x.fid===fid);if(!p)return;try{await db.collection('patients').doc(fid).update({tracking:!p.tracking});await loadPts();rPL()}catch(e){console.error(e)}}
 
 // ===== DISCHARGE =====
-function openDischarge(id){dischargeTargetId=id;const p=pts.find(x=>x.id===id);if(!p)return;$('dischargeName').textContent=`Alta de: ${p.patientName}`;sv('dischargeDate',td());$('dischargeNote').value='';$('dischargeM').classList.remove('hidden')}
-async function confirmDischarge(){
-  const p=pts.find(x=>x.id===dischargeTargetId);if(!p)return;
-  p.discharged=true;p.tracking=false;p.dischargeDate=gv('dischargeDate')||td();p.dischargeNote=$('dischargeNote').value;
-  p.evolutions.push({date:p.dischargeDate,text:`ALTA NUTRICIONAL — ${fD(p.dischargeDate)}\n${p.dischargeNote||'Sem observações'}`,savedAt:new Date().toISOString(),isDischarge:true,data:{}});
-  await saveAll();closeM('dischargeM');renderPtsList();renderBanner();
-  alert(`Alta de "${p.patientName}" registrada.`);
+function oDis(fid){disId=fid;const p=pts.find(x=>x.fid===fid);$('disNm').textContent=p.patientName;sv('disDt',td());$('disNt').value='';openM('disM')}
+async function cDis(){
+  const p=pts.find(x=>x.fid===disId);if(!p)return;
+  const evo={date:gv('disDt')||td(),text:`ALTA — ${fD(gv('disDt'))}\n${$('disNt').value||''}`,at:new Date().toISOString(),isDischarge:true,data:{}};
+  try{await db.collection('patients').doc(disId).update({discharged:true,tracking:false,dischargeDate:gv('disDt')||td(),dischargeNote:$('disNt').value,evolutions:firebase.firestore.FieldValue.arrayUnion(evo)});
+  await loadPts();closeM('disM');rPL();alert(`Alta de "${p.patientName}" registrada. ✅`)}catch(e){alert('Erro: '+e.message)}
 }
 
-// ===== READMIT =====
-async function readmitPt(id){
-  const p=pts.find(x=>x.id===id);if(!p||!confirm(`Readmitir "${p.patientName}"?`))return;
-  p.discharged=false;p.dischargeDate=null;p.dischargeNote=null;
-  p.evolutions.push({date:td(),text:`READMISSÃO — ${fD(td())}`,savedAt:new Date().toISOString(),isReadmission:true,data:{}});
-  await saveAll();renderPtsList();renderBanner();
-}
+async function rAdm(fid){const p=pts.find(x=>x.fid===fid);if(!p||!confirm(`Readmitir "${p.patientName}"?`))return;
+  const evo={date:td(),text:`READMISSÃO — ${fD(td())}`,at:new Date().toISOString(),isReadmission:true,data:{}};
+  try{await db.collection('patients').doc(fid).update({discharged:false,dischargeDate:null,dischargeNote:null,evolutions:firebase.firestore.FieldValue.arrayUnion(evo)});await loadPts();rPL()}catch(e){alert('Erro: '+e.message)}}
 
 // ===== HISTORY =====
-function showHistory(id){
-  const p=pts.find(x=>x.id===id);if(!p)return;
-  $('histTitle').textContent=`📋 ${p.patientName}`;
-  let h=`<div style="margin-bottom:16px"><b>${p.patientName}</b>, ${p.age||'—'}a | ${p.weight||'—'}kg | ${p.height||'—'}m`;
-  h+=`<br><span style="font-size:12px;color:var(--text-muted)">Instituição: ${p.inst==='santa-casa'?'Santa Casa':'HNSS'}</span>`;
-  if(p.discharged)h+=` <span class="tag alta">Alta em ${fD(p.dischargeDate)}</span>`;
-  else h+=` <span class="tag ativo">Ativo</span>`;
-  h+=`<br><span style="font-size:12px;color:var(--text-muted)">${p.evolutions.length} evolução(ões)</span></div>`;
-
-  // Timeline (reverse chronological)
-  const evos=[...p.evolutions].reverse();
-  evos.forEach(e=>{
-    const cls=e.isDischarge?'history-item discharge-note':e.isReadmission?'history-item discharge-note':'history-item';
-    h+=`<div class="${cls}"><div class="history-date">${e.isDischarge?'🏥 ALTA':e.isReadmission?'🔄 READMISSÃO':'📝'} ${fD(e.date)}</div><div class="history-content">${escH(e.text)}</div></div>`;
-  });
-
-  $('histBody').innerHTML=h;$('histM').classList.remove('hidden');
+function sHis(fid){
+  const p=pts.find(x=>x.fid===fid);if(!p)return;
+  $('hisT').textContent=`📋 ${p.patientName}`;
+  let h=`<div style="margin-bottom:14px"><b>${p.patientName}</b>, ${p.age||'—'}a | ${p.weight||'—'}kg`;
+  h+=`<br><span style="font-size:11px;color:var(--text-muted)">${p.inst==='sc'?'Santa Casa':'HNSS'}</span>`;
+  h+=p.discharged?` <span class="tag a">Alta ${fD(p.dischargeDate)}</span>`:` <span class="tag v">Ativo</span>`;
+  h+=`<br><span style="font-size:11px;color:var(--text-muted)">${(p.evolutions||[]).length} evolução(ões)</span></div>`;
+  const evos=[...(p.evolutions||[])].reverse();
+  evos.forEach(e=>{const cls=e.isDischarge||e.isReadmission?'hi dn3':'hi';h+=`<div class="${cls}"><div class="hd">${e.isDischarge?'🏥 ALTA':e.isReadmission?'🔄 READM':'📝'} ${fD(e.date)}</div><div class="hc">${esc(e.text)}</div></div>`});
+  $('hisB').innerHTML=h;openM('hisM');
 }
-function escH(s){return(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+function esc(s){return(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
 
 // ===== DELETE =====
-async function delPt(id){if(!confirm('Excluir permanentemente?'))return;pts=pts.filter(x=>x.id!==id);await saveAll();renderPtsList();renderBanner()}
+async function dPt(fid){if(!confirm('Excluir permanentemente?'))return;try{await db.collection('patients').doc(fid).delete();await loadPts();rPL();renderBanner()}catch(e){alert('Erro: '+e.message)}}
 
 // ===== PATIENTS MODAL =====
-function openPatientsModal(){renderPtsList();$('ptsM').classList.remove('hidden')}
-function switchTab(t){currentTab=t;document.querySelectorAll('.tab').forEach(e=>e.classList.remove('active'));$(t==='ativos'?'tabAtivos':'tabAltas').classList.add('active');renderPtsList()}
-
-function renderPtsList(){
-  const active=pts.filter(p=>!p.discharged),discharged=pts.filter(p=>p.discharged);
-  $('countAtivos').textContent=active.length;$('countAltas').textContent=discharged.length;
-  const list=currentTab==='ativos'?active:discharged;
-  const c=$('ptsList'),np=$('noPts');
-  if(!list.length){c.innerHTML='';np.textContent=currentTab==='ativos'?'Nenhum paciente ativo.':'Nenhuma alta registrada.';np.classList.remove('hidden');return}
+function openPts(){rPL();openM('ptsM')}
+function sTab(t){cTab=t;document.querySelectorAll('.tab').forEach(e=>e.classList.remove('active'));$(t==='a'?'tA':'tD').classList.add('active');rPL()}
+function rPL(){
+  const ac=pts.filter(p=>!p.discharged),di=pts.filter(p=>p.discharged);
+  $('cA').textContent=ac.length;$('cD').textContent=di.length;
+  const list=cTab==='a'?ac:di;const c=$('ptL'),np=$('nP');
+  if(!list.length){c.innerHTML='';np.textContent=cTab==='a'?'Nenhum ativo.':'Nenhuma alta.';np.classList.remove('hidden');return}
   np.classList.add('hidden');
-  // Tracked first for active
-  const sorted=currentTab==='ativos'?[...list.filter(p=>p.tracking),...list.filter(p=>!p.tracking)]:list;
-  c.innerHTML=sorted.map(p=>{
-    const isA=currentTab==='ativos';
-    return`<div class="patient-item ${p.tracking?'tracking':''} ${p.discharged?'discharged':''}">
-    <div style="flex:1;min-width:0">
-      <div class="pi-name" onclick="showHistory(${p.id})">${p.tracking?'📌 ':''}${p.patientName} ${p.discharged?'<span class=\"tag alta\">Alta '+fD(p.dischargeDate)+'</span>':''}</div>
-      <div class="pi-info">${p.age?p.age+'a':''} ${p.weight?'· '+p.weight+'kg':''} ${p.inst==='santa-casa'?'· SC':'· HNSS'} · ${p.evolutions.length} evol. · Últ: ${fD(p.lastEvo)}</div>
-    </div>
-    <div style="display:flex;gap:4px;flex-shrink:0">
-      ${isA?`<button class="pi-btn ${p.tracking?'track-active':''}" onclick="togTrack(${p.id})" title="Acompanhamento">📌</button>`:''}
-      ${isA?`<button class="pi-btn" onclick="loadPt(${p.id})" title="Evoluir">📂</button>`:''}
-      ${isA?`<button class="pi-btn alta-btn" onclick="openDischarge(${p.id})" title="Alta">🏥</button>`:`<button class="pi-btn" onclick="readmitPt(${p.id})" title="Readmitir">🔄</button>`}
-      <button class="pi-btn" onclick="showHistory(${p.id})" title="Histórico">📋</button>
-      <button class="pi-btn danger" onclick="delPt(${p.id})">🗑</button>
-    </div>
-  </div>`}).join('');
+  const sorted=cTab==='a'?[...list.filter(p=>p.tracking),...list.filter(p=>!p.tracking)]:list;
+  c.innerHTML=sorted.map(p=>{const isA=cTab==='a';return`<div class="pi ${p.tracking?'tr':''} ${p.discharged?'dis':''}">
+    <div style="flex:1;min-width:0"><div class="pin" onclick="sHis('${p.fid}')">${p.tracking?'📌 ':''}${p.patientName} ${p.discharged?'<span class="tag a">Alta</span>':''}</div><div class="pii">${p.age?p.age+'a':''} ${p.weight?p.weight+'kg':''} ${p.inst==='sc'?'SC':'HNSS'} · ${(p.evolutions||[]).length}evol</div></div>
+    <div style="display:flex;gap:3px;flex-shrink:0">${isA?`<button class="pb2 ${p.tracking?'ta':''}" onclick="tTr('${p.fid}')">📌</button><button class="pb2" onclick="ldPt('${p.fid}')">📂</button><button class="pb2" onclick="oDis('${p.fid}')">🏥</button>`:`<button class="pb2" onclick="rAdm('${p.fid}')">🔄</button>`}<button class="pb2" onclick="sHis('${p.fid}')">📋</button><button class="pb2 dg" onclick="dPt('${p.fid}')">🗑</button></div></div>`}).join('');
 }
 
-// ===== TEXT GEN =====
-function genText(){$('genTxt').textContent=buildEvoText();tog('sectionGen',true);$('sectionGen').scrollIntoView({behavior:'smooth'})}
-function copyTxt(){navigator.clipboard.writeText($('genTxt').textContent).then(()=>alert('Copiado!'))}
+// ===== TEXT =====
+function genTxt(){$('gTxt').textContent=bTxt();tog('secGen',true);$('secGen').scrollIntoView({behavior:'smooth'})}
+function cpTxt(){navigator.clipboard.writeText($('gTxt').textContent).then(()=>alert('Copiado! ✅'))}
 
 // ===== EXPORT =====
-function exportAllToExcel(){
+function exportCSV(){
   if(!pts.length){alert('Nenhum paciente.');return}
-  let csv='\uFEFF'+['Nome','Status','Acomp.','Idade','Sexo','Peso','Altura','IMC','Instituição','NRS','GLIM','Nº Evoluções','Última Evol.','Alta','Data Alta','Nota Alta'].join(';')+'\n';
-  pts.forEach(p=>{csv+=[p.patientName,p.discharged?'Alta':'Ativo',p.tracking?'Sim':'',p.age,p.sex,p.weight,p.height,p.imc||'',p.inst==='santa-casa'?'Santa Casa':'HNSS',p.nrs?.s??'',p.glim?.t||'',p.evolutions.length,fD(p.lastEvo),p.discharged?'Sim':'',fD(p.dischargeDate||''),
-    (p.dischargeNote||'').replace(/[\n\r;]/g,' ')].map(v=>`"${(v??'').toString().replace(/"/g,'""')}"`).join(';')+'\n'});
+  let csv='\uFEFF'+['Nome','Status','Acomp','Idade','Sexo','Peso','Altura','IMC','Inst','NRS','GLIM','Evoluções','Última Evol','Alta','Data Alta'].join(';')+'\n';
+  pts.forEach(p=>{csv+=[p.patientName,p.discharged?'Alta':'Ativo',p.tracking?'Sim':'',p.age,p.sex,p.weight,p.height,'',p.inst==='sc'?'SC':'HNSS',p.nrs?.s??'',p.glim?.t||'',(p.evolutions||[]).length,fD(p.lastEvo),p.discharged?'Sim':'',fD(p.dischargeDate||'')].map(v=>`"${(v??'').toString().replace(/"/g,'""')}"`).join(';')+'\n'});
   const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8;'}));a.download=`NutriCalc_${td()}.csv`;a.click();
 }
 
 // ===== RESET =====
 function resetAll(){
   document.querySelectorAll('input[type=number],input[type=text]').forEach(i=>i.value='');
-  $('sex').value='';$('evoNotes').value='';
-  document.querySelectorAll('.inst-btn,.type-btn,.diet-card,.parenteral-card').forEach(b=>b.classList.remove('active'));
-  ['sectionType','sectionEnteral','sectionPN','sectionSum','sectionDates','sectionGen','screeningSummary','pnCalc'].forEach(i=>tog(i,false));
-  ['entKcal','entProt','entCarb','entLip','pnK','pnKNP','pnAA','pnG','pnL','pnN','sK','sP','sKK','sPK','dcED','dcPD'].forEach(i=>st(i,'—'));
-  $('nrsBadge').textContent='—';$('glimBadge').textContent='—';
-  S={inst:null,type:null,sE:null,sP:null,nrs:null,glim:null};sv('evolutionDate',td());
+  $('pSex').value='';$('evoN').value='';
+  document.querySelectorAll('.inst-btn,.type-btn,.dc,.pc').forEach(b=>b.classList.remove('active'));
+  ['secTy','secEnt','secPN','secSum','secDt','secGen','scrSum','pnCS'].forEach(i=>tog(i,false));
+  ['eK','eP','eC','eL','pK','pKN','pA','pG','pL2','pN2','sK','sP','sKK','sPK2','dcED','dcPD'].forEach(i=>st(i,'—'));
+  $('nrsB').textContent='—';$('glimB').textContent='—';
+  S={i:null,t:null,sE:null,sP:null,nrs:null,glim:null};sv('dEv',td());
 }
 
-// Init
-sv('evolutionDate',td());loadAll();
+sv('dEv',td());
 </script>
 </body>
 </html>
