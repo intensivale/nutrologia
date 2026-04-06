@@ -309,16 +309,26 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 
 <script>
 // Firebase init
-firebase.initializeApp({
-  apiKey:"AIzaSyD6ShlslSdsNeZ5kn5MojWhSBeiX9VuEnI",
-  authDomain:"nutricao-enteral-e-parenteral.firebaseapp.com",
-  projectId:"nutricao-enteral-e-parenteral",
-  storageBucket:"nutricao-enteral-e-parenteral.firebasestorage.app",
-  messagingSenderId:"1097726056063",
-  appId:"1:1097726056063:web:1154b01ae886eec1a3514a"
-});
-const auth=firebase.auth();
-const db=firebase.firestore();
+let auth=null,db=null,firebaseReady=false;
+try{
+  firebase.initializeApp({
+    apiKey:"AIzaSyD6ShlslSdsNeZ5kn5MojWhSBeiX9VuEnI",
+    authDomain:"nutricao-enteral-e-parenteral.firebaseapp.com",
+    projectId:"nutricao-enteral-e-parenteral",
+    storageBucket:"nutricao-enteral-e-parenteral.firebasestorage.app",
+    messagingSenderId:"1097726056063",
+    appId:"1:1097726056063:web:1154b01ae886eec1a3514a"
+  });
+  auth=firebase.auth();
+  db=firebase.firestore();
+  firebaseReady=true;
+}catch(e){
+  console.warn('Firebase não disponível:',e);
+  // Show app without login if Firebase unavailable
+  document.getElementById('loginScreen').classList.add('hidden');
+  document.getElementById('mainApp').classList.remove('hidden');
+  document.getElementById('userEmail').textContent='(modo offline)';
+}
 let uid=null;
 let pts=[];
 let cTab='a';
@@ -328,6 +338,7 @@ let disId=null;
 let isLogin=true;
 function toggleAuthMode(){isLogin=!isLogin;$('authBtn').textContent=isLogin?'Entrar':'Criar Conta';$('authToggleText').textContent=isLogin?'Não tem conta?':'Já tem conta?';$('authToggleLink').textContent=isLogin?'Criar conta':'Entrar';$('loginError').style.display='none'}
 function doAuth(){
+  if(!firebaseReady){alert('Firebase indisponível. Abra o arquivo no navegador fora do Claude.');return;}
   const e=$('loginEmail').value,p=$('loginPass').value;
   if(!e||!p){shErr('Preencha email e senha.');return}
   $('authBtn').textContent='Aguarde...';$('authBtn').disabled=true;
@@ -342,15 +353,16 @@ function doAuth(){
   }).finally(()=>{$('authBtn').textContent=isLogin?'Entrar':'Criar Conta';$('authBtn').disabled=false})
 }
 function shErr(m){const e=$('loginError');e.textContent=m;e.style.display='block'}
-function doLogout(){auth.signOut()}
+function doLogout(){if(firebaseReady&&auth)auth.signOut();else location.reload()}
 
-auth.onAuthStateChanged(user=>{
+if(auth){auth.onAuthStateChanged(user=>{
   if(user){uid=user.uid;$('loginScreen').classList.add('hidden');$('mainApp').classList.remove('hidden');$('userEmail').textContent=user.email;loadPts()}
   else{uid=null;$('loginScreen').classList.remove('hidden');$('mainApp').classList.add('hidden');pts=[]}
-});
+});}
 
 // ===== FIRESTORE =====
 async function loadPts(){
+  if(!firebaseReady||!db){return;}
   try{const snap=await db.collection('patients').where('uid','==',uid).get();pts=[];snap.forEach(d=>{pts.push({fid:d.id,...d.data()})});renderBanner()}catch(e){console.error(e)}
 }
 function showSaving(){$('savInd').style.display='block';setTimeout(()=>$('savInd').style.display='none',1500)}
@@ -371,8 +383,8 @@ const gt=id=>$(id).textContent;
 const st=(id,v)=>{$(id).textContent=v};
 const tog=(id,s)=>{const e=$(id);if(e)e.classList.toggle('hidden',!s)};
 const fD=d=>{if(!d)return'';const[y,m,dd]=d.split('-');return`${dd}/${m}/${y}`};
-const openM=id=>$(id).classList.remove('hidden');
-const closeM=id=>$(id).classList.add('hidden');
+function openM(id){document.getElementById(id).classList.remove('hidden')}
+function closeM(id){document.getElementById(id).classList.add('hidden')}
 const td=()=>new Date().toISOString().slice(0,10);
 
 // ===== CALC =====
@@ -396,10 +408,10 @@ function uDC(){const ref=gv('dEv')?new Date(gv('dEv')+'T12:00:00'):new Date();co
 
 // ===== NRS / GLIM =====
 function cNRS(){const e1=['n1','n2','n3','n4'].some(i=>$(i).checked);tog('nE2',e1);if(!e1){st('nSD','0');$('nRD').className='nr nn';$('nRD').textContent='Negativa';return}const n=parseInt(document.querySelector('input[name="nN"]:checked')?.value||0),d=parseInt(document.querySelector('input[name="nD"]:checked')?.value||0),a=$('nA').checked?1:0,t=n+d+a;st('nSD',t);const e=$('nRD');t>=3?(e.className='nr np',e.textContent='Em risco (≥3)'):(e.className='nr nn',e.textContent='Sem risco (<3)')}
-function sNRS(){const e1=['n1','n2','n3','n4'].some(i=>$(i).checked);if(!e1)S.nrs={s:0,r:false,t:'Neg'};else{const n=parseInt(document.querySelector('input[name="nN"]:checked')?.value||0),d=parseInt(document.querySelector('input[name="nD"]:checked')?.value||0),a=$('nA').checked?1:0,t=n+d+a;S.nrs={s:t,n,d,a,r:t>=3,t:t>=3?'Risco':'Sem risco'}}$('nrsB').textContent=S.nrs.s+'pts';$('nrsB').style.background=S.nrs.r?'#fde8de':'var(--accent-pale)';$('nrsB').style.color=S.nrs.r?'#c44d18':'var(--accent)';uSS();closeM('nrsM')}
+function sNRS(){const e1=['n1','n2','n3','n4'].some(i=>$(i).checked);if(!e1){S.nrs={s:0,r:false,txt:'Neg'};}else{const n=parseInt(document.querySelector('input[name="nN"]:checked')?.value||0),d=parseInt(document.querySelector('input[name="nD"]:checked')?.value||0),a=$('nA').checked?1:0,tot=n+d+a;S.nrs={s:tot,n:n,d:d,a:a,r:tot>=3,txt:tot>=3?'Risco':'Sem risco'};}$('nrsB').textContent=S.nrs.s+'pts';$('nrsB').style.background=S.nrs.r?'#fde8de':'var(--accent-pale)';$('nrsB').style.color=S.nrs.r?'#c44d18':'var(--accent)';uSS();closeM('nrsM');}
 function cGLIM(){const f=['gf1','gf2','gf3'].filter(i=>$(i).checked).length,e=['ge1','ge2'].filter(i=>$(i).checked).length,s=document.querySelector('input[name="gS"]:checked')?.value||'';const el=$('gRD');f>=1&&e>=1?(el.className='nr np',el.textContent=s?`Desnutrição ${s}`:'Desnutrição'):(el.className='nr nn',el.textContent=`(${f}f, ${e}e)`)}
-function sGLIM(){const fn=[$('gf1').checked&&'Perda peso',$('gf2').checked&&'↓IMC',$('gf3').checked&&'↓Massa'].filter(Boolean),et=[$('ge1').checked&&'↓Ingestão',$('ge2').checked&&'Inflam'].filter(Boolean),sv2=document.querySelector('input[name="gS"]:checked')?.value||'',dg=fn.length>=1&&et.length>=1;S.glim={dg,sv:sv2,fn,et,t:dg?(sv2?`Desnutr. ${sv2}`:'Desnutr.'):'Sem desnutr.'};$('glimB').textContent=dg?(sv2||'Sim'):'Não';$('glimB').style.background=dg?'#fde8de':'var(--accent-pale)';$('glimB').style.color=dg?'#c44d18':'var(--accent)';uSS();closeM('glimM')}
-function uSS(){const el=$('scrSum');let p=[];if(S.nrs)p.push(`NRS:${S.nrs.t}(${S.nrs.s})`);if(S.glim)p.push(`GLIM:${S.glim.t}`);p.length?(el.textContent=p.join(' | '),el.classList.remove('hidden')):el.classList.add('hidden')}
+function sGLIM(){const fn=[$('gf1').checked&&'Perda peso',$('gf2').checked&&'↓IMC',$('gf3').checked&&'↓Massa'].filter(Boolean),et=[$('ge1').checked&&'↓Ingestão',$('ge2').checked&&'Inflam'].filter(Boolean),sv2=document.querySelector('input[name="gS"]:checked')?.value||'',dg=fn.length>=1&&et.length>=1;S.glim={dg:dg,sv:sv2,fn:fn,et:et,txt:dg?(sv2?'Desnutr. '+sv2:'Desnutr.'):'Sem desnutr.'};$('glimB').textContent=dg?(sv2||'Sim'):'Não';$('glimB').style.background=dg?'#fde8de':'var(--accent-pale)';$('glimB').style.color=dg?'#c44d18':'var(--accent)';uSS();closeM('glimM');}
+function uSS(){const el=$('scrSum');let p=[];if(S.nrs)p.push('NRS:'+S.nrs.txt+'('+S.nrs.s+')');if(S.glim)p.push('GLIM:'+S.glim.txt);p.length?(el.textContent=p.join(' | '),el.classList.remove('hidden')):el.classList.add('hidden');}
 
 // ===== BANNER =====
 function renderBanner(){const tr=pts.filter(p=>p.tracking&&!p.discharged);const b=$('tBanner');if(!tr.length){b.classList.add('hidden');return}b.classList.remove('hidden');$('tChips').innerHTML=tr.map(p=>`<div class="chip" onclick="ldPt('${p.fid}')">${p.patientName}</div>`).join('')}
@@ -408,8 +420,8 @@ function renderBanner(){const tr=pts.filter(p=>p.tracking&&!p.discharged);const 
 function bTxt(){
   let t=`EVOLUÇÃO NUTRICIONAL — ${fD(gv('dEv'))}\n\n`;
   t+=`${gv('pName')||'—'}, ${gv('pAge')||'—'}a, ${gv('pSex')||'—'} | ${gv('pW')}kg | ${gv('pH')}m | IMC:${gv('pIMC')} (${gv('pIMCC')}) | PI:${gv('pPI')}\n`;
-  if(S.nrs)t+=`NRS-2002: ${S.nrs.t} (${S.nrs.s}pts)\n`;
-  if(S.glim)t+=`GLIM: ${S.glim.t}\n`;
+  if(S.nrs)t+=`NRS-2002: ${S.nrs.txt} (${S.nrs.s}pts)\n`;
+  if(S.glim)t+=`GLIM: ${S.glim.txt}\n`;
   t+=`Meta: ${gv('mKK')}kcal/kg → ${gv('mVET')} | ${gv('mPK')}g/kg → ${gv('mPT')}\n`;
   t+=`Inst: ${S.i==='sc'?'Santa Casa':'HNSS'}\n`;
   const ty=S.t;
@@ -422,7 +434,8 @@ function bTxt(){
 
 // ===== SAVE PATIENT =====
 async function savePt(){
-  const name=gv('pName');if(!name){alert('Nome!');return}
+  const name=gv('pName');if(!name){alert('Preencha o nome!');return;}
+  if(!firebaseReady||!db){alert('Firebase indisponível. Baixe o arquivo e abra no navegador.');return;}
   showSaving();
   const evoEntry={date:gv('dEv')||td(),text:bTxt(),at:new Date().toISOString(),data:{w:gv('pW'),imc:gv('pIMC'),sK:gt('sK'),sP:gt('sP'),sKK:gt('sKK'),sPK:gt('sPK2')}};
   // Find existing active patient with same name
@@ -462,18 +475,19 @@ function ldPt(fid){
 }
 
 // ===== TRACKING =====
-async function tTr(fid){const p=pts.find(x=>x.fid===fid);if(!p)return;try{await db.collection('patients').doc(fid).update({tracking:!p.tracking});await loadPts();rPL()}catch(e){console.error(e)}}
+async function tTr(fid){if(!firebaseReady)return;const p=pts.find(x=>x.fid===fid);if(!p)return;try{await db.collection('patients').doc(fid).update({tracking:!p.tracking});await loadPts();rPL()}catch(e){console.error(e)}}
 
 // ===== DISCHARGE =====
 function oDis(fid){disId=fid;const p=pts.find(x=>x.fid===fid);$('disNm').textContent=p.patientName;sv('disDt',td());$('disNt').value='';openM('disM')}
 async function cDis(){
+  if(!firebaseReady)return;
   const p=pts.find(x=>x.fid===disId);if(!p)return;
   const evo={date:gv('disDt')||td(),text:`ALTA — ${fD(gv('disDt'))}\n${$('disNt').value||''}`,at:new Date().toISOString(),isDischarge:true,data:{}};
   try{await db.collection('patients').doc(disId).update({discharged:true,tracking:false,dischargeDate:gv('disDt')||td(),dischargeNote:$('disNt').value,evolutions:firebase.firestore.FieldValue.arrayUnion(evo)});
   await loadPts();closeM('disM');rPL();alert(`Alta de "${p.patientName}" registrada. ✅`)}catch(e){alert('Erro: '+e.message)}
 }
 
-async function rAdm(fid){const p=pts.find(x=>x.fid===fid);if(!p||!confirm(`Readmitir "${p.patientName}"?`))return;
+async function rAdm(fid){if(!firebaseReady)return;const p=pts.find(x=>x.fid===fid);if(!p||!confirm(`Readmitir "${p.patientName}"?`))return;
   const evo={date:td(),text:`READMISSÃO — ${fD(td())}`,at:new Date().toISOString(),isReadmission:true,data:{}};
   try{await db.collection('patients').doc(fid).update({discharged:false,dischargeDate:null,dischargeNote:null,evolutions:firebase.firestore.FieldValue.arrayUnion(evo)});await loadPts();rPL()}catch(e){alert('Erro: '+e.message)}}
 
@@ -492,7 +506,7 @@ function sHis(fid){
 function esc(s){return(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
 
 // ===== DELETE =====
-async function dPt(fid){if(!confirm('Excluir permanentemente?'))return;try{await db.collection('patients').doc(fid).delete();await loadPts();rPL();renderBanner()}catch(e){alert('Erro: '+e.message)}}
+async function dPt(fid){if(!firebaseReady)return;if(!confirm('Excluir permanentemente?'))return;try{await db.collection('patients').doc(fid).delete();await loadPts();rPL();renderBanner()}catch(e){alert('Erro: '+e.message)}}
 
 // ===== PATIENTS MODAL =====
 function openPts(){rPL();openM('ptsM')}
@@ -517,7 +531,7 @@ function cpTxt(){navigator.clipboard.writeText($('gTxt').textContent).then(()=>a
 function exportCSV(){
   if(!pts.length){alert('Nenhum paciente.');return}
   let csv='\uFEFF'+['Nome','Status','Acomp','Idade','Sexo','Peso','Altura','IMC','Inst','NRS','GLIM','Evoluções','Última Evol','Alta','Data Alta'].join(';')+'\n';
-  pts.forEach(p=>{csv+=[p.patientName,p.discharged?'Alta':'Ativo',p.tracking?'Sim':'',p.age,p.sex,p.weight,p.height,'',p.inst==='sc'?'SC':'HNSS',p.nrs?.s??'',p.glim?.t||'',(p.evolutions||[]).length,fD(p.lastEvo),p.discharged?'Sim':'',fD(p.dischargeDate||'')].map(v=>`"${(v??'').toString().replace(/"/g,'""')}"`).join(';')+'\n'});
+  pts.forEach(p=>{csv+=[p.patientName,p.discharged?'Alta':'Ativo',p.tracking?'Sim':'',p.age,p.sex,p.weight,p.height,'',p.inst==='sc'?'SC':'HNSS',p.nrs?.s??'',p.glim?.txt||'',(p.evolutions||[]).length,fD(p.lastEvo),p.discharged?'Sim':'',fD(p.dischargeDate||'')].map(v=>`"${(v??'').toString().replace(/"/g,'""')}"`).join(';')+'\n'});
   const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8;'}));a.download=`NutriCalc_${td()}.csv`;a.click();
 }
 
